@@ -4,40 +4,22 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ItemBasicDataAsset.h"
+#include "DataAsset/ItemBasicDataAsset.h"
 #include "ItemStorageStruct.generated.h"
 
-class ItemBasicDataAsset;
 
-struct ItemStorageStruct
+USTRUCT(BlueprintType)
+struct FItemStorageStruct
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
-	ItemBasicDataAsset* ItemData;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowedClasses = "ItemBasicDataAsset"))
+	UItemBasicDataAsset* ItemData;
 
-	UPROPERTY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	int32 CurrentItemCount;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	int32 MaxStorageCount;
-};
-
-UCLASS()
-class FACTORYPROJECT_API AItemStorageStruct : public AActor
-{
-	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	AItemStorageStruct();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 };

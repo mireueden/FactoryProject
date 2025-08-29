@@ -9,15 +9,15 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType,Blueprintable)
 class FACTORYPROJECT_API UItemBasicDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	int32 ItemIndex;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	FString ItemName;
 };
