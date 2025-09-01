@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "DataAsset/ItemStorageStruct.h"
 #include "DataAsset/ItemBasicDataAsset.h"
+#include "DataAsset/ItemManagerActor.h"
+#include "DataAsset/ItemManagerObject.h"
 #include "../Widget/ItemSlotWidget.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
@@ -28,6 +30,9 @@ public:
 
 	virtual void NativeConstruct() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	AItemManagerActor* ItemManager;
+	//UItemManagerObject* ItemManager;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<FItemStorageStruct> StorageList;
@@ -35,22 +40,32 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<UItemSlotWidget*> SlotWidgetList;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	UItemSlotWidget* SelectedWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FItemStorageStruct SelectedStruct;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	int32 SelectedIndex;
+
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TSubclassOf<class UItemSlotWidget> ItemSlotWidgetClass;
+
+
 
 
 
 	UPROPERTY(meta = (BindWidget))
 	class UVerticalBox* ItemSlotContainer;
 
+
+public:
+
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* AddOrderNumText;
-
-
-
-
-
-
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* OrderButton;
@@ -65,7 +80,23 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateAddOrderNum();
 
+	UFUNCTION(BlueprintCallable)
+	void Order();
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateOrderBtn();
+
 
 	UPROPERTY(BlueprintReadWrite)
 	int32 AddOrderNum = 0;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void SelectCheckUpdate(UItemSlotWidget* SelectedSlot);
+
+	bool bIsCheckedSlot;
+
+
+	void CheckItemInFactoy();
+
 };

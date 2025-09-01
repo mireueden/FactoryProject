@@ -16,7 +16,6 @@ struct FItemStorageStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowedClasses = "ItemBasicDataAsset"))
 	UItemBasicDataAsset* ItemData;
 
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	int32 CurrentItemCount;
 

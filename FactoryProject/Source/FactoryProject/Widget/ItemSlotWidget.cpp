@@ -3,6 +3,16 @@
 
 #include "Widget/ItemSlotWidget.h"
 
+void UItemSlotWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	if (SelectChecker)
+	{
+		SelectChecker->OnCheckStateChanged.AddDynamic(this, &UItemSlotWidget::HandleCheckBoxChanged);
+	}
+}
+
 void UItemSlotWidget::SetupSlot(const FItemStorageStruct& ItemStorage)
 {	
 	ItemNameText->SetText(
@@ -14,5 +24,10 @@ void UItemSlotWidget::SetupSlot(const FItemStorageStruct& ItemStorage)
 		FText::FromString(FString::FromInt(ItemStorage.CurrentItemCount)));
 	MaxCountText->SetText(
 		FText::FromString(FString::FromInt(ItemStorage.MaxStorageCount)));
+}
+
+void UItemSlotWidget::HandleCheckBoxChanged(bool bIsChecked)
+{
+	OnSlotChecked.Broadcast(this);
 }
 

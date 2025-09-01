@@ -9,7 +9,12 @@
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
 #include "Components/button.h"
+#include "Components/CheckBox.h"
 #include "ItemSlotWidget.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSlotChecked, UItemSlotWidget*, SlotWidget);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSlotUpdate, UItemSlotWidget*, SlotWidget);
+
 
 /**
  * 
@@ -18,6 +23,9 @@ UCLASS()
 class FACTORYPROJECT_API UItemSlotWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
+protected:
+	virtual void NativeConstruct() override;
 
 public:
 	// 슬롯에 데이터 바인딩하는 함수
@@ -36,5 +44,20 @@ public:
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* MaxCountText;
+
+	UPROPERTY(meta = (BindWidget))
+	class UCheckBox* SelectChecker;
+	
+	UPROPERTY(BlueprintAssignable, Category = "Item")
+	FOnSlotChecked OnSlotChecked;
+
+	UPROPERTY(BlueprintAssignable, Category = "Item")
+	FOnSlotUpdate OnSlotUpdate;
+
+	UFUNCTION(BlueprintCallable)
+	void HandleCheckBoxChanged(bool bIsChecked);
+
+	//UPROPERTY(meta = (BindWidget))
+	//class UButton* SelectCheckBtn;
 
 };
