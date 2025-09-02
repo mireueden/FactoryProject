@@ -5,15 +5,22 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_ItemManagerObject.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/ItemManagerActor.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Level_Factory.umap",
 				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Widget/WBP_ItemManagementWidget.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/FirstPerson/Blueprints/BP_FirstPersonGameMode.uasset",
-				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BPP_ItemManagerActor.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/MyItemManagerActor.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_ItemManageActor.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/test/SM_AssemblyLine02.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/test/SM_AssemblyLine01.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_SpawnPoint.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_TestItem.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_ArrivePoint.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_ConveyorBelt.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/MyConveyorBelt.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_ItemManagerObject.uasset",
+				"D:/workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BPP_ItemManagerActor.uasset",
 				"D:/workspace/FactoryProject/FactoryProject/Content/Project/MyItemManagerObject.uasset"
 			]
 		}

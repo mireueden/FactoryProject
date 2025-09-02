@@ -2672,3 +2672,10 @@ Make sure '/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter.BP_FirstPersonCh
 [2025.09.01-08.51.35:137][384]LogAudioMixer: Display: Audio Buffer Underrun (starvation) detected. InstanceID=1
 [2025.09.01-08.51.35:139][384]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=1
 [2025.09.01-08.51.43:375][413]LogUObjectHash: Compacting FUObjectHashTables data took   0.86ms
+[2025.09.01-08.52.28:756][781]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 3599.583252
+[2025.09.01-08.52.29:754][784]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.09.01-08.52.29:754][784]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 3600.249268, Update Interval: 339.059418
+[2025.09.01-08.54.24:206][128]LogDerivedDataCache: C:/Users/admin/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2025.09.01-08.58.40:989][949]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 3971.820068
+[2025.09.01-08.58.41:988][952]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.09.01-08.58.41:988][952]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 3972.485840, Update Interval: 319.331024

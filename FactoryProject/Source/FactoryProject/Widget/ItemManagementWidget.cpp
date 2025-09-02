@@ -55,12 +55,8 @@ void UItemManagementWidget::Order()
         int32 MaxCount = ItemManager->StorageList[SelectedIndex].MaxStorageCount;
 
 
-        if (CurrentCount + AddOrderNum > MaxCount)
-        {
-           ItemManager->StorageList[SelectedIndex].CurrentItemCount = MaxCount;
-        }
-        else
-           ItemManager->StorageList[SelectedIndex].CurrentItemCount += AddOrderNum;
+        // 실제 생성
+        ItemManager->OrderSpawn(SelectedIndex, AddOrderNum);
 
         SlotWidgetList[SelectedIndex]->SetupSlot(ItemManager->StorageList[SelectedIndex]);
     }

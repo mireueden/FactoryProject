@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "DataAsset/ItemStorageStruct.h"
+#include "Object/ConveyorBelt.h"
 #include "ItemManagerActor.generated.h"
 
 UCLASS(Blueprintable,BlueprintType)
@@ -28,4 +29,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<FItemStorageStruct> StorageList;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	AConveyorBelt* StartConveyor;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TSubclassOf<AItem> ItemClass;
+
+
+	UFUNCTION()
+	void OrderSpawn(int32 SelectedIndex, int32 OrderCount);
+
+	int32 SelectedIndex;
+	int32 RemainingSpawnCount = 0;
+	FTimerHandle SpawnTimerHandle;
+
+	void SpawnTick();
 };
