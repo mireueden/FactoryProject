@@ -43,9 +43,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "State")
 	bool bEndTriggered;
 	
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "State")
 	TArray<AItem*> ConveyorItemList;
+
+
+	UFUNCTION(BlueprintCallable)
+	void SplineSetting (AItem* item);
 
 	void MoveItem();
 
@@ -54,4 +57,5 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UnRegisterItem(AItem* item);
+
 };

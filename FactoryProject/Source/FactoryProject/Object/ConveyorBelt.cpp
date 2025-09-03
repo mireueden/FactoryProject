@@ -37,13 +37,21 @@ void AConveyorBelt::BeginPlay()
 	}
 }
 
-// Called every frame
 void AConveyorBelt::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	MoveItem();
+	//MoveItem();
 }
+
+
+void AConveyorBelt::SplineSetting(AItem * item)
+{
+	item->MoveSpeed = 100.f;
+	item->SplineComp = SplineComp;
+	item->ItemState = EItemState::Move;
+}
+
 
 void AConveyorBelt::MoveItem()
 {
@@ -53,41 +61,53 @@ void AConveyorBelt::MoveItem()
     {
         AItem* Item = ConveyorItemList[i];
         if (!Item) continue;
-
-        // Item의 상태가 Move일 때만 이동
         if (Item->ItemState != EItemState::Move) continue;
 
-        // Spline 진행도 계산
         float SplineLength = SplineComp->GetSplineLength();
         Item->SplineProgress += (Item->MoveSpeed * GetWorld()->GetDeltaSeconds()) / SplineLength;
 
-        // Clamp: 0 ~ 1 범위
         Item->SplineProgress = FMath::Clamp(Item->SplineProgress, 0.f, 1.f);
 
-        // Spline 위치 & 회전 적용
         FVector NewLocation = SplineComp->GetLocationAtDistanceAlongSpline(Item->SplineProgress * SplineLength, ESplineCoordinateSpace::World);
         FRotator NewRotation = SplineComp->GetRotationAtDistanceAlongSpline(Item->SplineProgress * SplineLength, ESplineCoordinateSpace::World);
 
         Item->SetActorLocationAndRotation(NewLocation, NewRotation);
 
-        // EndCollision 체크 (Spline 끝에 도달하면 Stop 처리)
         if (Item->SplineProgress >= 1.f)
         {
             Item->ItemState = EItemState::Stop;
-            i--; // Remove 했으니 인덱스 보정
+            i--; 
         }
     }
+
+	// for다 돈 이후 처리하기
+	//if (PendingRemoveList.Num() > 0)
+	//{
+	//	for (AItem* Item : PendingRemoveList)
+	//	{
+	//		ConveyorItemList.Remove(Item);
+	//		if (Item)
+	//		{
+	//			Item->ItemState = EItemState::Stop;
+	//		}
+	//	}
+	//	PendingRemoveList.Empty();
+	//}
+
+
+}
+
+void AConveyorBelt::RegisterItem(AItem* Item)
+{
+	ConveyorItemList.Add(Item);
+
+	Item->ItemState = EItemState::Move;
+}
+
+void AConveyorBelt::UnRegisterItem(AItem* Item)
+{
+	ConveyorItemList.Remove(Item);
 	
-}
-
-void AConveyorBelt::RegisterItem(AItem* item)
-{
-	ConveyorItemList.Add(item);
-
-}
-
-void AConveyorBelt::UnRegisterItem(AItem* item)
-{
-	ConveyorItemList.Remove(item);
+	Item->ItemState = EItemState::Stop;
 }
 

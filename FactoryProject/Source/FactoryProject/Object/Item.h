@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SplineComponent.h"
 #include "DataAsset/ItemBasicDataAsset.h"
 #include "Item.generated.h"
 
@@ -43,6 +44,9 @@ public:
 	float SplineProgress = 0.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-	float MoveSpeed = 100.f;
+	float MoveSpeed = 0.f;
+
+	UPROPERTY(VisibleAnywhere)
+	USplineComponent* SplineComp;
 
 };
