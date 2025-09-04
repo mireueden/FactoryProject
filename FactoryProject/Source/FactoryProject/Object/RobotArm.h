@@ -32,7 +32,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USkeletalMeshComponent* RobotArmComp;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* RobotStandComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -47,11 +47,14 @@ public:
 	AConveyorBelt* CurrentConveyorBelt;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowedClasses = "ItemBasicDataAsset"))
-	UItemBasicDataAsset* CheckItemData;
+	TArray<UItemBasicDataAsset*> CheckItemData;
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AItem* GrabedItem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float ItemRotateValue = 0;
 
 	UFUNCTION(BlueprintCallable)
 	void CheckItem(AItem* Item);

@@ -9,13 +9,20 @@ AItem::AItem()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	ItemState = EItemState::None;
+
+    MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
+    RootComponent = MeshComp;
 }
 
 // Called when the game starts or when spawned
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+    if (ItemData && ItemData->ItemMaterial)
+    {
+        MeshComp->SetMaterial(0, ItemData->ItemMaterial);
+    }
 }
 
 // Called every frame

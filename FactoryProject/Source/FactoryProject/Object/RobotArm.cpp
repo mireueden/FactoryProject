@@ -41,15 +41,39 @@ void ARobotArm::Tick(float DeltaTime)
 // Overlap 이벤트에서 실행
 void ARobotArm::CheckItem(AItem* Item)
 {
-	// 해당 로봇팔이 분류 시도할 아이템인지
-	if (Item->ItemData == CheckItemData)
+	bool bCheckItem = false;
+	for (int i = 0; i < CheckItemData.Num(); i++)
 	{
-		GrabedItem = Item;
-		//CurrentConveyorBelt->UnRegisterItem(Item);
+		if (Item->ItemData == CheckItemData[i])
+			bCheckItem = true;
+	}
 
+	if (bCheckItem)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Checked ITem"));
+		switch (Item->ItemData->ItemIndex)
+		{
+		case 0:		case 4:
+			ItemRotateValue = 90.0f;
+			break;
+		case 1:		case 5:
+			ItemRotateValue = 150.0f;
+			break;
+		case 2:		case 6:
+			ItemRotateValue = -150.0f;
+			break;
+		case 3:		case 7:
+			ItemRotateValue = -90.0f;
+			break;
+		}
+		UE_LOG(LogTemp, Warning, TEXT("ItemRotateValue : %f"), ItemRotateValue);
+
+		GrabedItem = Item;
+
+		GrabedItem->SplineProgress = 0.f;
 		GrabedItem->MoveSpeed = 0.f;
 		GrabedItem->SplineComp = NULL;
-		GrabedItem->ItemState = EItemState::Stop;
+		Item->ItemState = EItemState::Grabed;
 
 		GrabItem(GrabedItem);
 	}
@@ -60,7 +84,6 @@ void ARobotArm::GrabItem(AItem* Item)
 	if (Item && RobotArmComp)
 	{
 		bIsGrabItem = true;
-
 		Item->AttachToComponent(
 			RobotArmComp,
 			FAttachmentTransformRules::SnapToTargetNotIncludingScale,
@@ -76,6 +99,8 @@ void ARobotArm::SpreadItem(AItem* Item)
 	{
 		bIsGrabItem = false;
 		Item->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+		Item->MoveSpeed = 100.f;
+		Item->ItemState = EItemState::Move;
 	}
 }
 

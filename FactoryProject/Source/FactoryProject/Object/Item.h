@@ -13,6 +13,7 @@ enum class EItemState : uint8
 {
 	None      UMETA(DisplayName = "None"),
 	Move      UMETA(DisplayName = "Move"),
+	Grabed    UMETA(DisplayName = "Grabed"),
 	Stop      UMETA(DisplayName = "Stop")
 };
 
@@ -34,6 +35,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* MeshComp;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowedClasses = "ItemBasicDataAsset"))
 	UItemBasicDataAsset* ItemData;
 
@@ -48,5 +53,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	USplineComponent* SplineComp;
+
+
 
 };

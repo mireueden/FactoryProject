@@ -24,6 +24,6 @@ public:
 	ARobotArm* RobotArm;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	bool bIsGrabItemCheck;
+	bool bIsGrabItemCheck = false;
 
 };

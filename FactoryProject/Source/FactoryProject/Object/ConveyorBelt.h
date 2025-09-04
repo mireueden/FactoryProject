@@ -50,6 +50,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SplineSetting (AItem* item);
 
+	UFUNCTION(BlueprintCallable)
+	void ItemSetting (AItem* item);
+
 	void MoveItem();
 
 	UFUNCTION(BlueprintCallable)

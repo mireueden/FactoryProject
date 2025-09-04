@@ -43,5 +43,5 @@ public:
 	int32 RemainingSpawnCount = 0;
 	FTimerHandle SpawnTimerHandle;
 
-	void SpawnTick();
+	void SpawnItem();
 };

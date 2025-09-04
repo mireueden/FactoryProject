@@ -50,19 +50,18 @@ void AItemManagerActor::OrderSpawn(int32 SelectedDataIndex, int32 OrderCount)
 		return;
 	
 
-	// TODO : Spawn Item - SpawnCount Value
-	// 시간을 두고 천천히 생성.
+	SpawnItem();
 
 	GetWorld()->GetTimerManager().SetTimer(
 		SpawnTimerHandle,
 		this,
-		&AItemManagerActor::SpawnTick,
-		2.0f,   // 체크 간격
+		&AItemManagerActor::SpawnItem,
+		8.0f,   // 체크 간격
 		true    // 반복
 	);
 }
 
-void AItemManagerActor::SpawnTick()
+void AItemManagerActor::SpawnItem()
 {
 	if (RemainingSpawnCount <= 0)
 	{
@@ -86,7 +85,8 @@ void AItemManagerActor::SpawnTick()
 		))
 		{
 			NewItem->ItemData = StorageList[SelectedIndex].ItemData;
-			StartConveyor->RegisterItem(NewItem);
+			//StartConveyor->RegisterItem(NewItem);
+			NewItem->MeshComp->SetMaterial(0, NewItem->ItemData->ItemMaterial);
 		}
 
 		RemainingSpawnCount--;

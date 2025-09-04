@@ -47,8 +47,11 @@ void AConveyorBelt::Tick(float DeltaTime)
 
 void AConveyorBelt::SplineSetting(AItem * item)
 {
-	item->MoveSpeed = 100.f;
 	item->SplineComp = SplineComp;
+}
+void AConveyorBelt::ItemSetting(AItem * item)
+{
+	item->MoveSpeed = 100.f;
 	item->ItemState = EItemState::Move;
 }
 
