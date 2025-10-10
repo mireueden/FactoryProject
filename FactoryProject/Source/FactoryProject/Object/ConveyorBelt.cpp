@@ -9,6 +9,10 @@ AConveyorBelt::AConveyorBelt()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+
+	RobotArrivePoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotArrivePoint"));
+	RobotArrivePoint->SetupAttachment(RootComponent);
+
 	SplineComp = CreateDefaultSubobject<USplineComponent>(TEXT("SplineComp"));
 	SplineComp->SetupAttachment(RootComponent);
 
@@ -42,18 +46,28 @@ void AConveyorBelt::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//MoveItem();
+
+
 }
 
 
 void AConveyorBelt::SplineSetting(AItem * item)
 {
-	item->SplineComp = SplineComp;
+	item->ConveyorBelt = this;
 }
 void AConveyorBelt::ItemSetting(AItem * item)
 {
 	item->MoveSpeed = 100.f;
 	item->ItemState = EItemState::Move;
 }
+
+void AConveyorBelt::ItemArrive(AItem* item)
+{
+	// 컨베이어 벨트 끝의 위치에 도착했다고 RobotManager에게 알림
+	OnItemArrived.Broadcast(item);
+	UE_LOG(LogTemp, Warning, TEXT("OnItemArrived.Broadcast"));
+}
+
 
 
 void AConveyorBelt::MoveItem()
@@ -80,24 +94,10 @@ void AConveyorBelt::MoveItem()
         {
             Item->ItemState = EItemState::Stop;
             i--; 
+
+
         }
     }
-
-	// for다 돈 이후 처리하기
-	//if (PendingRemoveList.Num() > 0)
-	//{
-	//	for (AItem* Item : PendingRemoveList)
-	//	{
-	//		ConveyorItemList.Remove(Item);
-	//		if (Item)
-	//		{
-	//			Item->ItemState = EItemState::Stop;
-	//		}
-	//	}
-	//	PendingRemoveList.Empty();
-	//}
-
-
 }
 
 void AConveyorBelt::RegisterItem(AItem* Item)

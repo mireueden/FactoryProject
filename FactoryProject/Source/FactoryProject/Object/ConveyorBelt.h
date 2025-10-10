@@ -6,8 +6,12 @@
 #include "GameFramework/Actor.h"
 #include "Components/SplineComponent.h"
 #include "Components/BoxComponent.h"
+#include "Components/SceneComponent.h"
 #include "Object/Item.h"
 #include "ConveyorBelt.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnItemArrivedDelegate, AItem*, ArrivedItem);
+
 
 UCLASS()
 class FACTORYPROJECT_API AConveyorBelt : public AActor
@@ -29,6 +33,9 @@ public:
 public:
 
 	UPROPERTY(VisibleAnywhere)
+	USceneComponent* RobotArrivePoint;
+
+	UPROPERTY(VisibleAnywhere)
 	USplineComponent* SplineComp;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
@@ -46,12 +53,26 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "State")
 	TArray<AItem*> ConveyorItemList;
 
+	UPROPERTY(BlueprintAssignable, Category = "Event")
+	FOnItemArrivedDelegate OnItemArrived;
 
 	UFUNCTION(BlueprintCallable)
 	void SplineSetting (AItem* item);
 
 	UFUNCTION(BlueprintCallable)
 	void ItemSetting (AItem* item);
+
+	UFUNCTION(BlueprintCallable)
+	void ItemArrive (AItem* item);
+
+
+
+
+
+
+
+
+
 
 	void MoveItem();
 

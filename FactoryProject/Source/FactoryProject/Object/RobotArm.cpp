@@ -72,7 +72,7 @@ void ARobotArm::CheckItem(AItem* Item)
 
 		GrabedItem->SplineProgress = 0.f;
 		GrabedItem->MoveSpeed = 0.f;
-		GrabedItem->SplineComp = NULL;
+		GrabedItem->ConveyorBelt = NULL;
 		Item->ItemState = EItemState::Grabed;
 
 		GrabItem(GrabedItem);

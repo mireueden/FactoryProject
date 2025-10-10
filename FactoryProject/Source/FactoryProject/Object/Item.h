@@ -14,8 +14,11 @@ enum class EItemState : uint8
 	None      UMETA(DisplayName = "None"),
 	Move      UMETA(DisplayName = "Move"),
 	Grabed    UMETA(DisplayName = "Grabed"),
+	Carried   UMETA(DisplayName = "Carried"),
 	Stop      UMETA(DisplayName = "Stop")
 };
+
+class AConveyorBelt;
 
 UCLASS()
 class FACTORYPROJECT_API AItem : public AActor
@@ -52,7 +55,8 @@ public:
 	float MoveSpeed = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	USplineComponent* SplineComp;
+	AConveyorBelt* ConveyorBelt;
+	//USplineComponent* SplineComp;
 
 
 

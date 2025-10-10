@@ -3,6 +3,8 @@
 
 #include "Object/Item.h"
 
+#include "ConveyorBelt.h"
+
 // Sets default values
 AItem::AItem()
 {
@@ -31,20 +33,21 @@ void AItem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 
-    if (ItemState != EItemState::Move || !SplineComp) return;
+    if (ItemState != EItemState::Move || !ConveyorBelt->SplineComp) return;
 
-    float SplineLength = SplineComp->GetSplineLength();
+    float SplineLength = ConveyorBelt->SplineComp->GetSplineLength();
     SplineProgress += (MoveSpeed * DeltaTime) / SplineLength;
     SplineProgress = FMath::Clamp(SplineProgress, 0.f, 1.f);
 
-    FVector NewLocation = SplineComp->GetLocationAtDistanceAlongSpline(SplineProgress * SplineLength, ESplineCoordinateSpace::World);
-    FRotator NewRotation = SplineComp->GetRotationAtDistanceAlongSpline(SplineProgress * SplineLength, ESplineCoordinateSpace::World);
+    FVector NewLocation = ConveyorBelt->SplineComp->GetLocationAtDistanceAlongSpline(SplineProgress * SplineLength, ESplineCoordinateSpace::World);
+    FRotator NewRotation = ConveyorBelt->SplineComp->GetRotationAtDistanceAlongSpline(SplineProgress * SplineLength, ESplineCoordinateSpace::World);
 
     SetActorLocationAndRotation(NewLocation, NewRotation);
 
     if (SplineProgress >= 1.f)
     {
         ItemState = EItemState::Stop;
+        ConveyorBelt->ItemArrive(this);
     }
 }
 
