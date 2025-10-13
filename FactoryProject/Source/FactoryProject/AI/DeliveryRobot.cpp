@@ -46,9 +46,9 @@ void ADeliveryRobot::SetTargetItem(AItem* Item)
     if (AICon && AICon->GetBlackboardComponent())
     {
         //FVector ItemLocation = TargetPoint->GetActorLocation();
-
+        UE_LOG(LogTemp, Warning, TEXT("SetTargetItem - ReturnPoint: %s"), *ReturnPoint.ToString());
         AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetItem"), TargetPoint);
-        //AICon->GetBlackboardComponent()->SetValueAsObject(TEXT("TargetItem"), TargetItem);
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
 
     }
@@ -58,10 +58,9 @@ void ADeliveryRobot::AttachItem()
 {
     TargetItem->AttachToComponent(
         RobotRootComp,
-        FAttachmentTransformRules::SnapToTargetNotIncludingScale,
-        FName("Brush_endSocket")
+        FAttachmentTransformRules::KeepRelativeTransform
     );
-
+    TargetItem->SetActorRelativeLocation(FVector(0, 0, 150));
 }
 
 void ADeliveryRobot::DetachItem()

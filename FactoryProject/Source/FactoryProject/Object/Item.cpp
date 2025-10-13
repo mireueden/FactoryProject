@@ -32,9 +32,9 @@ void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-
     if (ItemState != EItemState::Move || !ConveyorBelt->SplineComp) return;
 
+    //UE_LOG(LogTemp, Warning, TEXT("A"));
     float SplineLength = ConveyorBelt->SplineComp->GetSplineLength();
     SplineProgress += (MoveSpeed * DeltaTime) / SplineLength;
     SplineProgress = FMath::Clamp(SplineProgress, 0.f, 1.f);

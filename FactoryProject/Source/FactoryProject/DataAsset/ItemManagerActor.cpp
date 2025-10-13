@@ -50,7 +50,7 @@ void AItemManagerActor::OrderSpawn(int32 SelectedDataIndex, int32 OrderCount)
 		return;
 	
 
-	SpawnItem();
+	//SpawnItem();
 
 	GetWorld()->GetTimerManager().SetTimer(
 		SpawnTimerHandle,

@@ -17,6 +17,10 @@ class FACTORYPROJECT_API UBTT_DeliveryItem : public UBTTaskNode
 	
 public:
 	UBTT_DeliveryItem();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Blackboard")
+	FBlackboardKeySelector RobotStateKey;
+
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 

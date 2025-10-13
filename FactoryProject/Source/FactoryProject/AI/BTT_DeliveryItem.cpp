@@ -3,6 +3,8 @@
 
 #include "AI/BTT_DeliveryItem.h"
 
+#include "DeliveryRobot.h"
+#include "DeliveryRobotController.h"
 UBTT_DeliveryItem::UBTT_DeliveryItem()
 {
 	NodeName = TEXT("DeliveryItem");
@@ -11,7 +13,19 @@ UBTT_DeliveryItem::UBTT_DeliveryItem()
 
 EBTNodeResult::Type UBTT_DeliveryItem::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	return EBTNodeResult::Type();
+	UE_LOG(LogTemp, Warning, TEXT("Call UBTT_ArrivePoint"));
+	UBlackboardComponent* BBComp = OwnerComp.GetBlackboardComponent();
+	if (!BBComp)
+	{
+		return EBTNodeResult::Failed;
+	}
+
+	ADeliveryRobotController* AIController = Cast<ADeliveryRobotController>(OwnerComp.GetAIOwner());
+	ADeliveryRobot* Ch = Cast<ADeliveryRobot>(AIController->GetCharacter());
+
+	BBComp->SetValueAsVector(TEXT("ReturnPoint"), Ch->ReturnPoint);
+
+	return EBTNodeResult::Succeeded;
 }
 
 void UBTT_DeliveryItem::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)

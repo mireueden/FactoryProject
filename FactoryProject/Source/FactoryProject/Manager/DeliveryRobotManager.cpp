@@ -22,6 +22,12 @@ ADeliveryRobotManager::ADeliveryRobotManager()
         TEXT("/Game/Project/Blueprint/BP_DeliveryRobotController.BP_DeliveryRobotController_C"));
     if (DeliveryRobotControllerClassFinder.Succeeded())
         DeliveryRobotControllerClass = DeliveryRobotControllerClassFinder.Class;
+
+    RobotSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotSpawnPoint"));
+    RootComponent = RobotSpawnPoint;
+
+    RobotReturnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotReturnPoint"));
+    RobotReturnPoint->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -60,7 +66,7 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
     }
 
     // spawn DeliveryRobots
-    RobotSpawnLocation = GetActorLocation();
+    RobotReturnPoint->GetComponentLocation();
     RobotSpawnRotate = GetActorRotation();
 
      const FVector SpawnLocation = GetActorLocation();
@@ -92,11 +98,15 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
              NewRobot->CurrentState = ERobotState::Moving;
              NewRobot->TargetPoint = TargetItem->ConveyorBelt->RobotArrivePoint->GetComponentLocation();
+             NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();;
              NewRobot->SetTargetItem(TargetItem);
+             
+             UE_LOG(LogTemp, Warning, TEXT("TargetLoc: %s"), *NewRobot->ReturnPoint.ToString());
+
          }
      }
      else
-         UE_LOG(LogTemp, Log, TEXT("Robot can't Spawn"));
+         UE_LOG(LogTemp, Warning, TEXT("Robot can't Spawn"));
 
 }
 

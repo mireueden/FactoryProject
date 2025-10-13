@@ -54,6 +54,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	FVector TargetPoint;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FVector ReturnPoint;
+
 	UFUNCTION()
 	void SetTargetItem(AItem* Item);
 

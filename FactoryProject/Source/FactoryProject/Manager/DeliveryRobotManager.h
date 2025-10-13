@@ -47,6 +47,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
 	FVector RobotSpawnLocation;
 
+
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* RobotSpawnPoint;
+
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* RobotReturnPoint;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
 	FRotator RobotSpawnRotate;
 

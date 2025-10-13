@@ -65,6 +65,8 @@ void AConveyorBelt::ItemArrive(AItem* item)
 {
 	// 컨베이어 벨트 끝의 위치에 도착했다고 RobotManager에게 알림
 	OnItemArrived.Broadcast(item);
+	item->MoveSpeed = 0.f;
+	item->ItemState = EItemState::Carried;
 	UE_LOG(LogTemp, Warning, TEXT("OnItemArrived.Broadcast"));
 }
 
