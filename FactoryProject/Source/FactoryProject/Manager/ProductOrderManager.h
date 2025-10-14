@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
+#include "DataAsset/ProductRecipeDataAsset.h"
+
 #include "DataAsset/ItemManagerActor.h"
 #include "Object/ItemProductionCell.h"
 
@@ -32,6 +34,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<AItemProductionCell*> ProductionCellList;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TArray<UProductRecipeDataAsset*> ProductList;
 
 	UFUNCTION()
 	void ProductionCellSetting();

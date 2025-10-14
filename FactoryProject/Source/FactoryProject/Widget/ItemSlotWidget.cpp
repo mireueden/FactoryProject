@@ -2,6 +2,7 @@
 
 
 #include "Widget/ItemSlotWidget.h"
+#include "ProductRequiredItemSlot.h"
 
 void UItemSlotWidget::NativeConstruct()
 {
@@ -25,6 +26,7 @@ void UItemSlotWidget::SetupSlot(const FItemStorageStruct& ItemStorage)
 	MaxCountText->SetText(
 		FText::FromString(FString::FromInt(ItemStorage.MaxStorageCount)));
 }
+
 
 void UItemSlotWidget::HandleCheckBoxChanged(bool bIsChecked)
 {
