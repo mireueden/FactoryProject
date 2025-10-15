@@ -9,16 +9,16 @@
 
 
 USTRUCT(BlueprintType)
-struct FItemStorageStruct
-{
-	GENERATED_BODY()
+	struct FItemStorageStruct
+	{
+		GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowedClasses = "ItemBasicDataAsset"))
-	UItemBasicDataAsset* ItemData;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowedClasses = "ItemBasicDataAsset"))
+		UItemBasicDataAsset* ItemData;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
-	int32 CurrentItemCount;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+		int32 CurrentItemCount;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
-	int32 MaxStorageCount;
-};
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+		int32 MaxStorageCount;
+	};

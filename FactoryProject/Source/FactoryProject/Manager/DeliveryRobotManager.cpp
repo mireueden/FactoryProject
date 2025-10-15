@@ -6,6 +6,10 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Object/ConveyorBelt.h"
 #include "Object/item.h"
+#include "Widget/ProductOrderManagementWidget.h"
+#include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 // Sets default values
 ADeliveryRobotManager::ADeliveryRobotManager()
@@ -48,7 +52,6 @@ void ADeliveryRobotManager::BeginPlay()
 void ADeliveryRobotManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ADeliveryRobotManager::CheckArrived(AItem* ArrivedItem)
@@ -114,3 +117,23 @@ void ADeliveryRobotManager::DestoryDeliveryRobot()
 {
 }
 
+
+void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductRecipe)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Call Func SetProductRobot"));
+
+    // 로봇 생성 및 recipe 세팅하기
+    //ADeliveryRobot* NewRobot = GetWorld()->SpawnActor<ADeliveryRobot>(RobotClass, SpawnLocation, SpawnRotation);
+    //if (NewRobot)
+    //{
+    //    NewRobot->ProductRecipeSetting(ProductRecipe)
+    //}
+
+
+    // recipe에 따른 이동할 목표 cell 찾기
+    
+    // 각각 해당 item의 제작 공정을 진행하는 목표 셀의 위치를 미리 다 저장하기? or 도착할때마다 찾기?
+
+    // 
+
+}

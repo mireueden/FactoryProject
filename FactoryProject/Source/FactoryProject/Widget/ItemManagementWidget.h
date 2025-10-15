@@ -27,7 +27,6 @@ class FACTORYPROJECT_API UItemManagementWidget : public UUserWidget
 	
 
 public:
-
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
@@ -54,13 +53,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TSubclassOf<class UItemSlotWidget> ItemSlotWidgetClass;
 
-
-
-
-
 	UPROPERTY(meta = (BindWidget))
 	class UVerticalBox* ItemSlotContainer;
 
+
+	UFUNCTION()
+	void HandleVisibilityChanged(ESlateVisibility InVisibility);
 
 public:
 
@@ -77,6 +75,9 @@ public:
 	class UButton* DecreaseButton;
 
 
+	UFUNCTION(BlueprintCallable)
+	void RefreshItemSlots();
+	
 	UFUNCTION(BlueprintCallable)
 	void UpdateAddOrderNum();
 

@@ -34,21 +34,31 @@ void UProductOrderSlotWidget::SettingProductSlot(AProductOrderManager* ProductMa
 
 	for (const FProductRecipeStruct& RecipeElement : ProductData->RecipeData)
 	{
+		const FItemStorageStruct* FoundStorage = ItemManager->StorageList.FindByPredicate(
+			[&](const FItemStorageStruct& StorageElement)
+			{
+				return StorageElement.ItemData == RecipeElement.ItemData;
+			});
+
+		if (!FoundStorage)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("해당 ItemData를 가진 Storage를 찾을 수 없습니다: %s"),
+				*RecipeElement.ItemData->ItemName);
+			continue;
+		}
+
 		UProductRequiredItemSlot* NewSlot = CreateWidget<UProductRequiredItemSlot>(this, ProductRequiredItemSlotWidgetClass);
 		if (NewSlot)
 		{
-			NewSlot->SetUpRequiredItemSlot(RecipeElement, ItemManager->StorageList[ProductIndex]);  // 여기서 자꾸 튕김
-			NewSlot->SetPadding(FMargin(30.0f));
+			NewSlot->SetUpRequiredItemSlot(RecipeElement, *FoundStorage);
 			RequiredItemContainer->AddChildToVerticalBox(NewSlot);
 			RequiredItemSlotWidgetList.Add(NewSlot);
 		}
 	}
-
 }
 
 void UProductOrderSlotWidget::HandleCheckBoxChanged(bool bIsChecked)
 {
 	OnProductOrderSlotChecked.Broadcast(this);
-
 }
 

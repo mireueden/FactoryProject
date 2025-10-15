@@ -4,10 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
 #include "Object/Item.h"
-
 #include "ItemProductionCell.generated.h"
+
+
+
+UENUM(BlueprintType)
+enum class ECellProgressStatus :uint8{ Empty, InProgress, Completed };
 
 UCLASS()
 class FACTORYPROJECT_API AItemProductionCell : public AActor
@@ -31,6 +34,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	AItem* ProcessItem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	ECellProgressStatus ProgressStats = ECellProgressStatus::Empty;
+
 
 	UFUNCTION()
 	void CraftingProduct();

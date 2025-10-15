@@ -7,6 +7,13 @@ void UProductOrderManagementWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	OnVisibilityChanged.AddDynamic(this, &UProductOrderManagementWidget::HandleVisibilityChanged);
+
+	UpdateProductSlotList();
+}
+
+void UProductOrderManagementWidget::UpdateProductSlotList()
+{
 	if (!ProductManager)
 	{
 		UE_LOG(LogTemp, Error, TEXT("ProductManager is nullptr in %s"), *GetName());
@@ -32,33 +39,102 @@ void UProductOrderManagementWidget::NativeConstruct()
 			NewSlot->SetPadding(FMargin(5.0f));
 
 			NewSlot->OnProductOrderSlotChecked.AddDynamic(this, &UProductOrderManagementWidget::SelectCheckUpdate);
-			
+
 			ProductSlotContainer->AddChildToVerticalBox(NewSlot);
 
 			ProductSlotWidgetList.Add(NewSlot);
 		}
 	}
+
+	if (OrderButton) OrderButton->SetIsEnabled(false);
+}
+
+
+void UProductOrderManagementWidget::HandleVisibilityChanged(ESlateVisibility InVisibility)
+{
+	if (InVisibility == ESlateVisibility::Visible)
+	{
+		UpdateProductSlotList();
+	}
 }
 
 void UProductOrderManagementWidget::Order()
 {
-	if (SelectedIndex != INDEX_NONE)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Order"));
-
-
-		int32 CurrentCount = ItemManager->StorageList[SelectedIndex].CurrentItemCount;
-		int32 RequiredItemCount = ProductManager->ProductList[SelectedIndex]->RecipeData[0].RequiredItem;
-
-		// 실제 생성
-		//ProductManager->OrderSpawn(SelectedIndex, AddOrderNum);
-
-		ProductSlotWidgetList[SelectedIndex]->SetUpProductSlot(ProductManager->ProductList[SelectedIndex]);
-	}
-	else if (SelectedIndex == INDEX_NONE)
+	if (SelectedIndex == INDEX_NONE)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Can't Order"));
 		return;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Order"));
+
+	if (!ProductSlotWidgetList.IsValidIndex(SelectedIndex)) return;
+	UProductOrderSlotWidget* SelectedSlot = ProductSlotWidgetList[SelectedIndex];
+	if (!SelectedSlot) return;
+
+	bool bCanOrder = true;
+
+	for (int32 i = 0; i < SelectedSlot->RequiredItemSlotWidgetList.Num(); ++i)
+	{
+		UProductRequiredItemSlot* ReqSlot = SelectedSlot->RequiredItemSlotWidgetList[i];
+		if (!ReqSlot) continue;
+
+
+		// RecipeData는 ProductManager->ProductList[SelectedIndex]->RecipeData[i]로 접근
+		UProductRecipeDataAsset* ProductData = ProductManager->ProductList[SelectedIndex];
+		if (!ProductData || !ProductData->RecipeData.IsValidIndex(i)) continue;
+
+		const FProductRecipeStruct& Recipe = ProductData->RecipeData[i];
+
+		if (!ProductManager->ItemManager)
+		{
+			UE_LOG(LogTemp, Error, TEXT("ItemManager is nullptr!"));
+			return;
+		}
+		
+		// ItemManager에서 해당 아이템 찾기
+		FItemStorageStruct* Storage = ProductManager->ItemManager->StorageList.FindByPredicate( // 여기서 터짐
+			[&](const FItemStorageStruct& Elem)
+			{
+				return Elem.ItemData == Recipe.ItemData;
+			});
+
+		if (!Storage)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("No storage found for %s"), *Recipe.ItemData->ItemName);
+			bCanOrder = false;
+			break;
+		}
+
+		// 수량 체크
+		if (Storage->CurrentItemCount < Recipe.RequiredItem)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Not enough items for %s"), *Recipe.ItemData->ItemName);
+			bCanOrder = false;
+			break;
+		}
+	}
+
+	// 주문 실행
+	if (bCanOrder)
+	{
+		UProductRecipeDataAsset* ProductData = ProductManager->ProductList[SelectedIndex];
+		if (!ProductData) return;
+
+		for (const FProductRecipeStruct& Recipe : ProductData->RecipeData)
+		{
+			FItemStorageStruct* Storage = ProductManager->ItemManager->StorageList.FindByPredicate(
+				[&](const FItemStorageStruct& Elem) { return Elem.ItemData == Recipe.ItemData; }
+			);
+
+			if (Storage)
+			{
+				Storage->CurrentItemCount -= Recipe.RequiredItem;
+			}
+		}
+		OnProductOrderRequested.Broadcast(ProductData);
+
+		UpdateProductSlotList();
 	}
 }
 
@@ -80,6 +156,15 @@ void UProductOrderManagementWidget::SelectCheckUpdate(UProductOrderSlotWidget* S
 	if (SelectedSlot && SelectedSlot->SelectChecker && SelectedSlot->SelectChecker->IsChecked())
 	{
 		SelectedIndex = ProductSlotWidgetList.IndexOfByKey(SelectedSlot);
+
+		if (SelectedSlot->ProductNameText)
+		{
+			FText ProductName = SelectedSlot->ProductNameText->GetText();
+			if (SelectedProductNameText)
+			{
+				SelectedProductNameText->SetText(ProductName);
+			}
+		}
 	}
 
 	bIsCheckedSlot = (SelectedIndex != INDEX_NONE);
@@ -90,4 +175,7 @@ void UProductOrderManagementWidget::SelectCheckUpdate(UProductOrderSlotWidget* S
 void UProductOrderManagementWidget::UpdateOrderBtn()
 {
 	if (OrderButton) OrderButton->SetIsEnabled(bIsCheckedSlot);
+
+	if (!bIsCheckedSlot && SelectedProductNameText)
+		SelectedProductNameText->SetText(FText::FromString(TEXT("None")));
 }

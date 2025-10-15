@@ -6,9 +6,7 @@
 #include "GameFramework/Actor.h"
 
 #include "DataAsset/ProductRecipeDataAsset.h"
-
 #include "DataAsset/ItemManagerActor.h"
-#include "Object/ItemProductionCell.h"
 
 #include "ProductOrderManager.generated.h"
 
@@ -31,9 +29,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	AItemManagerActor* ItemManager; // 재료들의 개수들을 모두 가지고 있음
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
-	TArray<AItemProductionCell*> ProductionCellList;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<UProductRecipeDataAsset*> ProductList;

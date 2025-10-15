@@ -19,6 +19,4 @@ struct FProductRecipeStruct
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
 	int32 RequiredItem;
-
-
 };

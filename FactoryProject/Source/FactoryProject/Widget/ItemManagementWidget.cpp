@@ -7,11 +7,18 @@ void UItemManagementWidget::NativeConstruct()
 {
     Super::NativeConstruct();
 
-	if (!ItemSlotWidgetClass || !ItemSlotContainer) return;
+    OnVisibilityChanged.AddDynamic(this, &UItemManagementWidget::HandleVisibilityChanged);
 
-	// 기존 슬롯 제거
-	ItemSlotContainer->ClearChildren();
-	SlotWidgetList.Empty();
+    RefreshItemSlots();
+}
+
+void UItemManagementWidget::RefreshItemSlots()
+{
+    if (!ItemSlotWidgetClass || !ItemSlotContainer) return;
+
+    // 기존 슬롯 제거
+    ItemSlotContainer->ClearChildren();
+    SlotWidgetList.Empty();
 
     for (const FItemStorageStruct& Item : ItemManager->StorageList)
     {
@@ -27,11 +34,19 @@ void UItemManagementWidget::NativeConstruct()
             NewSlot->OnSlotChecked.AddDynamic(this, &UItemManagementWidget::SelectCheckUpdate);
 
             SlotWidgetList.Add(NewSlot);
-            
+
         }
     }
     UpdateAddOrderNum();
     UpdateOrderBtn();
+}
+
+void UItemManagementWidget::HandleVisibilityChanged(ESlateVisibility InVisibility)
+{
+    if (InVisibility == ESlateVisibility::Visible)
+    {
+        RefreshItemSlots();
+    }
 }
 
 void UItemManagementWidget::UpdateAddOrderNum()
@@ -55,7 +70,7 @@ void UItemManagementWidget::Order()
         int32 MaxCount = ItemManager->StorageList[SelectedIndex].MaxStorageCount;
 
 
-        // 실제 생성
+        // 실제 
         ItemManager->OrderSpawn(SelectedIndex, AddOrderNum);
 
         SlotWidgetList[SelectedIndex]->SetupSlot(ItemManager->StorageList[SelectedIndex]);

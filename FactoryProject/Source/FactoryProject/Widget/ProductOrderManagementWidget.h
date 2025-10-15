@@ -19,9 +19,10 @@
 
 #include "ProductOrderManagementWidget.generated.h"
 
-/**
- * 
- */
+
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnProductOrderRequested, UProductRecipeDataAsset*, ProductRecipe);
+
 UCLASS()
 class FACTORYPROJECT_API UProductOrderManagementWidget : public UUserWidget
 {
@@ -51,14 +52,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
 	TSubclassOf<class UProductRequiredItemSlot> ProductRequiredItemSlotWidgetClass;
 
+	// GameMode에서 위젯 생성과 함께 델리게이트 바인딩까지 진행
+	UPROPERTY(BlueprintAssignable, Category = "Order")
+	FOnProductOrderRequested OnProductOrderRequested;
 
 public:
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<UProductOrderSlotWidget*> ProductSlotWidgetList;
 
 
 public:
+	UFUNCTION(BlueprintCallable)
+	void UpdateProductSlotList();
+
+	UFUNCTION()
+	void HandleVisibilityChanged (ESlateVisibility InVisibility);
 
 	UFUNCTION(BlueprintCallable)
 	void Order();
@@ -68,6 +76,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateOrderBtn();
+
 
 	bool bIsCheckedSlot = false;
 

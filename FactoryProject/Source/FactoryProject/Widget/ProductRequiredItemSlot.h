@@ -32,11 +32,8 @@ public:
 	class UTextBlock* ItemIndexText;
 
 	UPROPERTY(meta = (BindWidget))
-	class UTextBlock* RequiredItemCountText;
-
-	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* CurrentItemCountText;
 
-
-
+	UPROPERTY(meta = (BindWidget))
+	class UTextBlock* RequiredItemCountText;
 };

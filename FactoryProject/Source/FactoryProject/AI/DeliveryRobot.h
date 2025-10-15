@@ -5,6 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/Character.h"
+
+#include "DataAsset/ProductRecipeDataAsset.h"
+
+
+
 #include "DeliveryRobot.generated.h"
 
 UENUM(BlueprintType)
@@ -16,6 +21,31 @@ enum class ERobotState : uint8
 	Delivery,
 	Returning,
 	Error,
+};
+
+USTRUCT(BlueprintType)
+struct FProgressOfItem
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product", meta = (AllowedClasses = "ItemBasicDataAsset"))
+	UItemBasicDataAsset* ItemData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product", meta = (AllowedClasses = "ItemBasicDataAsset"))
+	int32 ProgressValue = 0;
+
+};
+
+USTRUCT(BlueprintType)
+struct FProgressOfRecipe
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FString ProductName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TArray<FProgressOfItem> RecipeData;
 };
 
 
@@ -65,4 +95,13 @@ public:
 
 	UFUNCTION()
 	void DetachItem();
+
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
+	FProgressOfRecipe ProgressOfProductRecipe;
+
+	UFUNCTION()
+	void ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe);
+
 };

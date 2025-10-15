@@ -8,6 +8,8 @@
 #include "AI/DeliveryRobot.h"
 #include "AI/DeliveryRobotController.h"
 
+#include "Object/ItemProductionCell.h"
+
 #include "DeliveryRobotManager.generated.h"
 
 class AConveyorBelt;
@@ -65,4 +67,11 @@ public:
 
 	UFUNCTION()
 	void DestoryDeliveryRobot();
+
+	UFUNCTION(BlueprintCallable)
+	void SetProductRobot(UProductRecipeDataAsset* ProductRecipe);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TArray<AItemProductionCell*> ProductionCellList;
+
 };

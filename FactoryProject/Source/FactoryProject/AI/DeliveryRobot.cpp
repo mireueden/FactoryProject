@@ -67,3 +67,18 @@ void ADeliveryRobot::DetachItem()
 {
     TargetItem->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 }
+
+void ADeliveryRobot::ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe)
+{
+    ProgressOfProductRecipe.ProductName = ProductRecipe->ProductName;
+    ProgressOfProductRecipe.RecipeData.Empty(); // 기존 데이터 초기화
+
+    for (int i = 0; i < ProductRecipe->RecipeData.Num(); i++)
+    {
+        FProgressOfItem NewItem;
+        NewItem.ItemData = ProductRecipe->RecipeData[i].ItemData;
+        NewItem.ProgressValue = 0;
+
+        ProgressOfProductRecipe.RecipeData.Add(NewItem);
+    }
+}
