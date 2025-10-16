@@ -5,12 +5,23 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Object/Item.h"
+#include "Components/BoxComponent.h"
+#include "Components/SceneComponent.h"
+
 #include "ItemProductionCell.generated.h"
 
-
-
 UENUM(BlueprintType)
-enum class ECellProgressStatus :uint8{ Empty, InProgress, Completed };
+enum class ECellProgressState :uint8
+{
+	Empty        UMETA(DisplayName = "Empty"),          // 아무 것도 없음, 대기 가능
+	Reserved     UMETA(DisplayName = "Reserved"),       // Robot이 이동 예정, 예약
+	InProgress   UMETA(DisplayName = "InProgress"),     // 작업 중
+	Completed    UMETA(DisplayName = "Completed"),		// 작업 완료 및 대기
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCellStateChanged, ECellProgressState, NewState);
+
+class ADeliveryRobot;
 
 UCLASS()
 class FACTORYPROJECT_API AItemProductionCell : public AActor
@@ -20,6 +31,12 @@ class FACTORYPROJECT_API AItemProductionCell : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AItemProductionCell();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
+	UBoxComponent* DetectArea;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Root")
+	USceneComponent* RootScene;
 
 protected:
 	// Called when the game starts or when spawned
@@ -33,13 +50,28 @@ public:
 	UItemBasicDataAsset* ProductProcessData;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	AItem* ProcessItem;
+	ADeliveryRobot* ProcessRobot;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnCellStateChanged OnCellStateChanged;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	ECellProgressStatus ProgressStats = ECellProgressStatus::Empty;
-
+	ECellProgressState CurrnetState = ECellProgressState::Empty;
 
 	UFUNCTION()
+	void OnRobotEnterCell(
+		UPrimitiveComponent* OverlappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void CellStateChanged(ECellProgressState NewState);
+
+
+	UFUNCTION(CallInEditor, Category = "Production")
 	void CraftingProduct();
 
 };

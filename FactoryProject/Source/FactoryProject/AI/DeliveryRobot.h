@@ -5,12 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/Character.h"
-
+#include "Object/ItemProductionCell.h"
 #include "DataAsset/ProductRecipeDataAsset.h"
 
-
-
 #include "DeliveryRobot.generated.h"
+
 
 UENUM(BlueprintType)
 enum class ERobotState : uint8
@@ -18,10 +17,20 @@ enum class ERobotState : uint8
 	None,
 	Moving,
 	Waiting,
+	Working,
 	Delivery,
 	Returning,
 	Error,
 };
+
+UENUM(BlueprintType)
+enum class ERobotProcess : uint8
+{
+	None,
+	Delivery,
+	ProductProcess,
+};
+
 
 USTRUCT(BlueprintType)
 struct FProgressOfItem
@@ -78,14 +87,26 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
 	ERobotState CurrentState;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
+	ERobotProcess CurrentProcess;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item")
 	AItem* TargetItem;
-	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item")
+	AItemProductionCell* TargetCell;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	FVector TargetPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	FVector ReturnPoint;
+
+	UFUNCTION()
+	void SetProcessState();
+	
+	UFUNCTION()
+	void SetTargetCell();
 
 	UFUNCTION()
 	void SetTargetItem(AItem* Item);

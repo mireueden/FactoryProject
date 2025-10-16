@@ -46,6 +46,18 @@ void ADeliveryRobotManager::BeginPlay()
             Belt->OnItemArrived.AddDynamic(this, &ADeliveryRobotManager::CheckArrived);
         }
     }
+
+
+    TArray<AActor*> FoundCells;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AItemProductionCell::StaticClass(), FoundCells);
+
+    for (AActor* Actor : FoundCells)
+    {
+        if (AItemProductionCell* Cell = Cast<AItemProductionCell>(Actor))
+        {
+            ProductionCellList.Add(Cell);
+        }
+    }
 }
 
 // Called every frame
@@ -85,7 +97,8 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
          SpawnRotation,
          SpawnParams
      );
-     
+
+
      if (NewRobot)
      {
          // AIController 생성
@@ -98,6 +111,9 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
          if (AICon)
          {
              AICon->Possess(NewRobot);
+
+             NewRobot->CurrentProcess = ERobotProcess::Delivery;
+             NewRobot->SetProcessState();
 
              NewRobot->CurrentState = ERobotState::Moving;
              NewRobot->TargetPoint = TargetItem->ConveyorBelt->RobotArrivePoint->GetComponentLocation();
@@ -115,25 +131,101 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
 void ADeliveryRobotManager::DestoryDeliveryRobot()
 {
-}
 
+
+
+}
 
 void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductRecipe)
 {
     UE_LOG(LogTemp, Warning, TEXT("Call Func SetProductRobot"));
 
-    // 로봇 생성 및 recipe 세팅하기
-    //ADeliveryRobot* NewRobot = GetWorld()->SpawnActor<ADeliveryRobot>(RobotClass, SpawnLocation, SpawnRotation);
-    //if (NewRobot)
-    //{
-    //    NewRobot->ProductRecipeSetting(ProductRecipe)
-    //}
+    if (!DeliveryRobotClass)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("DeliveryRobotClass can't Found"));
+        return;
+    }
+
+    const FVector SpawnLocation = GetActorLocation();
+    const FRotator SpawnRotation = GetActorRotation();
+
+    FActorSpawnParameters SpawnParams;
+    SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+    SpawnParams.Owner = this;
+
+    ADeliveryRobot* NewRobot = GetWorld()->SpawnActor<ADeliveryRobot>(
+        DeliveryRobotClass,
+        SpawnLocation,
+        SpawnRotation,
+        SpawnParams
+    );
+
+    // Recipe Setting & TargetCell Setting
+    NewRobot->ProductRecipeSetting(ProductRecipe);
+
+    for (auto& RecipeItem : NewRobot->ProgressOfProductRecipe.RecipeData)
+        RecipeItem.ProgressValue = 0;
+
+    const UItemBasicDataAsset* FirstItem = NewRobot->ProgressOfProductRecipe.RecipeData[0].ItemData;
+    AItemProductionCell* TargetCell = nullptr;
+
+    for (AItemProductionCell* Cell : ProductionCellList)
+    {
+        if (!Cell) continue;
+
+        if (Cell->ProductProcessData == FirstItem)
+        {
+            if (Cell->CurrnetState == ECellProgressState::Empty)
+            {
+                TargetCell = Cell;
+                break;
+            }
+        }
+    }
+
+    if (NewRobot)
+    {
+        AAIController* AICon = GetWorld()->SpawnActor<ADeliveryRobotController>(
+            DeliveryRobotControllerClass,
+            SpawnLocation,
+            SpawnRotation
+        );
+
+        if (AICon)
+        {
+            AICon->Possess(NewRobot);
+
+            NewRobot->CurrentProcess = ERobotProcess::ProductProcess;
+            NewRobot->SetProcessState();
+
+            if (TargetCell)
+            {
+                // 목적지 지정 및 상태 변경
+                NewRobot->TargetCell = TargetCell;
+                NewRobot->TargetPoint = TargetCell->GetActorLocation();
+                //NewRobot->TargetPoint = RobotReturnPoint->GetComponentLocation();
 
 
-    // recipe에 따른 이동할 목표 cell 찾기
-    
-    // 각각 해당 item의 제작 공정을 진행하는 목표 셀의 위치를 미리 다 저장하기? or 도착할때마다 찾기?
+                NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+                NewRobot->CurrentState = ERobotState::Moving;
+                TargetCell->CurrnetState = ECellProgressState::Reserved;
+                NewRobot->SetTargetCell();
 
-    // 
+                UE_LOG(LogTemp, Warning, TEXT("Robot %s assigned to Cell %s"),
+                    *NewRobot->GetName(),
+                    *TargetCell->GetName());
+            }
+            else     // 만약 모든 Cell의 State가 Emtmy가 아닌 경우, AI 생성만 하고 대기 상태 전환.
+            {
+                // 이동 가능한 Cell이 없으면 대기 상태 유지
+                NewRobot->CurrentState = ERobotState::Waiting;
+                NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+                UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
+            }
+
+        }
+    }
+
+    // Service에서 Cell의 상태를 계속 체크해주고, 아래의 위치 지정등의 행동을 해주는 형태
 
 }

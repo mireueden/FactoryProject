@@ -14,6 +14,7 @@ ADeliveryRobot::ADeliveryRobot()
 	PrimaryActorTick.bCanEverTick = true;
 
     CurrentState = ERobotState::None;
+    CurrentProcess = ERobotProcess::None;
 
     AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
@@ -38,6 +39,28 @@ void ADeliveryRobot::Tick(float DeltaTime)
 
 }
 
+void ADeliveryRobot::SetProcessState()
+{
+    AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
+    if (AICon && AICon->GetBlackboardComponent())
+    {
+        AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotProcessState"), static_cast<uint8>(CurrentProcess));
+
+    }
+}
+
+void ADeliveryRobot::SetTargetCell()
+{
+    AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
+    if (AICon && AICon->GetBlackboardComponent())
+    {
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint); 
+        AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetPoint"), TargetPoint);
+        AICon->GetBlackboardComponent()->SetValueAsObject(TEXT("TargetCell"), TargetCell);
+    }
+}
+
 void ADeliveryRobot::SetTargetItem(AItem* Item)
 {
     TargetItem = Item;
@@ -45,12 +68,9 @@ void ADeliveryRobot::SetTargetItem(AItem* Item)
     AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
     if (AICon && AICon->GetBlackboardComponent())
     {
-        //FVector ItemLocation = TargetPoint->GetActorLocation();
-        UE_LOG(LogTemp, Warning, TEXT("SetTargetItem - ReturnPoint: %s"), *ReturnPoint.ToString());
-        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetItem"), TargetPoint);
-        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
-
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetPoint"), TargetPoint);
     }
 }
 
