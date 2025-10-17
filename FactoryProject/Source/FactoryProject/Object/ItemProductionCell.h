@@ -8,6 +8,9 @@
 #include "Components/BoxComponent.h"
 #include "Components/SceneComponent.h"
 
+#include "NavModifierComponent.h"
+#include "AI/NavArea_AvoidCell.h"
+
 #include "ItemProductionCell.generated.h"
 
 UENUM(BlueprintType)
@@ -38,6 +41,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Root")
 	USceneComponent* RootScene;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UNavModifierComponent* NavModifier;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -66,6 +72,10 @@ public:
 		int32 OtherBodyIndex,
 		bool bFromSweep,
 		const FHitResult& SweepResult);
+
+	void OnDetectBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	void OnDetectEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	UFUNCTION()
 	void CellStateChanged(ECellProgressState NewState);
