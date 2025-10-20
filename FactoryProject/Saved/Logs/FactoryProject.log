@@ -6758,3 +6758,611 @@ TSlateDecl<SPropertyValueWidget,RequiredArgs::T2RequiredArgs<TSharedPtr<FPropert
 [2025.10.20-02.50.43:291][602]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=24, StreamState=2
 [2025.10.20-02.50.43:299][602]LogUObjectHash: Compacting FUObjectHashTables data took   1.39ms
 [2025.10.20-02.50.43:337][603]LogPlayLevel: Display: Destroying online subsystem :Context_33
+[2025.10.20-02.55.30:578][903]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.10.20-02.55.30:590][903]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.10.20-02.55.30:619][903]LogPlayLevel: Creating play world package: /Game/Project/UEDPIE_0_Level_Factory
+[2025.10.20-02.55.30:631][903]LogPlayLevel: PIE: StaticDuplicateObject took: (0.012265s)
+[2025.10.20-02.55.30:631][903]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Project/Level_Factory.Level_Factory to /Game/Project/UEDPIE_0_Level_Factory.Level_Factory (0.012327s)
+[2025.10.20-02.55.30:665][903]LogUObjectHash: Compacting FUObjectHashTables data took   1.61ms
+[2025.10.20-02.55.30:666][903]LogChaosDD: Creating Chaos Debug Draw Scene for world Level_Factory
+[2025.10.20-02.55.30:668][903]LogPlayLevel: PIE: World Init took: (0.001718s)
+[2025.10.20-02.55.30:669][903]LogAudio: Display: Creating Audio Device:                 Id: 25, Scope: Unique, Realtime: True
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.10.20-02.55.30:669][903]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.10.20-02.55.30:669][903]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.10.20-02.55.30:669][903]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.10.20-02.55.30:669][903]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.10.20-02.55.30:669][903]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.10.20-02.55.30:671][903]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.10.20-02.55.30:687][903]LogAudioMixer: Display: Using Audio Hardware Device LED MONITOR(NVIDIA High Definition Audio)
+[2025.10.20-02.55.30:687][903]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.10.20-02.55.30:687][903]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.10.20-02.55.30:687][903]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.10.20-02.55.30:687][903]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=25
+[2025.10.20-02.55.30:688][903]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=25
+[2025.10.20-02.55.30:690][903]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=25
+[2025.10.20-02.55.30:690][903]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=25
+[2025.10.20-02.55.30:690][903]LogInit: FAudioDevice initialized with ID 25.
+[2025.10.20-02.55.30:690][903]LogAudio: Display: Audio Device (ID: 25) registered with world 'Level_Factory'.
+[2025.10.20-02.55.30:690][903]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 25
+[2025.10.20-02.55.30:693][903]LogLoad: Game class is 'BP_FirstPersonGameMode_C'
+[2025.10.20-02.55.30:697][903]LogWorld: Bringing World /Game/Project/UEDPIE_0_Level_Factory.Level_Factory up for play (max tick rate 0) at 2025.10.20-11.55.30
+[2025.10.20-02.55.30:697][903]LogWorld: Bringing up level for play took: 0.003909
+[2025.10.20-02.55.30:700][903]LogOnline: OSS: Created online subsystem instance for: :Context_34
+[2025.10.20-02.55.30:716][903]LogScript: Warning: Script Msg: The widget 'WBP_ItemManagementWidget_C_0' was already added to the screen.
+[2025.10.20-02.55.30:716][903]LogScript: Warning: Script Msg called by: BP_FirstPersonGameMode_C /Game/Project/UEDPIE_0_Level_Factory.Level_Factory:PersistentLevel.BP_FirstPersonGameMode_C_0
+[2025.10.20-02.55.30:717][903]PIE: Server logged in
+[2025.10.20-02.55.30:719][903]PIE: Play in editor total start time 0.134 seconds.
+[2025.10.20-02.55.30:768][904]LogRenderer: Recreating Persistent SBTs due to initializer changes: 
+		NumShaderSlotsPerGeometrySegment changed: current: 1 - new: 2
+		NumGeometrySegments changed: current: 0 - new: 512
+[2025.10.20-02.55.33:504][157]LogBlueprintUserMessages: [BP_FirstPersonCharacter_C_0] open
+[2025.10.20-02.55.33:504][157]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.10.20-02.55.33:504][157]LogViewport: Display: Viewport HideCursorDuringCapture Changed, False -> True
+[2025.10.20-02.55.33:504][157]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> CaptureDuringMouseDown
+[2025.10.20-02.55.35:721][360]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.55.35:721][360]LogTemp: Warning: Order
+[2025.10.20-02.55.35:721][360]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.55.35:722][360]LogBlueprintUserMessages: [BP_DeliveryRobot_C_0] dddd
+[2025.10.20-02.55.35:722][360]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_0] Hello
+[2025.10.20-02.55.35:724][360]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 assigned to Cell BP_ItemProductionCell_C_6
+[2025.10.20-02.55.38:041][571]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.55.38:041][571]LogTemp: Warning: Order
+[2025.10.20-02.55.38:041][571]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.55.38:041][571]LogBlueprintUserMessages: [BP_DeliveryRobot_C_1] dddd
+[2025.10.20-02.55.38:042][571]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_1] Hello
+[2025.10.20-02.55.38:042][571]LogTemp: Warning: Robot BP_DeliveryRobot_C_1 assigned to Cell BP_ItemProductionCell_C_2
+[2025.10.20-02.55.39:526][706]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.55.39:527][706]LogTemp: Warning: Order
+[2025.10.20-02.55.39:527][706]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.55.39:527][706]LogBlueprintUserMessages: [BP_DeliveryRobot_C_2] dddd
+[2025.10.20-02.55.39:527][706]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_2] Hello
+[2025.10.20-02.55.39:528][706]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_0
+[2025.10.20-02.55.40:733][815]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.55.40:733][815]LogTemp: Warning: Order
+[2025.10.20-02.55.40:733][815]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.55.40:733][815]LogBlueprintUserMessages: [BP_DeliveryRobot_C_3] dddd
+[2025.10.20-02.55.40:734][815]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_3] Hello
+[2025.10.20-02.55.40:734][815]LogTemp: Warning: Robot BP_DeliveryRobot_C_3 assigned to Cell BP_ItemProductionCell_C_7
+[2025.10.20-02.55.40:866][826]LogBlueprintUserMessages: [BP_FirstPersonCharacter_C_0] close
+[2025.10.20-02.55.40:866][826]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.10.20-02.55.40:866][826]LogViewport: Display: Viewport MouseCaptureMode Changed, CaptureDuringMouseDown -> CapturePermanently
+[2025.10.20-02.55.40:866][826]LogBlueprintUserMessages: [BP_FirstPersonCharacter_C_0] vaild
+[2025.10.20-02.55.42:343][940]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.55.42:343][940]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.42:403][945]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.55.42:403][945]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.43:427][ 31]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.43:499][ 37]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.45:143][174]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.55.45:143][174]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.45:215][178]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.55.45:215][178]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.46:380][262]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.55.46:380][262]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.46:462][269]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.55.46:462][269]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.47:004][293]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.47:077][296]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.47:160][302]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.47:184][303]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.55.47:184][303]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.47:209][304]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.47:233][305]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.55.47:234][305]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.47:441][317]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.55.47:441][317]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.47:441][317]LogTemp: Warning: BP_ItemProductionCell_C_0 시작됨 by BP_DeliveryRobot_C_2
+[2025.10.20-02.55.47:441][317]LogTemp: Warning: BP_ItemProductionCell_C_0 공정 완료
+[2025.10.20-02.55.47:489][321]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.55.47:489][321]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.48:060][348]LogBlueprintUserMessages: [BP_ItemProductionCell_C_2] Hello
+[2025.10.20-02.55.48:060][348]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.48:060][348]LogTemp: Warning: BP_ItemProductionCell_C_2 시작됨 by BP_DeliveryRobot_C_1
+[2025.10.20-02.55.48:060][348]LogTemp: Warning: BP_ItemProductionCell_C_2 공정 완료
+[2025.10.20-02.55.48:097][350]LogBlueprintUserMessages: [BP_ItemProductionCell_C_2] Hello
+[2025.10.20-02.55.48:097][350]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.48:803][407]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.48:843][410]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.49:148][435]LogBlueprintUserMessages: [BP_ItemProductionCell_C_6] Hello
+[2025.10.20-02.55.49:148][435]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.49:148][435]LogTemp: Warning: BP_ItemProductionCell_C_6 시작됨 by BP_DeliveryRobot_C_0
+[2025.10.20-02.55.49:148][435]LogTemp: Warning: BP_ItemProductionCell_C_6 공정 완료
+[2025.10.20-02.55.49:197][439]LogBlueprintUserMessages: [BP_ItemProductionCell_C_6] Hello
+[2025.10.20-02.55.49:197][439]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.49:333][450]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.49:333][450]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_3
+[2025.10.20-02.55.49:333][450]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_3
+[2025.10.20-02.55.49:701][480]LogBlueprintUserMessages: [BP_ItemProductionCell_C_5] Hello
+[2025.10.20-02.55.49:701][480]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.49:750][484]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.49:750][484]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_4
+[2025.10.20-02.55.49:750][484]LogTemp: Warning: Robot BP_DeliveryRobot_C_1 assigned to Cell BP_ItemProductionCell_C_4
+[2025.10.20-02.55.49:762][485]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.50:936][579]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.50:936][579]LogTemp: Warning: BP_DeliveryRobot_C_0 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.55.52:555][705]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.52:555][705]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.55.52:617][710]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.52:717][718]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.52:717][718]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.55.52:778][723]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.53:026][743]LogBlueprintUserMessages: [BP_ItemProductionCell_C_7] Hello
+[2025.10.20-02.55.53:026][743]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.53:026][743]LogTemp: Warning: BP_ItemProductionCell_C_7 시작됨 by BP_DeliveryRobot_C_3
+[2025.10.20-02.55.53:026][743]LogTemp: Warning: BP_ItemProductionCell_C_7 공정 완료
+[2025.10.20-02.55.53:064][746]LogBlueprintUserMessages: [BP_ItemProductionCell_C_7] Hello
+[2025.10.20-02.55.53:064][746]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.54:064][819]LogBlueprintUserMessages: [BP_ItemProductionCell_C_3] Hello
+[2025.10.20-02.55.54:064][819]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.54:064][819]LogTemp: Warning: BP_ItemProductionCell_C_3 시작됨 by BP_DeliveryRobot_C_2
+[2025.10.20-02.55.54:064][819]LogTemp: Warning: BP_ItemProductionCell_C_3 공정 완료
+[2025.10.20-02.55.54:090][821]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.54:090][821]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_0
+[2025.10.20-02.55.54:090][821]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 assigned to Cell BP_ItemProductionCell_C_0
+[2025.10.20-02.55.54:128][824]LogBlueprintUserMessages: [BP_ItemProductionCell_C_3] Hello
+[2025.10.20-02.55.54:128][824]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.54:266][835]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.55.54:266][835]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.54:266][835]LogTemp: Warning: BP_ItemProductionCell_C_4 시작됨 by BP_DeliveryRobot_C_1
+[2025.10.20-02.55.54:266][835]LogTemp: Warning: BP_ItemProductionCell_C_4 공정 완료
+[2025.10.20-02.55.54:328][840]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.55.54:329][840]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.54:758][874]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.54:758][874]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_8
+[2025.10.20-02.55.54:758][874]LogTemp: Warning: Robot BP_DeliveryRobot_C_3 assigned to Cell BP_ItemProductionCell_C_8
+[2025.10.20-02.55.56:810][ 12]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.56:810][ 12]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.55.56:848][ 15]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.56:849][ 15]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.56:849][ 15]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_5
+[2025.10.20-02.55.56:849][ 15]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_5
+[2025.10.20-02.55.56:974][ 25]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.56:974][ 25]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.55.57:619][ 77]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.57:620][ 77]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.55.57:669][ 81]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.58:615][157]LogBlueprintUserMessages: [BP_ItemProductionCell_C_8] Hello
+[2025.10.20-02.55.58:615][157]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.58:615][157]LogTemp: Warning: BP_ItemProductionCell_C_8 시작됨 by BP_DeliveryRobot_C_3
+[2025.10.20-02.55.58:615][157]LogTemp: Warning: BP_ItemProductionCell_C_8 공정 완료
+[2025.10.20-02.55.58:653][160]LogBlueprintUserMessages: [BP_ItemProductionCell_C_8] Hello
+[2025.10.20-02.55.58:653][160]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.58:714][165]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.58:714][165]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.55.58:751][168]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.55.59:581][235]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.55.59:581][235]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.59:631][239]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.55.59:631][239]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.55.59:955][265]LogTemp: Warning: Call TickNode
+[2025.10.20-02.55.59:955][265]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.01:071][354]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.56.01:071][354]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.56.01:071][354]LogTemp: Warning: BP_ItemProductionCell_C_0 시작됨 by BP_DeliveryRobot_C_0
+[2025.10.20-02.56.01:071][354]LogTemp: Warning: BP_ItemProductionCell_C_0 공정 완료
+[2025.10.20-02.56.01:121][358]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.56.01:121][358]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.56.01:134][359]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.01:134][359]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.02:874][497]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.02:924][501]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.02:924][501]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.04:235][607]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.04:235][607]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.06:034][753]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.06:034][753]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.07:330][858]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.07:330][858]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.07:912][905]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.56.07:912][905]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.56.07:962][909]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.56.09:001][993]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.56.09:001][993]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.56.09:051][997]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.56.09:088][  0]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.09:088][  0]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.10:316][ 72]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.10:316][ 72]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.12:148][203]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.12:149][203]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.13:302][290]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.13:302][290]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.15:287][405]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 10088.483398
+[2025.10.20-02.56.15:288][406]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.15:288][406]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.15:546][419]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.20-02.56.15:546][419]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 10088.719727, Update Interval: 331.286346
+[2025.10.20-02.56.16:471][459]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.16:471][459]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.18:382][554]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.18:382][554]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.19:497][610]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.19:497][610]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.21:560][731]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.21:560][731]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.22:578][772]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.22:578][772]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.24:715][911]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.24:715][911]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.25:625][981]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.25:625][981]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.27:170][ 97]LogClass: Warning: Short type name "ItemBasicDataAsset" provided for TryFindType. Please convert it to a path name (suggested: "/Script/FactoryProject.ItemBasicDataAsset"). Callstack:
+
+UClass::TryFindTypeSlow() [D:\build\++UE5\Sync\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:7080]
+PropertyCustomizationHelpers::GetClassesFromMetadataString() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyCustomizationHelpers.cpp:1256]
+PropertyEditorUtils::GetAllowedAndDisallowedClasses() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorUtils.cpp:152]
+SPropertyEditorAsset::InitializeClassFilters() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:220]
+SPropertyEditorAsset::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:492]
+TSlateDecl<SPropertyEditorAsset,RequiredArgs::T1RequiredArgs<TSharedRef<FPropertyEditor,1> const & __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:975]
+SPropertyValueWidget::ConstructPropertyEditorWidget() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:192]
+SPropertyValueWidget::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:74]
+TSlateDecl<SPropertyValueWidget,RequiredArgs::T2RequiredArgs<TSharedPtr<FPropertyEditor,1> const & __ptr64,TSharedPtr<IPropertyUtilities,1> && __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:976]
+
+[2025.10.20-02.56.27:671][136]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.27:671][136]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.28:049][165]LogClass: Warning: Short type name "ItemBasicDataAsset" provided for TryFindType. Please convert it to a path name (suggested: "/Script/FactoryProject.ItemBasicDataAsset"). Callstack:
+
+UClass::TryFindTypeSlow() [D:\build\++UE5\Sync\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:7080]
+PropertyCustomizationHelpers::GetClassesFromMetadataString() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyCustomizationHelpers.cpp:1256]
+PropertyEditorUtils::GetAllowedAndDisallowedClasses() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorUtils.cpp:152]
+SPropertyEditorAsset::InitializeClassFilters() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:220]
+SPropertyEditorAsset::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:492]
+TSlateDecl<SPropertyEditorAsset,RequiredArgs::T1RequiredArgs<TSharedRef<FPropertyEditor,1> const & __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:975]
+SPropertyValueWidget::ConstructPropertyEditorWidget() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:192]
+SPropertyValueWidget::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:74]
+TSlateDecl<SPropertyValueWidget,RequiredArgs::T2RequiredArgs<TSharedPtr<FPropertyEditor,1> const & __ptr64,TSharedPtr<IPropertyUtilities,1> && __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:976]
+
+[2025.10.20-02.56.28:681][213]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.28:681][213]LogTemp: Warning: BP_DeliveryRobot_C_3 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.28:940][231]LogClass: Warning: Short type name "ItemBasicDataAsset" provided for TryFindType. Please convert it to a path name (suggested: "/Script/FactoryProject.ItemBasicDataAsset"). Callstack:
+
+UClass::TryFindTypeSlow() [D:\build\++UE5\Sync\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:7080]
+PropertyCustomizationHelpers::GetClassesFromMetadataString() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyCustomizationHelpers.cpp:1256]
+PropertyEditorUtils::GetAllowedAndDisallowedClasses() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorUtils.cpp:152]
+SPropertyEditorAsset::InitializeClassFilters() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:220]
+SPropertyEditorAsset::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:492]
+TSlateDecl<SPropertyEditorAsset,RequiredArgs::T1RequiredArgs<TSharedRef<FPropertyEditor,1> const & __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:975]
+SPropertyValueWidget::ConstructPropertyEditorWidget() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:192]
+SPropertyValueWidget::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:74]
+TSlateDecl<SPropertyValueWidget,RequiredArgs::T2RequiredArgs<TSharedPtr<FPropertyEditor,1> const & __ptr64,TSharedPtr<IPropertyUtilities,1> && __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:976]
+
+[2025.10.20-02.56.28:999][234]LogClass: Warning: Short type name "ItemBasicDataAsset" provided for TryFindType. Please convert it to a path name (suggested: "/Script/FactoryProject.ItemBasicDataAsset"). Callstack:
+
+UClass::TryFindTypeSlow() [D:\build\++UE5\Sync\Engine\Source\Runtime\CoreUObject\Private\UObject\Class.cpp:7080]
+PropertyCustomizationHelpers::GetClassesFromMetadataString() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyCustomizationHelpers.cpp:1256]
+PropertyEditorUtils::GetAllowedAndDisallowedClasses() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorUtils.cpp:152]
+SPropertyEditorAsset::InitializeClassFilters() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:220]
+SPropertyEditorAsset::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\UserInterface\PropertyEditor\SPropertyEditorAsset.cpp:492]
+TSlateDecl<SPropertyEditorAsset,RequiredArgs::T1RequiredArgs<TSharedRef<FPropertyEditor,1> const & __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:975]
+SPropertyValueWidget::ConstructPropertyEditorWidget() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:192]
+SPropertyValueWidget::Construct() [D:\build\++UE5\Sync\Engine\Source\Editor\PropertyEditor\Private\PropertyEditorHelpers.cpp:74]
+TSlateDecl<SPropertyValueWidget,RequiredArgs::T2RequiredArgs<TSharedPtr<FPropertyEditor,1> const & __ptr64,TSharedPtr<IPropertyUtilities,1> && __ptr64> >::operator<<=() [D:\build\++UE5\Sync\Engine\Source\Runtime\SlateCore\Public\Widgets\DeclarativeSyntaxSupport.h:976]
+
+[2025.10.20-02.56.30:767][346]LogTemp: Warning: Call TickNode
+[2025.10.20-02.56.30:767][346]LogTemp: Warning: BP_DeliveryRobot_C_1 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.56.31:696][398]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.10.20-02.56.31:696][398]LogWorld: BeginTearingDown for /Game/Project/UEDPIE_0_Level_Factory
+[2025.10.20-02.56.31:696][398]LogCrowdFollowing: Warning: Unable to find RecastNavMesh instance while trying to create UCrowdManager instance
+[2025.10.20-02.56.31:698][398]LogWorld: UWorld::CleanupWorld for Level_Factory, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.56.31:698][398]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.56.31:702][398]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.10.20-02.56.31:708][398]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.56.31:737][398]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.10.20-02.56.31:738][398]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 25
+[2025.10.20-02.56.31:738][398]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=25, StreamState=4
+[2025.10.20-02.56.31:740][398]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=25, StreamState=2
+[2025.10.20-02.56.31:748][398]LogUObjectHash: Compacting FUObjectHashTables data took   1.33ms
+[2025.10.20-02.56.31:794][399]LogPlayLevel: Display: Destroying online subsystem :Context_34
+[2025.10.20-02.56.43:724][465]LogUObjectHash: Compacting FUObjectHashTables data took   1.25ms
+[2025.10.20-02.56.46:324][687]LogUObjectHash: Compacting FUObjectHashTables data took   0.81ms
+[2025.10.20-02.56.46:789][728]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.10.20-02.56.46:801][728]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.10.20-02.56.46:801][728]LogPlayLevel: Creating play world package: /Game/Project/UEDPIE_0_Level_Factory
+[2025.10.20-02.56.46:812][728]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011171s)
+[2025.10.20-02.56.46:812][728]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Project/Level_Factory.Level_Factory to /Game/Project/UEDPIE_0_Level_Factory.Level_Factory (0.011205s)
+[2025.10.20-02.56.46:842][728]LogUObjectHash: Compacting FUObjectHashTables data took   1.25ms
+[2025.10.20-02.56.46:843][728]LogChaosDD: Creating Chaos Debug Draw Scene for world Level_Factory
+[2025.10.20-02.56.46:844][728]LogPlayLevel: PIE: World Init took: (0.001572s)
+[2025.10.20-02.56.46:845][728]LogAudio: Display: Creating Audio Device:                 Id: 26, Scope: Unique, Realtime: True
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.10.20-02.56.46:845][728]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.10.20-02.56.46:845][728]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.10.20-02.56.46:845][728]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.10.20-02.56.46:845][728]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.10.20-02.56.46:845][728]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.10.20-02.56.46:847][728]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.10.20-02.56.46:861][728]LogAudioMixer: Display: Using Audio Hardware Device LED MONITOR(NVIDIA High Definition Audio)
+[2025.10.20-02.56.46:861][728]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.10.20-02.56.46:861][728]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.10.20-02.56.46:861][728]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.10.20-02.56.46:862][728]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=26
+[2025.10.20-02.56.46:862][728]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=26
+[2025.10.20-02.56.46:864][728]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=26
+[2025.10.20-02.56.46:864][728]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=26
+[2025.10.20-02.56.46:864][728]LogInit: FAudioDevice initialized with ID 26.
+[2025.10.20-02.56.46:864][728]LogAudio: Display: Audio Device (ID: 26) registered with world 'Level_Factory'.
+[2025.10.20-02.56.46:864][728]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 26
+[2025.10.20-02.56.46:868][728]LogLoad: Game class is 'BP_FirstPersonGameMode_C'
+[2025.10.20-02.56.46:872][728]LogWorld: Bringing World /Game/Project/UEDPIE_0_Level_Factory.Level_Factory up for play (max tick rate 0) at 2025.10.20-11.56.46
+[2025.10.20-02.56.46:872][728]LogWorld: Bringing up level for play took: 0.003749
+[2025.10.20-02.56.46:874][728]LogOnline: OSS: Created online subsystem instance for: :Context_35
+[2025.10.20-02.56.46:890][728]LogScript: Warning: Script Msg: The widget 'WBP_ItemManagementWidget_C_0' was already added to the screen.
+[2025.10.20-02.56.46:890][728]LogScript: Warning: Script Msg called by: BP_FirstPersonGameMode_C /Game/Project/UEDPIE_0_Level_Factory.Level_Factory:PersistentLevel.BP_FirstPersonGameMode_C_0
+[2025.10.20-02.56.46:891][728]PIE: Server logged in
+[2025.10.20-02.56.46:893][728]PIE: Play in editor total start time 0.098 seconds.
+[2025.10.20-02.56.46:944][729]LogRenderer: Recreating Persistent SBTs due to initializer changes: 
+		NumShaderSlotsPerGeometrySegment changed: current: 1 - new: 2
+		NumGeometrySegments changed: current: 0 - new: 512
+[2025.10.20-02.56.48:091][833]LogBlueprintUserMessages: [BP_FirstPersonCharacter_C_0] open
+[2025.10.20-02.56.48:091][833]LogViewport: Display: Viewport MouseLockMode Changed, LockOnCapture -> DoNotLock
+[2025.10.20-02.56.48:091][833]LogViewport: Display: Viewport HideCursorDuringCapture Changed, False -> True
+[2025.10.20-02.56.48:091][833]LogViewport: Display: Viewport MouseCaptureMode Changed, CapturePermanently_IncludingInitialMouseDown -> CaptureDuringMouseDown
+[2025.10.20-02.56.50:766][ 80]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.56.50:766][ 80]LogTemp: Warning: Order
+[2025.10.20-02.56.50:766][ 80]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.56.50:766][ 80]LogBlueprintUserMessages: [BP_DeliveryRobot_C_0] dddd
+[2025.10.20-02.56.50:766][ 80]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_0] Hello
+[2025.10.20-02.56.50:768][ 80]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 assigned to Cell BP_ItemProductionCell_C_6
+[2025.10.20-02.56.53:137][296]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.56.53:137][296]LogTemp: Warning: Order
+[2025.10.20-02.56.53:137][296]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.56.53:137][296]LogBlueprintUserMessages: [BP_DeliveryRobot_C_1] dddd
+[2025.10.20-02.56.53:138][296]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_1] Hello
+[2025.10.20-02.56.53:138][296]LogTemp: Warning: Robot BP_DeliveryRobot_C_1 assigned to Cell BP_ItemProductionCell_C_2
+[2025.10.20-02.56.56:902][640]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget_C_0] Hello
+[2025.10.20-02.56.56:902][640]LogTemp: Warning: Order
+[2025.10.20-02.56.56:902][640]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.20-02.56.56:902][640]LogBlueprintUserMessages: [BP_DeliveryRobot_C_2] dddd
+[2025.10.20-02.56.56:903][640]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_2] Hello
+[2025.10.20-02.56.56:903][640]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_0
+[2025.10.20-02.56.57:088][656]LogBlueprintUserMessages: [BP_FirstPersonCharacter_C_0] close
+[2025.10.20-02.56.57:088][656]LogViewport: Display: Viewport MouseLockMode Changed, DoNotLock -> LockOnCapture
+[2025.10.20-02.56.57:088][656]LogViewport: Display: Viewport MouseCaptureMode Changed, CaptureDuringMouseDown -> CapturePermanently
+[2025.10.20-02.56.57:088][656]LogBlueprintUserMessages: [BP_FirstPersonCharacter_C_0] vaild
+[2025.10.20-02.56.57:389][684]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.56.57:389][684]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.56.57:444][689]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.56.57:444][689]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.56.58:465][783]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.56.58:541][790]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.00:185][912]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.57.00:185][912]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.00:269][919]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.57.00:269][919]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.01:479][ 21]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.57.01:479][ 21]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.01:562][ 28]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.57.01:562][ 28]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.02:053][ 69]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.02:102][ 73]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.02:245][ 85]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.02:292][ 89]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.03:141][161]LogBlueprintUserMessages: [BP_ItemProductionCell_C_2] Hello
+[2025.10.20-02.57.03:141][161]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.03:141][161]LogTemp: Warning: BP_ItemProductionCell_C_2 시작됨 by BP_DeliveryRobot_C_1
+[2025.10.20-02.57.03:141][161]LogTemp: Warning: BP_ItemProductionCell_C_2 공정 완료
+[2025.10.20-02.57.03:188][165]LogBlueprintUserMessages: [BP_ItemProductionCell_C_2] Hello
+[2025.10.20-02.57.03:188][165]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.04:188][248]LogBlueprintUserMessages: [BP_ItemProductionCell_C_6] Hello
+[2025.10.20-02.57.04:188][248]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.04:188][248]LogTemp: Warning: BP_ItemProductionCell_C_6 시작됨 by BP_DeliveryRobot_C_0
+[2025.10.20-02.57.04:188][248]LogTemp: Warning: BP_ItemProductionCell_C_6 공정 완료
+[2025.10.20-02.57.04:236][252]LogBlueprintUserMessages: [BP_ItemProductionCell_C_6] Hello
+[2025.10.20-02.57.04:236][252]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.04:691][291]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.57.04:691][291]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.04:691][291]LogTemp: Warning: BP_ItemProductionCell_C_0 시작됨 by BP_DeliveryRobot_C_2
+[2025.10.20-02.57.04:691][291]LogTemp: Warning: BP_ItemProductionCell_C_0 공정 완료
+[2025.10.20-02.57.04:749][296]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.57.04:749][296]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.04:842][304]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.04:842][304]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_4
+[2025.10.20-02.57.04:842][304]LogTemp: Warning: Robot BP_DeliveryRobot_C_1 assigned to Cell BP_ItemProductionCell_C_4
+[2025.10.20-02.57.05:982][402]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.05:982][402]LogTemp: Warning: BP_DeliveryRobot_C_0 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.57.06:606][443]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.06:606][443]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_3
+[2025.10.20-02.57.06:606][443]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_3
+[2025.10.20-02.57.07:834][503]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.07:834][503]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.07:886][507]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.09:124][604]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.09:124][604]LogTemp: Warning: BP_DeliveryRobot_C_0 : 다음 아이템은 있지만 Cell이 비어있지 않음. 대기 유지.
+[2025.10.20-02.57.09:383][624]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.57.09:384][624]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.09:384][624]LogTemp: Warning: BP_ItemProductionCell_C_4 시작됨 by BP_DeliveryRobot_C_1
+[2025.10.20-02.57.09:384][624]LogTemp: Warning: BP_ItemProductionCell_C_4 공정 완료
+[2025.10.20-02.57.09:448][629]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.57.09:448][629]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.09:844][660]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.09:844][660]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.09:909][665]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.11:355][766]LogBlueprintUserMessages: [BP_ItemProductionCell_C_3] Hello
+[2025.10.20-02.57.11:355][766]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.11:355][766]LogTemp: Warning: BP_ItemProductionCell_C_3 시작됨 by BP_DeliveryRobot_C_2
+[2025.10.20-02.57.11:355][766]LogTemp: Warning: BP_ItemProductionCell_C_3 공정 완료
+[2025.10.20-02.57.11:430][769]LogBlueprintUserMessages: [BP_ItemProductionCell_C_3] Hello
+[2025.10.20-02.57.11:430][769]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.12:169][807]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.12:169][807]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_8
+[2025.10.20-02.57.12:169][807]LogTemp: Warning: Robot BP_DeliveryRobot_C_1 assigned to Cell BP_ItemProductionCell_C_8
+[2025.10.20-02.57.12:266][814]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.12:266][814]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_0
+[2025.10.20-02.57.12:266][814]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 assigned to Cell BP_ItemProductionCell_C_0
+[2025.10.20-02.57.13:958][917]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.13:958][917]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_5
+[2025.10.20-02.57.13:958][917]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_5
+[2025.10.20-02.57.14:320][939]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.14:320][939]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.14:369][943]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.14:962][991]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.14:962][991]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.15:011][995]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.15:994][ 69]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.15:994][ 69]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.16:031][ 72]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.16:343][ 94]LogBlueprintUserMessages: [BP_ItemProductionCell_C_8] Hello
+[2025.10.20-02.57.16:343][ 94]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.16:343][ 94]LogTemp: Warning: BP_ItemProductionCell_C_8 시작됨 by BP_DeliveryRobot_C_1
+[2025.10.20-02.57.16:343][ 94]LogTemp: Warning: BP_ItemProductionCell_C_8 공정 완료
+[2025.10.20-02.57.16:418][100]LogBlueprintUserMessages: [BP_ItemProductionCell_C_8] Hello
+[2025.10.20-02.57.16:418][100]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.16:866][136]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.57.16:866][136]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.16:903][139]LogBlueprintUserMessages: [BP_ItemProductionCell_C_4] Hello
+[2025.10.20-02.57.16:903][139]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.18:313][230]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.18:363][234]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.19:230][300]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.57.19:230][300]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.19:230][300]LogTemp: Warning: BP_ItemProductionCell_C_0 시작됨 by BP_DeliveryRobot_C_0
+[2025.10.20-02.57.19:230][300]LogTemp: Warning: BP_ItemProductionCell_C_0 공정 완료
+[2025.10.20-02.57.19:280][304]LogBlueprintUserMessages: [BP_ItemProductionCell_C_0] Hello
+[2025.10.20-02.57.19:280][304]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.19:305][306]LogBlueprintUserMessages: [BP_ItemProductionCell_C_5] Hello
+[2025.10.20-02.57.19:305][306]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.19:305][306]LogTemp: Warning: BP_ItemProductionCell_C_5 시작됨 by BP_DeliveryRobot_C_2
+[2025.10.20-02.57.19:305][306]LogTemp: Warning: BP_ItemProductionCell_C_5 공정 완료
+[2025.10.20-02.57.19:341][309]LogBlueprintUserMessages: [BP_ItemProductionCell_C_5] Hello
+[2025.10.20-02.57.19:341][309]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.21:085][433]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.21:418][454]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.21:793][484]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.21:793][484]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_6
+[2025.10.20-02.57.21:793][484]LogTemp: Warning: Robot BP_DeliveryRobot_C_2 assigned to Cell BP_ItemProductionCell_C_6
+[2025.10.20-02.57.23:865][644]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.23:865][644]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.23:914][648]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.26:113][821]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.26:113][821]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.26:163][825]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.26:325][838]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.26:325][838]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.26:374][842]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.27:202][909]LogBlueprintUserMessages: [BP_ItemProductionCell_C_1] Hello
+[2025.10.20-02.57.27:202][909]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.27:242][912]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.27:752][953]LogBlueprintUserMessages: [BP_ItemProductionCell_C_6] Hello
+[2025.10.20-02.57.27:752][953]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.27:752][953]LogTemp: Warning: BP_ItemProductionCell_C_6 시작됨 by BP_DeliveryRobot_C_2
+[2025.10.20-02.57.27:752][953]LogTemp: Warning: BP_ItemProductionCell_C_6 공정 완료
+[2025.10.20-02.57.27:801][957]LogBlueprintUserMessages: [BP_ItemProductionCell_C_6] Hello
+[2025.10.20-02.57.27:801][957]LogTemp: Warning: Call Func OnRobotEnterCell
+[2025.10.20-02.57.30:467][172]LogTemp: Warning: Call TickNode
+[2025.10.20-02.57.34:676][489]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.34:676][489]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.20-02.57.34:726][492]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.20-02.57.35:937][583]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.10.20-02.57.35:937][583]LogWorld: BeginTearingDown for /Game/Project/UEDPIE_0_Level_Factory
+[2025.10.20-02.57.35:937][583]LogCrowdFollowing: Warning: Unable to find RecastNavMesh instance while trying to create UCrowdManager instance
+[2025.10.20-02.57.35:938][583]LogWorld: UWorld::CleanupWorld for Level_Factory, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.35:939][583]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.35:944][583]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.10.20-02.57.35:950][583]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.35:979][583]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.10.20-02.57.35:979][583]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 26
+[2025.10.20-02.57.35:979][583]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=26, StreamState=4
+[2025.10.20-02.57.35:981][583]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=26, StreamState=2
+[2025.10.20-02.57.35:989][583]LogUObjectHash: Compacting FUObjectHashTables data took   1.52ms
+[2025.10.20-02.57.36:075][584]LogPlayLevel: Display: Destroying online subsystem :Context_35
+[2025.10.20-02.57.36:555][616]LogUObjectHash: Compacting FUObjectHashTables data took   1.29ms
+[2025.10.20-02.57.37:450][693]LogUObjectHash: Compacting FUObjectHashTables data took   0.63ms
+[2025.10.20-02.57.37:530][693]LogStall: Shutdown...
+[2025.10.20-02.57.37:530][693]LogStall: Shutdown complete.
+[2025.10.20-02.57.37:659][693]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.37:659][693]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.37:785][693]LogSlate: Window 'Product2' being destroyed
+[2025.10.20-02.57.37:835][693]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2025.10.20-02.57.37:835][693]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.37:835][693]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.37:909][693]LogSlate: Window 'FactoryProject - Unreal Editor' being destroyed
+[2025.10.20-02.57.38:224][693]LogUObjectHash: Compacting FUObjectHashTables data took   1.32ms
+[2025.10.20-02.57.38:242][693]Cmd: QUIT_EDITOR
+[2025.10.20-02.57.38:243][694]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2025.10.20-02.57.38:247][694]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2025.10.20-02.57.38:268][694]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2025.10.20-02.57.38:268][694]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2025.10.20-02.57.38:276][694]LogWorld: UWorld::CleanupWorld for Level_Factory, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:276][694]LogCrowdFollowing: Warning: Unable to find RecastNavMesh instance while trying to create UCrowdManager instance
+[2025.10.20-02.57.38:277][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:327][694]LogTedsSettings: UTedsSettingsEditorSubsystem::Deinitialize
+[2025.10.20-02.57.38:341][694]LogStylusInput: Shutting down StylusInput subsystem.
+[2025.10.20-02.57.38:394][694]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2025.10.20-02.57.38:464][694]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:464][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:467][694]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:467][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:471][694]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:471][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:474][694]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:474][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:477][694]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:477][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:481][694]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:481][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:484][694]LogWorld: UWorld::CleanupWorld for World_6, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:485][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:488][694]LogWorld: UWorld::CleanupWorld for World_8, bSessionEnded=true, bCleanupResources=true
+[2025.10.20-02.57.38:488][694]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.20-02.57.38:525][694]LogRuntimeTelemetry: Recording EnginePreExit events
+[2025.10.20-02.57.38:533][694]LogStudioTelemetry: Ended StudioTelemetry Session
+[2025.10.20-02.57.38:544][694]LogAnalytics: Display: [UEEditor.Rocket.Release] AnalyticsET::EndSession
+[2025.10.20-02.57.39:478][694]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2025.10.20-02.57.39:478][694]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2025.10.20-02.57.39:478][694]LogAudio: Display: Audio Device unregistered from world 'Level_Factory'.
+[2025.10.20-02.57.39:478][694]LogAudio: Display: Shutting down audio device while 1 references to it are still alive. For more information, compile with INSTRUMENT_AUDIODEVICE_HANDLES.
+[2025.10.20-02.57.39:478][694]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1, StreamState=4
+[2025.10.20-02.57.39:480][694]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1, StreamState=2
+[2025.10.20-02.57.39:489][694]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID -1
+[2025.10.20-02.57.39:489][694]LogAudio: Display: Audio Device Manager Shutdown
+[2025.10.20-02.57.39:492][694]LogWindowsTextInputMethodSystem: Activated input method: 한국어(대한민국) - Microsoft 입력기 (TSF IME).
+[2025.10.20-02.57.39:493][694]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2025.10.20-02.57.39:496][694]LogExit: Preparing to exit.
+[2025.10.20-02.57.39:651][694]LogUObjectHash: Compacting FUObjectHashTables data took   1.27ms
+[2025.10.20-02.57.39:656][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_controls_for_selected_PY.add_controls_for_selected_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:656][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_controls_for_selected_PY.add_controls_for_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_null_above_selected_PY.add_null_above_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_all' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_x' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_y' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_z' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_scale' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.search_replace_name_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.search_replace_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_prefix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_prefix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_suffix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_suffix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.do_rename_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.do_rename_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/set_bone_reference_pose_PY.set_bone_reference_pose' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/ControlRigWorkflows/workflow_fbik_import_ik_rig_PY.import_ik_rig_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.39:657][694]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_controls_for_selected_PY.ControlOutputFormat' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.20-02.57.40:187][694]LogEditorDataStorage: Deinitializing
+[2025.10.20-02.57.40:800][694]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2025.10.20-02.57.41:006][694]LogExit: Editor shut down
+[2025.10.20-02.57.41:014][694]LogExit: Transaction tracking system shut down
+[2025.10.20-02.57.43:377][694]LogExit: Object subsystem successfully closed.
+[2025.10.20-02.57.43:388][694]LogShaderCompilers: Display: Shaders left to compile 0
+[2025.10.20-02.57.44:465][694]LogMemoryProfiler: Shutdown
+[2025.10.20-02.57.44:476][694]LogNetworkingProfiler: Shutdown
+[2025.10.20-02.57.44:476][694]LoadingProfiler: Shutdown
+[2025.10.20-02.57.44:477][694]LogTimingProfiler: Shutdown
+[2025.10.20-02.57.44:530][694]LogChaosVDEditor: [FChaosVDExtensionsManager::UnRegisterExtension] UnRegistering CVD Extension [FChaosVDGenericDebugDrawExtension] ...
+[2025.10.20-02.57.44:536][694]LogChaosVDEditor: [FChaosVDExtensionsManager::UnRegisterExtension] UnRegistering CVD Extension [FChaosVDAccelerationStructuresExtension] ...
+[2025.10.20-02.57.45:478][694]LogChaosDD: Chaos Debug Draw Shutdown
+[2025.10.20-02.57.45:545][694]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2025.10.20-02.57.45:554][694]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B442673A2-4805-55AA-FFB5-DD9D5D9401CA%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.6.1-44394996%2B%2B%2BUE5%2BRelease-5.6&UserID=b6840eb447b83a89e603afa59b446f9e%7Cda09a55eb53549c8aecc883a42db1d8f%7C37d43855-8030-456f-9866-26a7cb53f493&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[2] status=Processing
