@@ -16,6 +16,7 @@
 UENUM(BlueprintType)
 enum class ECellProgressState :uint8
 {
+	None         UMETA(DisplayName = "None"),          
 	Empty        UMETA(DisplayName = "Empty"),          // 아무 것도 없음, 대기 가능
 	Reserved     UMETA(DisplayName = "Reserved"),       // Robot이 이동 예정, 예약
 	InProgress   UMETA(DisplayName = "InProgress"),     // 작업 중
@@ -58,11 +59,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	ADeliveryRobot* ProcessRobot;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	ADeliveryRobot* BeforeProcessRobot;
+
 	UPROPERTY(BlueprintAssignable)
 	FOnCellStateChanged OnCellStateChanged;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	ECellProgressState CurrnetState = ECellProgressState::Empty;
+	ECellProgressState CurrnetState = ECellProgressState::None;
 
 	UFUNCTION()
 	void OnRobotEnterCell(
@@ -73,9 +77,12 @@ public:
 		bool bFromSweep,
 		const FHitResult& SweepResult);
 
-	void OnDetectBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	void OnDetectEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	UFUNCTION()
+	void OnRobotExitCell(
+		UPrimitiveComponent* OverlappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex);
 
 	UFUNCTION()
 	void CellStateChanged(ECellProgressState NewState);

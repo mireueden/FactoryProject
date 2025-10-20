@@ -74,6 +74,15 @@ void ADeliveryRobot::SetTargetItem(AItem* Item)
     }
 }
 
+void ADeliveryRobot::SetRobotState()
+{
+    AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
+    if (AICon && AICon->GetBlackboardComponent())
+    {
+        AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
+    }
+}
+
 void ADeliveryRobot::AttachItem()
 {
     TargetItem->AttachToComponent(

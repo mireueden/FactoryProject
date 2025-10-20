@@ -33,8 +33,8 @@ AItemProductionCell::AItemProductionCell()
 	DetectArea = CreateDefaultSubobject<UBoxComponent>(TEXT("DetectArea"));
 	DetectArea->SetupAttachment(RootComponent);
 
-	//  Collision 설정
-	// "QueryOnly" → 물리 Block은 안 하지만, Overlap 이벤트는 발생 가능
+	// Collision 설정
+	// QueryOnly물리 Block은 안 하지만, Overlap 이벤트는 발생 가능
 	DetectArea->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	DetectArea->SetCollisionResponseToAllChannels(ECR_Ignore);
 	DetectArea->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap); // AI나 Player 감지용
@@ -58,8 +58,9 @@ void AItemProductionCell::BeginPlay()
 	Super::BeginPlay();
 
 	DetectArea->OnComponentBeginOverlap.AddDynamic(this, &AItemProductionCell::OnRobotEnterCell);
+	DetectArea->OnComponentEndOverlap.AddDynamic(this, &AItemProductionCell::OnRobotExitCell);
 
-
+	CurrnetState = ECellProgressState::Empty;
 
 	//NavModifier->SetAreaClassToReplace(UNavArea_AvoidCell::StaticClass());
 }
@@ -90,25 +91,36 @@ void AItemProductionCell::OnRobotEnterCell(
 	if (Robot->TargetCell != this) return;
 
 	ProcessRobot = Robot;
-	CurrnetState = ECellProgressState::InProgress;
+	CellStateChanged(ECellProgressState::InProgress);
+
 	Robot->CurrentState = ERobotState::Working;
 	UE_LOG(LogTemp, Warning, TEXT("%s 시작됨 by %s"), *GetName(), *Robot->GetName());
+
+	CraftingProduct(); // 임시 공정 완료 함수
+
 
 	// 공정 시작 (예: 일정 시간 뒤 Complete)
 	//GetWorldTimerManager().SetTimer(ProcessTimer, this, &AItemProductionCell::CompleteProduction, ProcessTime, false);
 }
 
-void AItemProductionCell::OnDetectBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AItemProductionCell::OnRobotExitCell(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Cell Overlap Begin: %s"), *OtherActor->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("Call Func OnRobotExitCell"));
+
+	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(OtherActor);
+
+	if (!Robot) return;
+
+	if (Robot != BeforeProcessRobot) return;
+
+	UE_LOG(LogTemp, Warning, TEXT("Robot == BeforeProcessRobot"));
+
+	BeforeProcessRobot = nullptr;
+
+	if(CurrnetState != ECellProgressState::Empty)
+		CellStateChanged(ECellProgressState::Empty);
 }
 
-void AItemProductionCell::OnDetectEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	UE_LOG(LogTemp, Warning, TEXT("Cell Overlap End: %s"), *OtherActor->GetName());
-}
 
 void AItemProductionCell::CellStateChanged(ECellProgressState NewState)
 {
@@ -123,12 +135,31 @@ void AItemProductionCell::CraftingProduct()
 {
 	if (!ProcessRobot) return;
 
+	if (CurrnetState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
+		return;
+
 	CurrnetState = ECellProgressState::Completed;
 	ProcessRobot->CurrentState = ERobotState::Waiting; // 다시 대기 상태로 전환
+
+	ProcessRobot->SetRobotState();
+	// ==
+
+	for (FProgressOfItem& RecipeItem : ProcessRobot->ProgressOfProductRecipe.RecipeData)
+	{
+		if (RecipeItem.ItemData == ProductProcessData)
+		{
+			RecipeItem.ProgressValue = 1;
+			break;
+		}
+	}
+
+	// ==
+
 	ProcessRobot->TargetCell = nullptr;
 
 	UE_LOG(LogTemp, Warning, TEXT("%s 공정 완료"), *GetName());
 
+	BeforeProcessRobot = ProcessRobot;
 	ProcessRobot = nullptr; // Cell에서 로봇 해제
 }
 

@@ -112,6 +112,9 @@ public:
 	void SetTargetItem(AItem* Item);
 
 	UFUNCTION()
+	void SetRobotState();
+
+	UFUNCTION()
 	void AttachItem();
 
 	UFUNCTION()
