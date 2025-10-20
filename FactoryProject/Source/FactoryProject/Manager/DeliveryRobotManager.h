@@ -49,12 +49,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
 	FVector RobotSpawnLocation;
 
-
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* RobotSpawnPoint;
 
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* RobotReturnPoint;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
+	AActor* ProductReturnPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
 	FRotator RobotSpawnRotate;
@@ -66,7 +68,7 @@ public:
 	void SetDeliveryRobot(AItem* TargetItem);
 
 	UFUNCTION()
-	void DestoryDeliveryRobot();
+	void DestoryDeliveryRobot(ADeliveryRobot* NewRobot);
 
 	UFUNCTION(BlueprintCallable)
 	void SetProductRobot(UProductRecipeDataAsset* ProductRecipe);

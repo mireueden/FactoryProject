@@ -70,6 +70,8 @@ void AItemProductionCell::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (ProcessRobot->CurrentState == ERobotState::Working)
+		CraftingProduct();
 }
 
 void AItemProductionCell::OnRobotEnterCell(
@@ -81,16 +83,25 @@ void AItemProductionCell::OnRobotEnterCell(
 	const FHitResult& SweepResult)
 {
 
+	
 	UE_LOG(LogTemp, Warning, TEXT("Call Func OnRobotEnterCell"));
 
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(OtherActor);
 	if (!Robot) return;
+	ProcessRobot = Robot;
 
 	if (ProcessRobot != nullptr) return;
 
 	if (Robot->TargetCell != this) return;
 
+	if (Robot->CurrentState != ERobotState::Arrived) {
+		UE_LOG(LogTemp, Warning, TEXT("%s : 아직 도착 안 함, 무시"), *Robot->GetName());
+		return;
+	}
+
 	ProcessRobot = Robot;
+
+
 	CellStateChanged(ECellProgressState::InProgress);
 
 	Robot->CurrentState = ERobotState::Working;
@@ -111,7 +122,7 @@ void AItemProductionCell::OnRobotExitCell(UPrimitiveComponent* OverlappedComp, A
 
 	if (!Robot) return;
 
-	if (Robot != BeforeProcessRobot) return;
+	if (Robot != BeforeProcessRobot || Robot->CurrentState == ERobotState::Waiting) return;
 
 	UE_LOG(LogTemp, Warning, TEXT("Robot == BeforeProcessRobot"));
 
@@ -134,6 +145,10 @@ void AItemProductionCell::CellStateChanged(ECellProgressState NewState)
 void AItemProductionCell::CraftingProduct()
 {
 	if (!ProcessRobot) return;
+
+	CellStateChanged(ECellProgressState::InProgress);
+	// 제작공정 
+
 
 	if (CurrnetState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
 		return;

@@ -17,6 +17,7 @@ enum class ERobotState : uint8
 	None,
 	Moving,
 	Waiting,
+	Arrived,
 	Working,
 	Delivery,
 	Returning,

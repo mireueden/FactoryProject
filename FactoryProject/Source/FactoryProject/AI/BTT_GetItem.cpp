@@ -32,7 +32,7 @@ void UBTT_GetItem::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory
     uint8 StateValue = BBComp->GetValueAsEnum(TEXT("RobotState"));
     ERobotState CurrentState = static_cast<ERobotState>(StateValue);
 
-    if (CurrentState == ERobotState::Waiting)
+    if (CurrentState == ERobotState::Arrived)
     {
         UE_LOG(LogTemp, Warning, TEXT("RobotState is Waiting"));
         // 로봇에 적재하는 기능 실행

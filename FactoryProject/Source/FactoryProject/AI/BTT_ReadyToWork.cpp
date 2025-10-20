@@ -1,18 +1,19 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "AI/BTT_ArrivePoint.h"
+#include "AI/BTT_ReadyToWork.h"
 
 #include "DeliveryRobot.h"
 #include "DeliveryRobotController.h"
 
-UBTT_ArrivePoint::UBTT_ArrivePoint()
+UBTT_ReadyToWork::UBTT_ReadyToWork()
 {
-	NodeName = TEXT("ArrivePoint");
+	NodeName = TEXT("ReadyToWork");
 }
 
-EBTNodeResult::Type UBTT_ArrivePoint::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+EBTNodeResult::Type UBTT_ReadyToWork::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
+
 	UE_LOG(LogTemp, Warning, TEXT("Call UBTT_ArrivePoint"));
 
 	UBlackboardComponent* BBComp = OwnerComp.GetBlackboardComponent();
@@ -24,13 +25,12 @@ EBTNodeResult::Type UBTT_ArrivePoint::ExecuteTask(UBehaviorTreeComponent& OwnerC
 
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(AIController->GetCharacter());
 
-	//uint8 StateValue = BBComp->GetValueAsEnum(RobotStateKey.SelectedKeyName);
-	//ERobotState CurrentState = static_cast<ERobotState>(StateValue);
 
-	//BBComp->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(ERobotState::Waiting));
-
-	Robot->CurrentState = ERobotState::Arrived;
+	Robot->CurrentState = ERobotState::Working;
 	Robot->SetRobotState();
+
+
+	Robot->TargetCell->CraftingProduct();
 
 	UE_LOG(LogTemp, Warning, TEXT("Robot %s 도착 → State: Arrived"), *Robot->GetName());
 

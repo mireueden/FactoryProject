@@ -79,6 +79,7 @@ void ADeliveryRobot::SetRobotState()
     AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
     if (AICon && AICon->GetBlackboardComponent())
     {
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
     }
 }

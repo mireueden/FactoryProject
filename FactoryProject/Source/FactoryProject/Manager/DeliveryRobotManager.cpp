@@ -129,9 +129,8 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
 }
 
-void ADeliveryRobotManager::DestoryDeliveryRobot()
+void ADeliveryRobotManager::DestoryDeliveryRobot(ADeliveryRobot* DestoryRobot)
 {
-
 
 
 }
@@ -206,7 +205,8 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
                 //NewRobot->TargetPoint = RobotReturnPoint->GetComponentLocation();
 
 
-                NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+                //NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+                NewRobot->ReturnPoint = ProductReturnPoint->GetActorLocation();
                 NewRobot->CurrentState = ERobotState::Moving;
                 TargetCell->CurrnetState = ECellProgressState::Reserved;
                 NewRobot->SetTargetCell();
@@ -219,6 +219,9 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
             {
                 // 이동 가능한 Cell이 없으면 대기 상태 유지
                 NewRobot->CurrentState = ERobotState::Waiting;
+                NewRobot->ReturnPoint = ProductReturnPoint->GetActorLocation();
+                NewRobot->SetRobotState();
+
                 NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
                 UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
             }
