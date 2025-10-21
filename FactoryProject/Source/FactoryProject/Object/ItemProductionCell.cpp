@@ -60,7 +60,7 @@ void AItemProductionCell::BeginPlay()
 	DetectArea->OnComponentBeginOverlap.AddDynamic(this, &AItemProductionCell::OnRobotEnterCell);
 	DetectArea->OnComponentEndOverlap.AddDynamic(this, &AItemProductionCell::OnRobotExitCell);
 
-	CurrnetState = ECellProgressState::Empty;
+	CurrentState = ECellProgressState::Empty;
 
 	//NavModifier->SetAreaClassToReplace(UNavArea_AvoidCell::StaticClass());
 }
@@ -128,17 +128,17 @@ void AItemProductionCell::OnRobotExitCell(UPrimitiveComponent* OverlappedComp, A
 
 	BeforeProcessRobot = nullptr;
 
-	if(CurrnetState != ECellProgressState::Empty)
+	if(CurrentState != ECellProgressState::Empty)
 		CellStateChanged(ECellProgressState::Empty);
 }
 
 
 void AItemProductionCell::CellStateChanged(ECellProgressState NewState)
 {
-	if (CurrnetState != NewState)
+	if (CurrentState != NewState)
 	{
-		CurrnetState = NewState;
-		OnCellStateChanged.Broadcast(NewState);
+		CurrentState = NewState;
+		OnCellStateChanged.Broadcast();
 	}
 }
 
@@ -150,10 +150,10 @@ void AItemProductionCell::CraftingProduct()
 	// 제작공정 
 
 
-	if (CurrnetState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
+	if (CurrentState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
 		return;
 
-	CurrnetState = ECellProgressState::Completed;
+	CurrentState = ECellProgressState::Completed;
 	ProcessRobot->CurrentState = ERobotState::Waiting; // 다시 대기 상태로 전환
 
 	ProcessRobot->SetRobotState();

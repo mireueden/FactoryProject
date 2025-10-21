@@ -12,6 +12,9 @@
 
 #include "DeliveryRobotManager.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeliveryRobotUpdate);
+
+
 class AConveyorBelt;
 class AItem;
 
@@ -67,7 +70,7 @@ public:
 	UFUNCTION()
 	void SetDeliveryRobot(AItem* TargetItem);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void DestoryDeliveryRobot(ADeliveryRobot* NewRobot);
 
 	UFUNCTION(BlueprintCallable)
@@ -75,5 +78,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<AItemProductionCell*> ProductionCellList;
+
+
+	UPROPERTY(BlueprintAssignable, Category = "Delegate")
+	FOnDeliveryRobotUpdate OnDeliveryRobotUpdate;
 
 };

@@ -100,6 +100,8 @@ void ADeliveryRobot::DetachItem()
 
 void ADeliveryRobot::ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe)
 {
+    ProductRecipeData = ProductRecipe;
+
     ProgressOfProductRecipe.ProductName = ProductRecipe->ProductName;
     ProgressOfProductRecipe.RecipeData.Empty(); // 기존 데이터 초기화
 

@@ -54,7 +54,7 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
 
                     // Cell이 비어 있고, Item이 동일하면 Target 설정
                     if (Cell->ProductProcessData == Item.ItemData &&
-                        Cell->CurrnetState == ECellProgressState::Empty)
+                        Cell->CurrentState == ECellProgressState::Empty)
                     {
                         UE_LOG(LogTemp, Warning, TEXT("New TargetCell is %s"), *Cell->GetName());
 
@@ -67,7 +67,7 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
                         Robot->SetTargetCell();
                         // Cell 상태 Reserved // 다른 모든 Cell 까지 Reserved시킴.
                         // Robot이 확실하게 이동할 Cell만 Reservedㅈ하고, 저장하게 한다음에, Robot이 Complete상태가 되기 전에는 다시 갱신 안하게끔.
-                        Cell->CurrnetState = ECellProgressState::Reserved;
+                        Cell->CurrentState = ECellProgressState::Reserved;
 
                         Robot->SetTargetCell();
                         UE_LOG(LogTemp, Warning, TEXT("Robot %s assigned to Cell %s"),

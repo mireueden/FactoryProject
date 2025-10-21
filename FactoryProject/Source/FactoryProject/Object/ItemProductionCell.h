@@ -23,7 +23,7 @@ enum class ECellProgressState :uint8
 	Completed    UMETA(DisplayName = "Completed"),		// 작업 완료 및 대기
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCellStateChanged, ECellProgressState, NewState);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCellStateChanged);
 
 class ADeliveryRobot;
 
@@ -66,7 +66,7 @@ public:
 	FOnCellStateChanged OnCellStateChanged;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	ECellProgressState CurrnetState = ECellProgressState::None;
+	ECellProgressState CurrentState = ECellProgressState::None;
 
 	UFUNCTION()
 	void OnRobotEnterCell(

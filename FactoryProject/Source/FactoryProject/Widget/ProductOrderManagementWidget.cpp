@@ -134,6 +134,7 @@ void UProductOrderManagementWidget::Order()
 		}
 		OnProductOrderRequested.Broadcast(ProductData);
 
+
 		UpdateProductSlotList();
 	}
 }

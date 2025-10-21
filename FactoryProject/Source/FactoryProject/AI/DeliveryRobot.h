@@ -126,6 +126,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
 	FProgressOfRecipe ProgressOfProductRecipe;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
+	UProductRecipeDataAsset* ProductRecipeData;
+
 	UFUNCTION()
 	void ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe);
 

@@ -122,6 +122,8 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
              
              UE_LOG(LogTemp, Warning, TEXT("TargetLoc: %s"), *NewRobot->ReturnPoint.ToString());
 
+             DeliveryRobots.Add(NewRobot);
+             OnDeliveryRobotUpdate.Broadcast();
          }
      }
      else
@@ -131,8 +133,7 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
 void ADeliveryRobotManager::DestoryDeliveryRobot(ADeliveryRobot* DestoryRobot)
 {
-
-
+    DeliveryRobots.Remove(DestoryRobot);
 }
 
 void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductRecipe)
@@ -174,7 +175,7 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
 
         if (Cell->ProductProcessData == FirstItem)
         {
-            if (Cell->CurrnetState == ECellProgressState::Empty)
+            if (Cell->CurrentState == ECellProgressState::Empty)
             {
                 TargetCell = Cell;
                 break;
@@ -208,7 +209,7 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
                 //NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
                 NewRobot->ReturnPoint = ProductReturnPoint->GetActorLocation();
                 NewRobot->CurrentState = ERobotState::Moving;
-                TargetCell->CurrnetState = ECellProgressState::Reserved;
+                TargetCell->CurrentState = ECellProgressState::Reserved;
                 NewRobot->SetTargetCell();
 
                 UE_LOG(LogTemp, Warning, TEXT("Robot %s assigned to Cell %s"),
@@ -225,10 +226,9 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
                 NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
                 UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
             }
+            DeliveryRobots.Add(NewRobot);
 
+            OnDeliveryRobotUpdate.Broadcast();
         }
     }
-
-    // Service에서 Cell의 상태를 계속 체크해주고, 아래의 위치 지정등의 행동을 해주는 형태
-
 }

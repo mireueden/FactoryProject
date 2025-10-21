@@ -21,9 +21,11 @@ EBTNodeResult::Type UBTT_DeliveryItem::ExecuteTask(UBehaviorTreeComponent& Owner
 	}
 
 	ADeliveryRobotController* AIController = Cast<ADeliveryRobotController>(OwnerComp.GetAIOwner());
-	ADeliveryRobot* Ch = Cast<ADeliveryRobot>(AIController->GetCharacter());
+	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(AIController->GetCharacter());
 
-	BBComp->SetValueAsVector(TEXT("ReturnPoint"), Ch->ReturnPoint);
+	Robot->CurrentState = ERobotState::Returning;
+	Robot->SetRobotState();
+	BBComp->SetValueAsVector(TEXT("ReturnPoint"), Robot->ReturnPoint);
 
 	return EBTNodeResult::Succeeded;
 }
