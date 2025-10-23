@@ -93,7 +93,7 @@ void UProductOrderManagementWidget::Order()
 		}
 		
 		// ItemManager에서 해당 아이템 찾기
-		FItemStorageStruct* Storage = ProductManager->ItemManager->StorageList.FindByPredicate( // 여기서 터짐
+		FItemStorageStruct* Storage = ProductManager->ItemManager->StorageList.FindByPredicate(
 			[&](const FItemStorageStruct& Elem)
 			{
 				return Elem.ItemData == Recipe.ItemData;

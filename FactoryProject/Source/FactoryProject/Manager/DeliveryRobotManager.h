@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -7,6 +6,7 @@
 
 #include "AI/DeliveryRobot.h"
 #include "AI/DeliveryRobotController.h"
+#include "DataAsset/ItemManagerActor.h"
 
 #include "Object/ItemProductionCell.h"
 
@@ -22,16 +22,17 @@ UCLASS()
 class FACTORYPROJECT_API ADeliveryRobotManager : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ADeliveryRobotManager();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -42,7 +43,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Robots")
 	TSubclassOf<ADeliveryRobotController> DeliveryRobotControllerClass;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Conveyor")
 	TArray<AConveyorBelt*> ConveyorBelts;
 
@@ -79,6 +80,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<AItemProductionCell*> ProductionCellList;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	AItemManagerActor* ItemManager;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FVector SpawnItemPlusLoc = {0,0,0};
 
 	UPROPERTY(BlueprintAssignable, Category = "Delegate")
 	FOnDeliveryRobotUpdate OnDeliveryRobotUpdate;

@@ -126,7 +126,10 @@ void AItemProductionCell::OnRobotExitCell(UPrimitiveComponent* OverlappedComp, A
 
 	UE_LOG(LogTemp, Warning, TEXT("Robot == BeforeProcessRobot"));
 
-	BeforeProcessRobot = nullptr;
+	BeforeProcessRobot = Robot;
+
+	ProcessRobot = nullptr;
+
 
 	if(CurrentState != ECellProgressState::Empty)
 		CellStateChanged(ECellProgressState::Empty);
@@ -152,6 +155,14 @@ void AItemProductionCell::CraftingProduct()
 
 	if (CurrentState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
 		return;
+
+	// 임시 공정 
+	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Left_Back"));
+	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Left_Front"));
+	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Right_Back"));
+	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Right_Front"));
+
+
 
 	CurrentState = ECellProgressState::Completed;
 	ProcessRobot->CurrentState = ERobotState::Waiting; // 다시 대기 상태로 전환

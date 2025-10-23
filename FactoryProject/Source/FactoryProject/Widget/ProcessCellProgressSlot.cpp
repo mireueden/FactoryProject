@@ -26,7 +26,7 @@ void UProcessCellProgressSlot::UpdateSlot(AItemProductionCell* Cell)
 		CurrentState->SetText(ProcessText);
 	}
 
-	if (CurrentRobot)
+	if (!Cell->ProcessRobot)
 	{
 		CurrentRobot->SetText(
 			FText::FromString(TEXT("None")));

@@ -23,13 +23,20 @@ ADeliveryRobot::ADeliveryRobot()
 
     RobotRootComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RobotRootComp"));
     RobotRootComp->SetupAttachment(RootComponent);
+
+    GetMesh()->SetupAttachment(RobotRootComp);
 }
 
 // Called when the game starts or when spawned
 void ADeliveryRobot::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+    // 공정을 위한 Wheel Bone 모두 숨기기
+    GetMesh()->HideBoneByName(TEXT("Mz3_Wheel_Left_Back"), EPhysBodyOp::PBO_None);
+    GetMesh()->HideBoneByName(TEXT("Mz3_Wheel_Left_Front"), EPhysBodyOp::PBO_None);
+    GetMesh()->HideBoneByName(TEXT("Mz3_Wheel_Right_Back"), EPhysBodyOp::PBO_None);
+    GetMesh()->HideBoneByName(TEXT("Mz3_Wheel_Right_Front"), EPhysBodyOp::PBO_None);
 }
 
 // Called every frame

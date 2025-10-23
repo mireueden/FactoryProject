@@ -60,6 +60,25 @@ void ADeliveryRobotManager::BeginPlay()
     }
 }
 
+void ADeliveryRobotManager::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    for (AConveyorBelt* Belt : ConveyorBelts)
+    {
+        if (IsValid(Belt))
+        {
+            Belt->OnItemArrived.RemoveDynamic(this, &ADeliveryRobotManager::CheckArrived);
+        }
+    }
+
+    OnDeliveryRobotUpdate.Clear();
+
+    DeliveryRobots.Empty();
+    ProductionCellList.Empty();
+    ConveyorBelts.Empty();
+
+    Super::EndPlay(EndPlayReason);
+}
+
 // Called every frame
 void ADeliveryRobotManager::Tick(float DeltaTime)
 {
@@ -98,6 +117,10 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
          SpawnParams
      );
 
+     NewRobot->GetMesh()->SetVisibility(false);
+     NewRobot->GetMesh()->SetHiddenInGame(true);
+     NewRobot->GetMesh()->SetComponentTickEnabled(false);
+     //NewRobot->GetMesh()->SetSkeletalMesh(nullptr);
 
      if (NewRobot)
      {
@@ -134,6 +157,8 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 void ADeliveryRobotManager::DestoryDeliveryRobot(ADeliveryRobot* DestoryRobot)
 {
     DeliveryRobots.Remove(DestoryRobot);
+
+    OnDeliveryRobotUpdate.Broadcast();
 }
 
 void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductRecipe)
@@ -146,7 +171,7 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
         return;
     }
 
-    const FVector SpawnLocation = GetActorLocation();
+    FVector SpawnLocation = GetActorLocation();
     const FRotator SpawnRotation = GetActorRotation();
 
     FActorSpawnParameters SpawnParams;
@@ -159,6 +184,7 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
         SpawnRotation,
         SpawnParams
     );
+    
 
     // Recipe Setting & TargetCell Setting
     NewRobot->ProductRecipeSetting(ProductRecipe);
@@ -166,7 +192,13 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
     for (auto& RecipeItem : NewRobot->ProgressOfProductRecipe.RecipeData)
         RecipeItem.ProgressValue = 0;
 
-    const UItemBasicDataAsset* FirstItem = NewRobot->ProgressOfProductRecipe.RecipeData[0].ItemData;
+    UItemBasicDataAsset* FirstItem = NewRobot->ProgressOfProductRecipe.RecipeData[0].ItemData;
+
+
+
+    //ItemManager->StorageList[0].ItemData;
+
+ 
     AItemProductionCell* TargetCell = nullptr;
 
     for (AItemProductionCell* Cell : ProductionCellList)
