@@ -30,15 +30,11 @@ EBTNodeResult::Type UBTT_ArrivePoint::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	// 목표 지점 저장
 	TargetLocation = Robot->TargetPoint;
 	TargetLocation.Z = Robot->GetActorLocation().Z;
+
+	CachedDirection = (TargetLocation - Robot->GetActorLocation()).GetSafeNormal();
+
+
 	return EBTNodeResult::InProgress; // Tick에서 이동 처리
-
-
-	//Robot->CurrentState = ERobotState::Arrived;
-	//Robot->SetRobotState();
-
-	//UE_LOG(LogTemp, Warning, TEXT("Robot %s 도착 → State: Arrived"), *Robot->GetName());
-
-	//return EBTNodeResult::Succeeded;
 }
 
 void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -52,8 +48,7 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 	// 목표 지점으로 부드럽게 보정 이동
 	if (Distance > 2.0f) // 2cm 이상 떨어져 있으면 보정
 	{
-		FVector Direction = (TargetLocation - Robot->GetActorLocation()).GetSafeNormal();
-		FVector NewLocation = Robot->GetActorLocation() + Direction * 100.f * DeltaSeconds; // 100cm/s 속도
+		FVector NewLocation = Robot->GetActorLocation() + CachedDirection * 100.f * DeltaSeconds; // 100cm/s 속도
 
 		Robot->SetActorLocation(NewLocation);
 	}
