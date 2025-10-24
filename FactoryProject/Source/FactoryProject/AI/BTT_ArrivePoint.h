@@ -19,9 +19,13 @@ public:
 	UBTT_ArrivePoint();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Blackboard")
+	FVector TargetLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Blackboard")
 	FBlackboardKeySelector RobotStateKey;
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
 };

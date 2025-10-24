@@ -255,7 +255,6 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
                 NewRobot->ReturnPoint = ProductReturnPoint->GetActorLocation();
                 NewRobot->SetRobotState();
 
-                NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
                 UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
             }
             DeliveryRobots.Add(NewRobot);

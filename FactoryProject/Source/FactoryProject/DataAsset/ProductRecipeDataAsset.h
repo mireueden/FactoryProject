@@ -21,6 +21,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TArray<FProductRecipeStruct> RecipeData;
-	
 
 };

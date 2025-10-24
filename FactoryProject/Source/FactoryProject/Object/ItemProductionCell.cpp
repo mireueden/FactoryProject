@@ -9,22 +9,6 @@
 // Sets default values
 AItemProductionCell::AItemProductionCell()
 {
- //	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	//PrimaryActorTick.bCanEverTick = true;
-
-	//RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
-	//RootComponent = RootScene;
-
-	//DetectArea = CreateDefaultSubobject<UBoxComponent>(TEXT("DetectArea"));
-	//DetectArea->SetupAttachment(RootComponent);
-	//DetectArea->SetCollisionProfileName(TEXT("BlockAll"));
-	//DetectArea->SetCanEverAffectNavigation(true);
-	//DetectArea->SetAreaClassOverride(UNavArea_AvoidCell::StaticClass());
-
-	//NavModifier = CreateDefaultSubobject<UNavModifierComponent>(TEXT("NavModifier"));
-	//NavModifier->AreaClass = UNavArea_AvoidCell::StaticClass();
-
-	//NavModifier->FailsafeExtent = FVector(100.f, 100.f, 50.f); // Box 크기
 
 	RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
 	RootComponent = RootScene;
@@ -83,35 +67,38 @@ void AItemProductionCell::OnRobotEnterCell(
 	const FHitResult& SweepResult)
 {
 
-	
-	UE_LOG(LogTemp, Warning, TEXT("Call Func OnRobotEnterCell"));
-
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(OtherActor);
-	if (!Robot) return;
-	ProcessRobot = Robot;
 
-	if (ProcessRobot != nullptr) return;
 
 	if (Robot->TargetCell != this) return;
 
-	if (Robot->CurrentState != ERobotState::Arrived) {
-		UE_LOG(LogTemp, Warning, TEXT("%s : 아직 도착 안 함, 무시"), *Robot->GetName());
-		return;
-	}
-
 	ProcessRobot = Robot;
 
 
-	CellStateChanged(ECellProgressState::InProgress);
 
-	Robot->CurrentState = ERobotState::Working;
-	UE_LOG(LogTemp, Warning, TEXT("%s 시작됨 by %s"), *GetName(), *Robot->GetName());
+	// // cell 이 resered상태일때, 해당하는 Robot이 들어오면?
+	//UE_LOG(LogTemp, Warning, TEXT("Call Func OnRobotEnterCell"));
 
-	CraftingProduct(); // 임시 공정 완료 함수
+	//ADeliveryRobot* Robot = Cast<ADeliveryRobot>(OtherActor);
+	//if (!Robot) return;
 
+	//ProcessRobot = Robot;
 
-	// 공정 시작 (예: 일정 시간 뒤 Complete)
-	//GetWorldTimerManager().SetTimer(ProcessTimer, this, &AItemProductionCell::CompleteProduction, ProcessTime, false);
+	//if (ProcessRobot != nullptr) return;
+
+	//if (Robot->TargetCell != this) return;
+
+	//if (Robot->CurrentState != ERobotState::Arrived) {
+	//	UE_LOG(LogTemp, Warning, TEXT("%s : 아직 도착 안 함, 무시"), *Robot->GetName());
+	//	return;
+	//}
+
+	//CellStateChanged(ECellProgressState::InProgress);
+
+	//Robot->CurrentState = ERobotState::Working;
+	//UE_LOG(LogTemp, Warning, TEXT("%s 시작됨 by %s"), *GetName(), *Robot->GetName());
+
+	//CraftingProduct(); // 임시 공정 완료 함수
 }
 
 void AItemProductionCell::OnRobotExitCell(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
@@ -145,6 +132,80 @@ void AItemProductionCell::CellStateChanged(ECellProgressState NewState)
 	}
 }
 
+void AItemProductionCell::ProductionProcess()
+{
+
+	// Wheel
+	if (ProductProcessData->ItemMeshes.Num() == 1) // Wheel은 따로 Attach하지 않음
+	{
+		ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Left_Back"));
+		ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Left_Front"));
+		ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Right_Back"));
+		ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Right_Front"));
+		return;
+	}
+
+	// Paint
+	if (ProductProcessData->ItemMeshes.Num() == 0 && ProductProcessData->ItemMaterial)
+	{
+		int32 SlotIndex = 0; // 0번 : 몸체 Material
+		ProcessRobot->GetMesh()->SetMaterial(SlotIndex, ProductProcessData->ItemMaterial);
+
+		for (int i = 0; i < ProcessRobot->AttachedParts.Num(); i++)
+		{
+			ProcessRobot->AttachedParts[i].PartComponent->SetMaterial(
+				ProcessRobot->AttachedParts[i].PaintSlotIndex,
+				ProductProcessData->ItemMaterial);
+		}
+
+		//for (UStaticMeshComponent* PartComp : ProcessRobot->AttachedParts)
+		//{
+		//	if (PartComp)
+		//	{
+		//		PartComp->SetMaterial(0, ProductProcessData->ItemMaterial);
+		//	}
+		//}
+
+		UE_LOG(LogTemp, Log, TEXT("[Painting] Applied new material: %s"),
+			*ProductProcessData->ItemMaterial->GetName());
+		return;
+	}
+
+
+	// Attach
+	if (ProductProcessData->ItemMeshes.Num() > 0)
+	{
+		for (const FItemMeshAttachData& MeshData : ProductProcessData->ItemMeshes)
+		{
+			if (!MeshData.ItemMeshes) continue;
+
+			FName TargetSocket = MeshData.TargetSocket;
+			if (!ProcessRobot->GetMesh()->DoesSocketExist(TargetSocket))
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Socket not found: %s"), *TargetSocket.ToString());
+				continue;
+			}
+
+			UStaticMeshComponent* PartComp = NewObject<UStaticMeshComponent>(ProcessRobot);
+			PartComp->RegisterComponent();
+			PartComp->SetStaticMesh(MeshData.ItemMeshes);
+
+			PartComp->AttachToComponent(
+				ProcessRobot->GetMesh(),
+				FAttachmentTransformRules::SnapToTargetIncludingScale,
+				TargetSocket
+			);
+
+			FAttachedPartInfo Info;
+			Info.PartComponent = PartComp;
+			Info.PaintSlotIndex = MeshData.PaintSlotIndex;
+			ProcessRobot->AttachedParts.Add(Info);
+		}
+		return;
+	}
+
+}
+
 void AItemProductionCell::CraftingProduct()
 {
 	if (!ProcessRobot) return;
@@ -156,13 +217,16 @@ void AItemProductionCell::CraftingProduct()
 	if (CurrentState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
 		return;
 
+
 	// 임시 공정 
-	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Left_Back"));
-	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Left_Front"));
-	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Right_Back"));
-	ProcessRobot->GetMesh()->UnHideBoneByName(TEXT("Mz3_Wheel_Right_Front"));
+	ProductionProcess();
 
 
+	//ProductProcessData->ItemMeshes[0]->AttachToComponent(
+	//	ProcessRobot->GetMesh(),
+	//	FAttachmentTransformRules::SnapToTargetIncludingScale,
+	//	TEXT("SocketName")
+	//);
 
 	CurrentState = ECellProgressState::Completed;
 	ProcessRobot->CurrentState = ERobotState::Waiting; // 다시 대기 상태로 전환

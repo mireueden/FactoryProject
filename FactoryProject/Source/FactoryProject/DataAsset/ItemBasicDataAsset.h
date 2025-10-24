@@ -6,6 +6,21 @@
 #include "Engine/DataAsset.h"
 #include "ItemBasicDataAsset.generated.h"
 
+USTRUCT(BlueprintType)
+struct FItemMeshAttachData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TObjectPtr<UStaticMesh> ItemMeshes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 PaintSlotIndex = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FName TargetSocket;
+};
+
 /**
  * 
  */
@@ -23,4 +38,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	UMaterialInterface* ItemMaterial;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TArray<FItemMeshAttachData> ItemMeshes;
+
+
 };

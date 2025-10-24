@@ -89,6 +89,9 @@ public:
 
 
 	UFUNCTION(CallInEditor, Category = "Production")
+	void ProductionProcess();
+	
+	UFUNCTION(CallInEditor, Category = "Production")
 	void CraftingProduct();
 
 };

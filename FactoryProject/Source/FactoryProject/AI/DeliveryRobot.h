@@ -58,6 +58,17 @@ struct FProgressOfRecipe
 	TArray<FProgressOfItem> RecipeData;
 };
 
+USTRUCT(BlueprintType)
+struct FAttachedPartInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY()
+	UStaticMeshComponent* PartComponent;
+
+	UPROPERTY()
+	int32 PaintSlotIndex = 0;
+};
 
 class AItem;
 class ADeliveryRobotController;
@@ -128,6 +139,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
 	UProductRecipeDataAsset* ProductRecipeData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	TArray<FAttachedPartInfo> AttachedParts;
 
 	UFUNCTION()
 	void ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe);

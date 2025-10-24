@@ -26,9 +26,9 @@ EBTNodeResult::Type UBTT_ReadyToWork::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(AIController->GetCharacter());
 
 
+	Robot->TargetCell->CellStateChanged(ECellProgressState::InProgress);
 	Robot->CurrentState = ERobotState::Working;
 	Robot->SetRobotState();
-
 
 	Robot->TargetCell->CraftingProduct();
 

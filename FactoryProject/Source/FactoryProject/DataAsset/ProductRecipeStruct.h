@@ -13,7 +13,7 @@ struct FProductRecipeStruct
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product", meta = (AllowedClasses = "ItemBasicDataAsset"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
 	UItemBasicDataAsset* ItemData;
 	// ItemIndex와 ItemName 가져와서 사용하기
 
