@@ -14,8 +14,9 @@ void UProcessCellProgressSlot::NativeConstruct()
 
 void UProcessCellProgressSlot::UpdateSlot(AItemProductionCell* Cell)
 {
+	// GetActorLabel : Editor 전용 함수 (패키징시 실행 X)
 	CellName->SetText(
-		FText::FromString(Cell->GetName()));
+		FText::FromString(Cell->GetActorLabel()));
 	
 	ProgressItem->SetText(
 		FText::FromString(Cell->ProductProcessData->ItemName));

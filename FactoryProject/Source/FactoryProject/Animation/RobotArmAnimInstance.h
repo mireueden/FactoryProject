@@ -5,6 +5,12 @@
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
 #include "Object/RobotArm.h"
+#include "Object/CellRobotArm.h"
+
+#include "Object/ItemProductionCell.h"
+
+
+
 #include "RobotArmAnimInstance.generated.h"
 
 /**
@@ -22,6 +28,10 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	ARobotArm* RobotArm;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	ACellRobotArm* CellRobotArm;
+
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsGrabItemCheck = false;

@@ -7,6 +7,8 @@
 #include "Object/Item.h"
 #include "Components/BoxComponent.h"
 #include "Components/SceneComponent.h"
+#include "Object/RobotArm.h"
+#include "Object/CellRobotArm.h"
 
 #include "NavModifierComponent.h"
 #include "AI/NavArea_AvoidCell.h"
@@ -36,14 +38,31 @@ public:
 	// Sets default values for this actor's properties
 	AItemProductionCell();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
-	UBoxComponent* DetectArea;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Root")
 	USceneComponent* RootScene;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* MainStaticComp;
+
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* RobotFloorComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* LeftStandMatComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* RightStandMatComp;
+
+
+
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
+	UBoxComponent* DetectArea;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UNavModifierComponent* NavModifier;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -68,6 +87,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	ECellProgressState CurrentState = ECellProgressState::None;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	TSubclassOf<AActor> ArmActorClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	AActor* LeftArmActor;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	AActor* RightArmActor;
+
+	
 	UFUNCTION()
 	void OnRobotEnterCell(
 		UPrimitiveComponent* OverlappedComp,
@@ -93,5 +122,8 @@ public:
 	
 	UFUNCTION(CallInEditor, Category = "Production")
 	void CraftingProduct();
+
+	UFUNCTION(Category = "Production")
+	void ReadyToCraftingProduct();
 
 };

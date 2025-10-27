@@ -60,7 +60,7 @@ void UProcessRobotProgressSlot::UpdateSlot(ADeliveryRobot* Robot)
 	{
 		if (IsValid(Robot->TargetCell))
 		{
-			CurrentTargetCell->SetText(FText::FromString(Robot->TargetCell->GetName()));
+			CurrentTargetCell->SetText(FText::FromString(Robot->TargetCell->GetActorLabel()));
 		}
 		else
 		{

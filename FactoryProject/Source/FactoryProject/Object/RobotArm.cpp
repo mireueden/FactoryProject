@@ -14,7 +14,7 @@ ARobotArm::ARobotArm()
 	RobotStandComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RobotStandComp"));
 	RobotStandComp->SetupAttachment(RootComponent);
 
-	RobotArmComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("RobotArmhComp"));
+	RobotArmComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("RobotArmComp"));
 	RobotArmComp->SetupAttachment(RobotStandComp);
 
 	StandBoxComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StandBoxComp"));

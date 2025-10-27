@@ -12,9 +12,12 @@ void URobotArmAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	if (!OwningActor) return;
 
 	RobotArm = Cast<ARobotArm>(OwningActor);
-	if (!RobotArm) return;
+	if (RobotArm)
+		bIsGrabItemCheck = RobotArm->bIsGrabItem;
+
+	CellRobotArm = Cast<ACellRobotArm>(OwningActor);
+	if (CellRobotArm)
+		bIsGrabItemCheck = CellRobotArm->bIsGrabedMesh;
 
 
-
-	bIsGrabItemCheck = RobotArm->bIsGrabItem;
 }
