@@ -45,7 +45,7 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 
 	const float Distance = FVector::Dist(Robot->GetActorLocation(), TargetLocation);
 
-	// 목표 지점으로 부드럽게 보정 이동
+	// 목표 지점으로 부드럽게 보정 이동 
 	if (Distance > 2.0f) // 2cm 이상 떨어져 있으면 보정
 	{
 		FVector NewLocation = Robot->GetActorLocation() + CachedDirection * 100.f * DeltaSeconds; // 100cm/s 속도

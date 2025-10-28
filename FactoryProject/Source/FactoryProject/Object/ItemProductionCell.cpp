@@ -2,14 +2,16 @@
 
 
 #include "Object/ItemProductionCell.h"
-#include "Animation/RobotArmAnimInstance.h"
 
+
+#include "Animation/RobotArmAnimInstance.h"
 
 #include "AI/DeliveryRobot.h"
 
 // Sets default values
 AItemProductionCell::AItemProductionCell()
 {
+	PrimaryActorTick.bCanEverTick = true;
 
 	RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
 	RootComponent = RootScene;
@@ -55,53 +57,136 @@ void AItemProductionCell::BeginPlay()
 
 	CurrentState = ECellProgressState::Empty;
 
+	if (!ArmActorClass) return;
 
-	if (ArmActorClass)
+	if (ProductProcessData->ItemMeshes.Num() == 1) // wheel
 	{
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		FVector Offset1(95.f, 0.f, 0.f);
+		FVector Offset2(-95.f, 0.f, 0.f);
 
-		FRotator LeftRotator = FRotator::ZeroRotator;
-		LeftRotator.Yaw += 180.f;
-		// 왼쪽
-		LeftArmActor = GetWorld()->SpawnActor<AActor>(
-			ArmActorClass,
-			FVector::ZeroVector,
-			LeftRotator,
-			SpawnParams
-		);
-		if (LeftArmActor)
-		{
-			LeftArmActor->AttachToComponent(LeftStandMatComp, FAttachmentTransformRules::KeepRelativeTransform);
-			LeftArmActor->SetActorRelativeLocation(FVector(0, 0, 0)); // 위치 조정
-		}
+		// Left 2개
+		SpawnAndAttachArm(LeftStandMatComp, Offset2, FRotator(0, 180.f, 0));
+		SpawnAndAttachArm(LeftStandMatComp, Offset1, FRotator::ZeroRotator);
 
-		// 오른쪽
-		RightArmActor = GetWorld()->SpawnActor<AActor>(
-			ArmActorClass,
-			FVector::ZeroVector,
-			FRotator::ZeroRotator,
-			SpawnParams
-		);
-		if (RightArmActor)
-		{
-			RightArmActor->AttachToComponent(RightStandMatComp, FAttachmentTransformRules::KeepRelativeTransform);
-			RightArmActor->SetActorRelativeLocation(FVector(0, 0, 0));
-		}
+		// Right 2개
+		SpawnAndAttachArm(RightStandMatComp, Offset2, FRotator(0, 180.f, 0));
+		SpawnAndAttachArm(RightStandMatComp, Offset1, FRotator::ZeroRotator);
+	}
+	else
+	{
+		SpawnAndAttachArm(LeftStandMatComp, FVector::ZeroVector, FRotator(0, 180.f, 0));
+		SpawnAndAttachArm(RightStandMatComp, FVector::ZeroVector, FRotator::ZeroRotator);
 	}
 
-
-	//NavModifier->SetAreaClassToReplace(UNavArea_AvoidCell::StaticClass());
+	if (RobotFloorComp)
+	{
+		InitialLoc = RobotFloorComp->GetRelativeLocation();
+		InitialRot = RobotFloorComp->GetRelativeRotation();
+	}
 }
 
-// Called every frame
+
+void AItemProductionCell::SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, const FRotator& RotOffset)
+{
+	if (!ArmActorClass || !ParentComp) return;
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	ACellRobotArm* NewArm = GetWorld()->SpawnActor<ACellRobotArm>(
+		ArmActorClass,
+		FVector::ZeroVector,
+		RotOffset,
+		SpawnParams
+	);
+
+
+	if (NewArm)
+	{
+		NewArm->AttachToComponent(ParentComp, FAttachmentTransformRules::KeepRelativeTransform);
+		NewArm->SetActorRelativeLocation(Offset);
+		NewArm->SetOwner(this);
+		CellRobotArmList.Add(NewArm);
+	}
+
+}
+
+void AItemProductionCell::FloorMove()
+{
+	if (bIsMoving) return;
+	UE_LOG(LogTemp, Warning, TEXT("FloorMove"));
+	bFloor = !bFloor;
+	bIsMoving = true;
+}
+
 void AItemProductionCell::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	//if (ProcessRobot->CurrentState == ERobotState::Working)
-	//	CraftingProduct();
+	UE_LOG(LogTemp, Warning, TEXT("Tick"));
+	if (!bIsMoving || !RobotFloorComp) return;
+
+
+	UE_LOG(LogTemp, Warning, TEXT("FloorMove Tick"));
+	FVector CurrentLoc = RobotFloorComp->GetRelativeLocation();
+	FRotator CurrentRot = RobotFloorComp->GetRelativeRotation();
+
+	FVector TargetLoc;
+	FRotator TargetRot;
+
+	if (bFloor)
+	{
+		TargetLoc = FloorLocateValue;
+		TargetRot = FloorRotateValue;
+	}
+	else
+	{
+		TargetLoc = InitialLoc;
+		TargetRot = InitialRot;
+	}
+
+	FVector NewLoc = FMath::VInterpTo(CurrentLoc, TargetLoc, DeltaTime, MoveSpeed);
+	FRotator NewRot = FMath::RInterpTo(CurrentRot, TargetRot, DeltaTime, RotateSpeed);
+
+	if (!IsValid(RobotFloorComp))
+	{
+		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp INVALID"));
+		bIsMoving = false;
+		return;
+	}
+
+	if (!IsValid(RobotFloorComp->GetAttachParent()))
+	{
+		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp has no valid parent"));
+		bIsMoving = false;
+		return;
+	}
+
+	if (RobotFloorComp->GetAttachParent() == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp->AttachParent == nullptr"));
+		bIsMoving = false;
+		return;
+	}
+
+	if (RobotFloorComp->GetOwner() == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp->GetOwner() == nullptr"));
+		bIsMoving = false;
+		return;
+	}
+
+	RobotFloorComp->SetRelativeLocation(NewLoc);
+	RobotFloorComp->SetRelativeRotation(NewRot); // 153
+
+	// 종료 조건
+	if (NewLoc.Equals(TargetLoc, 0.1f) && NewRot.Equals(TargetRot, 0.1f))
+	{
+		RobotFloorComp->SetRelativeLocation(TargetLoc);
+		RobotFloorComp->SetRelativeRotation(TargetRot);
+		bIsMoving = false;
+	}
 }
 
 void AItemProductionCell::OnRobotEnterCell(
@@ -112,6 +197,9 @@ void AItemProductionCell::OnRobotEnterCell(
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
+	if (!OverlappedComp || !OtherActor || !OtherComp) return;
+
+	if (OverlappedComp == RobotFloorComp) return;
 
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(OtherActor);
 
@@ -121,8 +209,16 @@ void AItemProductionCell::OnRobotEnterCell(
 	ProcessRobot = Robot;
 }
 
-void AItemProductionCell::OnRobotExitCell(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AItemProductionCell::OnRobotExitCell(
+	UPrimitiveComponent* OverlappedComp, 
+	AActor* OtherActor, 
+	UPrimitiveComponent* OtherComp, 
+	int32 OtherBodyIndex)
 {
+	if (!OverlappedComp || !OtherActor || !OtherComp) return;
+
+	if (OverlappedComp == RobotFloorComp) return;
+
 	UE_LOG(LogTemp, Warning, TEXT("Call Func OnRobotExitCell"));
 
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(OtherActor);
@@ -177,13 +273,6 @@ void AItemProductionCell::ProductionProcess()
 				ProductProcessData->ItemMaterial);
 		}
 
-		//for (UStaticMeshComponent* PartComp : ProcessRobot->AttachedParts)
-		//{
-		//	if (PartComp)
-		//	{
-		//		PartComp->SetMaterial(0, ProductProcessData->ItemMaterial);
-		//	}
-		//}
 
 		UE_LOG(LogTemp, Log, TEXT("[Painting] Applied new material: %s"),
 			*ProductProcessData->ItemMaterial->GetName());
@@ -233,7 +322,6 @@ void AItemProductionCell::CraftingProduct()
 	CellStateChanged(ECellProgressState::InProgress);
  
 
-
 	if (CurrentState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
 		return;
 
@@ -282,31 +370,49 @@ void AItemProductionCell::ReadyToCraftingProduct()
 	// robot에 각 할당된 Item의 StaticMesh Attach 
 	// robot의 애니메이션 재생에 필요한 값 변경으로 애니메이션 재생 시작.
 	
-	for (int i = 0; i < 2; i++)
+
+	UE_LOG(LogTemp, Warning, TEXT("Call Func ReadyToCraftingProduct"));
+	TArray<ACellRobotArm*> RobotArms = CellRobotArmList;
+
+
+	if (!ProductProcessData) return;
+
+	for (int i = 0; i < RobotArms.Num(); i++)
 	{
-		//CellRobotArmList[i]->bIsGrabItem = true;
+		UE_LOG(LogTemp, Warning, TEXT("RobotArms Spawn & Attach %d"), i);
+		ACellRobotArm* Arm = RobotArms[i];
+		if (!Arm) continue;
 
-		ProductProcessData->ItemMeshes[i].ItemMeshes;
+		int32 MeshIndex = 0;  // 기본 0번
+		if (ProductProcessData->ItemMeshes.Num() > 1 && i < ProductProcessData->ItemMeshes.Num())
+			MeshIndex = i;
 
-		// 소켓이름 Brush_endSocket
-		// 해당 소켓 위치에 spawn
-		// StaticMesh 해당 소켓에 Attach
-
-
-		if (!ProductProcessData->ItemMeshes.IsValidIndex(i)) continue;
-		UStaticMesh* TargetMesh = ProductProcessData->ItemMeshes[i].ItemMeshes;
-		if (!TargetMesh) continue;
-
-		const FName SocketName = TEXT("Brush_endSocket");
-
-		//USkeletalMeshComponent* ArmMesh = CellRobotArmList[i]; // 또는 LeftRobotArmComp, RightRobotArmComp 등
-		//if (!ArmMesh) continue;
-
-		//const FTransform SocketTransform = ArmMesh->GetSocketTransform(SocketName, RTS_World);
+		const FItemMeshAttachData& MeshData = ProductProcessData->ItemMeshes[MeshIndex];
+		if (!MeshData.ItemMeshes) continue;
 
 
+		UStaticMeshComponent* NewMeshComp = Cast<UStaticMeshComponent>(AddComponentByClass(UStaticMeshComponent::StaticClass(), true, FTransform::Identity, true));
+		NewMeshComp->SetStaticMesh(MeshData.ItemMeshes);
 
+
+		NewMeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		FinishAddComponent(NewMeshComp, true, FTransform::Identity);
+
+
+		NewMeshComp->AttachToComponent(
+			Arm->RobotArmComp,  
+			FAttachmentTransformRules::SnapToTargetNotIncludingScale,
+			FName(TEXT("Brush_endSocket"))
+		);
+
+		Arm->RobotArmRotateValue = 90.0f;
+
+
+
+		Arm->bIsGrabedMesh = true;
+		Arm->bIsProcess = true;
 	}
+
 
 
 

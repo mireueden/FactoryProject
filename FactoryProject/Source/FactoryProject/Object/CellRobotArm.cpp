@@ -3,6 +3,9 @@
 
 #include "Object/CellRobotArm.h"
 
+#include "Animation/RobotArmAnimInstance.h"
+
+
 // Sets default values
 ACellRobotArm::ACellRobotArm()
 {
@@ -22,15 +25,26 @@ ACellRobotArm::ACellRobotArm()
 	RobotArmComp->SetupAttachment(RobotStandComp);
 
 
+	RobotArmComp->SetAnimInstanceClass(ArmAnimClass);
 }
 
 // Called when the game starts or when spawned
 void ACellRobotArm::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
+void ACellRobotArm::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();  
+
+	if (URobotArmAnimInstance* Anim = Cast<URobotArmAnimInstance>(RobotArmComp->GetAnimInstance()))
+	{
+		// AnimInstance 내부에서 필요한 포인터나 상태 전달
+		Anim->CellRobotArm = this;
+	}
+}
 // Called every frame
 void ACellRobotArm::Tick(float DeltaTime)
 {

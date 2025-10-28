@@ -30,10 +30,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USkeletalMeshComponent* RobotArmComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation")
+	TSubclassOf<UAnimInstance> ArmAnimClass;
+
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	virtual void PostInitializeComponents() override;
 
 public:	
 	// Called every frame
@@ -41,6 +46,11 @@ public:
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RobotArm")
-	bool bIsGrabedMesh;
+	bool bIsGrabedMesh = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RobotArm")
+	bool bIsProcess = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RobotArm")
+	float RobotArmRotateValue = 0;	
 };

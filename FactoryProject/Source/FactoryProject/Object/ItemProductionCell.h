@@ -44,16 +44,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* MainStaticComp;
 
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UStaticMeshComponent* RobotFloorComp;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* LeftStandMatComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* RightStandMatComp;
 
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* RobotFloorComp;
 
 
 
@@ -91,10 +90,38 @@ public:
 	TSubclassOf<AActor> ArmActorClass;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Robot Arm")
-	AActor* LeftArmActor;
+	TArray<ACellRobotArm*> CellRobotArmList;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Robot Arm")
-	AActor* RightArmActor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
+	FRotator FloorRotateValue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
+	FVector FloorLocateValue;
+
+	FRotator InitialRot;
+	FVector InitialLoc;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
+	float MoveSpeed = 1.5f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
+	float RotateSpeed = 2.0f;
+
+	UPROPERTY()
+	bool bFloor = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
+	bool bIsMoving = false;
+
+	UFUNCTION(CallInEditor, Category = "Floor Func")
+	void FloorMove();
+	
+
+
+
+	
+	UFUNCTION(CallInEditor, Category = "Robot Arm")
+	void SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, const FRotator& RotOffset);
 
 	
 	UFUNCTION()
