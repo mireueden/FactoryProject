@@ -2670,3 +2670,284 @@ Detoured run took 881ms
 [2025.10.29-07.35.40:304][457]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
 [2025.10.29-07.35.40:304][457]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 5502.991211, Update Interval: 356.004517
 [2025.10.29-07.40.19:662][976]LogUObjectHash: Compacting FUObjectHashTables data took   0.87ms
+[2025.10.29-07.42.21:682][530]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 5904.708008
+[2025.10.29-07.42.22:682][533]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-07.42.22:682][533]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 5905.375000, Update Interval: 345.347443
+[2025.10.29-07.48.54:076][707]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 6297.104004
+[2025.10.29-07.48.55:077][710]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-07.48.55:077][710]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 6297.770508, Update Interval: 359.919434
+[2025.10.29-07.55.51:486][959]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 6714.517578
+[2025.10.29-07.55.52:486][962]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-07.55.52:487][962]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 6715.185059, Update Interval: 321.290314
+[2025.10.29-08.02.12:235][101]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 7095.264648
+[2025.10.29-08.02.13:236][104]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.02.13:236][104]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7095.931641, Update Interval: 328.440796
+[2025.10.29-08.05.52:354][762]LogDerivedDataCache: C:/Users/admin/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2025.10.29-08.08.28:976][231]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 7472.010742
+[2025.10.29-08.08.29:977][234]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.08.29:977][234]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7472.677246, Update Interval: 310.545380
+[2025.10.29-08.14.38:043][338]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 7841.087402
+[2025.10.29-08.14.39:045][341]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.14.39:045][341]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7841.754395, Update Interval: 350.776703
+[2025.10.29-08.21.01:035][252]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 8224.075195
+[2025.10.29-08.21.02:034][255]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.21.02:034][255]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 8224.741211, Update Interval: 317.716003
+[2025.10.29-08.27.18:438][384]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 8601.429688
+[2025.10.29-08.27.19:439][387]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.27.19:439][387]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 8602.096680, Update Interval: 304.350708
+[2025.10.29-08.33.16:178][457]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 8959.083984
+[2025.10.29-08.33.17:177][460]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.33.17:177][460]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 8959.750977, Update Interval: 343.646362
+[2025.10.29-08.34.04:538][824]LogEditorTransaction: Undo Move Node
+[2025.10.29-08.34.05:861][824]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_5:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2025.10.29-08.34.05:862][824]LogActorComponent: RegisterComponentWithWorld: (/Engine/Transient.World_8:PersistentLevel.AnimationEditorPreviewActor_0.DebugSkelMeshComponent_0) Already registered. Aborting.
+[2025.10.29-08.34.13:457][346]LogUObjectHash: Compacting FUObjectHashTables data took   1.50ms
+[2025.10.29-08.34.13:964][375]LogUObjectHash: Compacting FUObjectHashTables data took   1.41ms
+[2025.10.29-08.34.13:970][375]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2025.10.29-08.34.14:022][375]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Project/Blueprint/BP_CellRobotArm] ([2] browsable assets)...
+[2025.10.29-08.34.14:022][375]OBJ SavePackage: Finished generating thumbnails for package [/Game/Project/Blueprint/BP_CellRobotArm]
+[2025.10.29-08.34.14:022][375]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Project/Blueprint/BP_CellRobotArm" FILE="../../../../../workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_CellRobotArm.uasset" SILENT=true
+[2025.10.29-08.34.14:044][375]LogSavePackage: Moving output files for package: /Game/Project/Blueprint/BP_CellRobotArm
+[2025.10.29-08.34.14:044][375]LogSavePackage: Moving '../../../../../workspace/FactoryProject/FactoryProject/Saved/BP_CellRobotArm85BBC3E74FAD24A5D36437B8B6454D87.tmp' to '../../../../../workspace/FactoryProject/FactoryProject/Content/Project/Blueprint/BP_CellRobotArm.uasset'
+[2025.10.29-08.34.14:046][375]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Project/Animation/Notify/AN_MoveRotate] ([2] browsable assets)...
+[2025.10.29-08.34.14:046][375]OBJ SavePackage: Finished generating thumbnails for package [/Game/Project/Animation/Notify/AN_MoveRotate]
+[2025.10.29-08.34.14:046][375]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Project/Animation/Notify/AN_MoveRotate" FILE="../../../../../workspace/FactoryProject/FactoryProject/Content/Project/Animation/Notify/AN_MoveRotate.uasset" SILENT=true
+[2025.10.29-08.34.14:062][375]LogSavePackage: Moving output files for package: /Game/Project/Animation/Notify/AN_MoveRotate
+[2025.10.29-08.34.14:062][375]LogSavePackage: Moving '../../../../../workspace/FactoryProject/FactoryProject/Saved/AN_MoveRotateAE889AD54602D2ED00EA11B66E1BACA7.tmp' to '../../../../../workspace/FactoryProject/FactoryProject/Content/Project/Animation/Notify/AN_MoveRotate.uasset'
+[2025.10.29-08.34.14:070][375]LogFileHelpers: InternalPromptForCheckoutAndSave took 100.644 ms (total: 686.037 ms)
+[2025.10.29-08.34.14:106][375]LogContentValidation: Display: Starting to validate 2 assets
+[2025.10.29-08.34.14:106][375]LogContentValidation: Enabled validators:
+[2025.10.29-08.34.14:106][375]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
+[2025.10.29-08.34.14:106][375]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2025.10.29-08.34.14:106][375]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2025.10.29-08.34.14:106][375]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
+[2025.10.29-08.34.14:106][375]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2025.10.29-08.34.14:106][375]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
+[2025.10.29-08.34.14:106][375]AssetCheck: /Game/Project/Blueprint/BP_CellRobotArm Validating asset
+[2025.10.29-08.34.14:106][375]AssetCheck: /Game/Project/Animation/Notify/AN_MoveRotate Validating asset
+[2025.10.29-08.34.15:405][445]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2025.10.29-08.34.15:424][445]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2025.10.29-08.34.15:424][445]LogPlayLevel: Creating play world package: /Game/Project/UEDPIE_0_Level_Factory
+[2025.10.29-08.34.15:445][445]LogPlayLevel: PIE: StaticDuplicateObject took: (0.021070s)
+[2025.10.29-08.34.15:445][445]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Project/Level_Factory.Level_Factory to /Game/Project/UEDPIE_0_Level_Factory.Level_Factory (0.021126s)
+[2025.10.29-08.34.15:479][445]LogUObjectHash: Compacting FUObjectHashTables data took   1.81ms
+[2025.10.29-08.34.15:482][445]LogChaosDD: Creating Chaos Debug Draw Scene for world Level_Factory
+[2025.10.29-08.34.15:485][445]LogPlayLevel: PIE: World Init took: (0.003034s)
+[2025.10.29-08.34.15:487][445]LogAudio: Display: Creating Audio Device:                 Id: 15, Scope: Unique, Realtime: True
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2025.10.29-08.34.15:487][445]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2025.10.29-08.34.15:487][445]LogAudio: Display: AudioDevice MaxSources: 32
+[2025.10.29-08.34.15:487][445]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2025.10.29-08.34.15:487][445]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2025.10.29-08.34.15:487][445]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2025.10.29-08.34.15:490][445]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2025.10.29-08.34.15:582][445]LogAudioMixer: Display: Using Audio Hardware Device LED MONITOR(NVIDIA High Definition Audio)
+[2025.10.29-08.34.15:582][445]LogAudioMixer: Display: Initializing Sound Submixes...
+[2025.10.29-08.34.15:582][445]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2025.10.29-08.34.15:582][445]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2025.10.29-08.34.15:583][445]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=15
+[2025.10.29-08.34.15:583][445]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=15
+[2025.10.29-08.34.15:586][445]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=15
+[2025.10.29-08.34.15:586][445]LogInit: FAudioDevice initialized with ID 15.
+[2025.10.29-08.34.15:586][445]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=15
+[2025.10.29-08.34.15:586][445]LogAudio: Display: Audio Device (ID: 15) registered with world 'Level_Factory'.
+[2025.10.29-08.34.15:586][445]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 15
+[2025.10.29-08.34.15:591][445]LogLoad: Game class is 'BP_FirstPersonGameMode_C'
+[2025.10.29-08.34.15:601][445]LogWorld: Bringing World /Game/Project/UEDPIE_0_Level_Factory.Level_Factory up for play (max tick rate 0) at 2025.10.29-17.34.15
+[2025.10.29-08.34.15:602][445]LogWorld: Bringing up level for play took: 0.010569
+[2025.10.29-08.34.15:606][445]LogOnline: OSS: Created online subsystem instance for: :Context_43
+[2025.10.29-08.34.15:651][445]LogTemp: Error: Call Func UpdateProgressRobot
+[2025.10.29-08.34.15:651][445]LogTemp: Error: RobotManager->DeliveryRobots Num 0
+[2025.10.29-08.34.15:651][445]LogTemp: Warning: End Func UpdateProgressRobot
+[2025.10.29-08.34.15:651][445]LogTemp: Error: Call Func UpdateProgressCell
+[2025.10.29-08.34.15:662][445]PIE: Server logged in
+[2025.10.29-08.34.15:664][445]PIE: Play in editor total start time 0.246 seconds.
+[2025.10.29-08.34.15:714][446]LogRenderer: Recreating Persistent SBTs due to initializer changes: 
+		NumShaderSlotsPerGeometrySegment changed: current: 1 - new: 2
+		NumGeometrySegments changed: current: 0 - new: 512
+[2025.10.29-08.34.18:951][642]LogBlueprintUserMessages: [WBP_ProductOrderManagementWidget] Hello
+[2025.10.29-08.34.18:951][642]LogTemp: Warning: Order
+[2025.10.29-08.34.18:951][642]LogTemp: Warning: Call Func SetProductRobot
+[2025.10.29-08.34.18:952][642]LogBlueprintUserMessages: [BP_DeliveryRobot_C_0] dddd
+[2025.10.29-08.34.18:953][642]LogBlueprintUserMessages: [BP_DeliveryRobotController_C_0] Hello
+[2025.10.29-08.34.18:955][642]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 assigned to Cell BP_ItemProductionCell_C_1
+[2025.10.29-08.34.18:955][642]LogTemp: Error: Call Func UpdateProgressRobot
+[2025.10.29-08.34.18:955][642]LogTemp: Error: RobotManager->DeliveryRobots Num 1
+[2025.10.29-08.34.18:955][642]LogTemp: Error: RobotManager->DeliveryRobots 0
+[2025.10.29-08.34.18:956][642]LogTemp: Warning: End Func UpdateProgressRobot
+[2025.10.29-08.34.18:956][642]LogTemp: Error: Call Func UpdateProgressCell
+[2025.10.29-08.34.24:877][970]LogTemp: Warning: Call UBTT_ArrivePoint
+[2025.10.29-08.34.25:338][996]LogTemp: Warning: FloorMove
+[2025.10.29-08.34.25:338][996]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 정확히 도착 완료
+[2025.10.29-08.34.30:398][279]LogTemp: Warning: Call UBTT_ArrivePoint
+[2025.10.29-08.34.30:398][279]LogTemp: Error: Call Func UpdateProgressRobot
+[2025.10.29-08.34.30:398][279]LogTemp: Error: RobotManager->DeliveryRobots Num 1
+[2025.10.29-08.34.30:398][279]LogTemp: Error: RobotManager->DeliveryRobots 0
+[2025.10.29-08.34.30:399][279]LogTemp: Warning: End Func UpdateProgressRobot
+[2025.10.29-08.34.30:399][279]LogTemp: Error: Call Func UpdateProgressCell
+[2025.10.29-08.34.30:410][279]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 도착 → State: Arrived
+[2025.10.29-08.34.31:490][335]LogTemp: Warning: Call Func ReadyToCraftingProduct
+[2025.10.29-08.34.31:490][335]LogTemp: Warning: RobotArms Spawn & Attach 0
+[2025.10.29-08.34.31:491][335]LogTemp: Warning: RobotArms Spawn & Attach 1
+[2025.10.29-08.34.31:491][335]LogTemp: Warning: RobotArms Spawn & Attach 2
+[2025.10.29-08.34.31:491][335]LogTemp: Warning: RobotArms Spawn & Attach 3
+[2025.10.29-08.34.37:254][654]LogTemp: Warning: [AssemblyProcess] All Arms finished process
+[2025.10.29-08.34.37:255][654]LogTemp: Warning: FloorMove
+[2025.10.29-08.34.40:287][828]LogTemp: Warning: BP_ItemProductionCell_C_1 공정 완료
+[2025.10.29-08.34.40:322][830]LogTemp: Warning: Call TickNode
+[2025.10.29-08.34.40:322][830]LogTemp: Warning: New TargetCell is BP_ItemProductionCell_C_22
+[2025.10.29-08.34.40:322][830]LogTemp: Warning: Robot BP_DeliveryRobot_C_0 assigned to Cell BP_ItemProductionCell_C_22
+[2025.10.29-08.34.43:226][999]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.29-08.34.43:226][999]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.29-08.34.43:226][999]LogTemp: Error: Call Func UpdateProgressRobot
+[2025.10.29-08.34.43:226][999]LogTemp: Error: RobotManager->DeliveryRobots Num 1
+[2025.10.29-08.34.43:226][999]LogTemp: Error: RobotManager->DeliveryRobots 0
+[2025.10.29-08.34.43:227][999]LogTemp: Warning: End Func UpdateProgressRobot
+[2025.10.29-08.34.43:227][999]LogTemp: Error: Call Func UpdateProgressCell
+[2025.10.29-08.34.43:324][  4]LogTemp: Warning: Call Func OnRobotExitCell
+[2025.10.29-08.34.43:324][  4]LogTemp: Warning: Robot == BeforeProcessRobot
+[2025.10.29-08.34.47:082][204]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.10.29-08.34.47:082][204]LogWorld: BeginTearingDown for /Game/Project/UEDPIE_0_Level_Factory
+[2025.10.29-08.34.47:082][204]LogCrowdFollowing: Warning: Unable to find RecastNavMesh instance while trying to create UCrowdManager instance
+[2025.10.29-08.34.47:083][204]LogWorld: UWorld::CleanupWorld for Level_Factory, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.34.47:087][204]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.34.47:091][204]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2025.10.29-08.34.47:099][204]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.34.47:129][204]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2025.10.29-08.34.47:132][204]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 15
+[2025.10.29-08.34.47:132][204]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=15, StreamState=4
+[2025.10.29-08.34.47:134][204]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=15, StreamState=2
+[2025.10.29-08.34.47:143][204]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2025.10.29-08.34.47:154][204]LogUObjectHash: Compacting FUObjectHashTables data took   1.55ms
+[2025.10.29-08.34.47:198][205]LogPlayLevel: Display: Destroying online subsystem :Context_43
+[2025.10.29-08.39.47:319][298]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 9350.246094
+[2025.10.29-08.39.48:320][301]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.10.29-08.39.48:321][301]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 9350.914062, Update Interval: 309.739685
+[2025.10.29-08.44.23:495][128]LogUObjectHash: Compacting FUObjectHashTables data took   1.54ms
+[2025.10.29-08.44.23:572][128]LogStall: Shutdown...
+[2025.10.29-08.44.23:572][128]LogStall: Shutdown complete.
+[2025.10.29-08.44.23:656][128]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.23:656][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.23:800][128]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.23:800][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.23:959][128]LogWorld: UWorld::CleanupWorld for World_6, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.23:959][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.23:975][128]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.23:975][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.23:994][128]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.23:994][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:082][128]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:082][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:186][128]LogWorld: UWorld::CleanupWorld for World_27, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:186][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:278][128]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:278][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:294][128]LogWorld: UWorld::CleanupWorld for World_8, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:294][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:370][128]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2025.10.29-08.44.24:370][128]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:370][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:500][128]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2025.10.29-08.44.24:500][128]LogWorld: UWorld::CleanupWorld for World_11, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:500][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:607][128]LogWorld: UWorld::CleanupWorld for World_12, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:607][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:693][128]LogWorld: UWorld::CleanupWorld for World_13, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:694][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:774][128]LogWorld: UWorld::CleanupWorld for World_14, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:774][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:879][128]LogWorld: UWorld::CleanupWorld for World_24, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:879][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.24:975][128]LogWorld: UWorld::CleanupWorld for World_19, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.24:975][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:082][128]LogWorld: UWorld::CleanupWorld for World_20, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:082][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:186][128]LogWorld: UWorld::CleanupWorld for World_21, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:186][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:281][128]LogWorld: UWorld::CleanupWorld for World_22, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:281][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:318][128]LogSlate: Window 'SM_FloorMat05' being destroyed
+[2025.10.29-08.44.25:373][128]LogWorld: UWorld::CleanupWorld for World_23, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:373][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:451][128]LogSlate: Window 'FactoryProject - Unreal Editor' being destroyed
+[2025.10.29-08.44.25:816][128]LogUObjectHash: Compacting FUObjectHashTables data took   1.97ms
+[2025.10.29-08.44.25:855][128]LogAutomationController: Ignoring very large delta of 2.47 seconds in calls to FAutomationControllerManager::Tick() and not penalizing unresponsive tests
+[2025.10.29-08.44.25:855][128]Cmd: QUIT_EDITOR
+[2025.10.29-08.44.25:855][128]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2025.10.29-08.44.25:861][129]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2025.10.29-08.44.25:863][129]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2025.10.29-08.44.25:863][129]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2025.10.29-08.44.25:867][129]LogWorld: UWorld::CleanupWorld for Level_Factory, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:867][129]LogCrowdFollowing: Warning: Unable to find RecastNavMesh instance while trying to create UCrowdManager instance
+[2025.10.29-08.44.25:868][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:886][129]LogStylusInput: Shutting down StylusInput subsystem.
+[2025.10.29-08.44.25:886][129]LogTedsSettings: UTedsSettingsEditorSubsystem::Deinitialize
+[2025.10.29-08.44.25:887][129]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2025.10.29-08.44.25:898][129]LogWorld: UWorld::CleanupWorld for World_16, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:898][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:901][129]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:901][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:905][129]LogWorld: UWorld::CleanupWorld for World_28, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:905][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:909][129]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:909][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:913][129]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:913][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:916][129]LogWorld: UWorld::CleanupWorld for World_26, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:916][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:920][129]LogWorld: UWorld::CleanupWorld for World_17, bSessionEnded=true, bCleanupResources=true
+[2025.10.29-08.44.25:920][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2025.10.29-08.44.25:923][129]LogRuntimeTelemetry: Recording EnginePreExit events
+[2025.10.29-08.44.25:923][129]LogStudioTelemetry: Ended StudioTelemetry Session
+[2025.10.29-08.44.25:925][129]LogAnalytics: Display: [UEEditor.Rocket.Release] AnalyticsET::EndSession
+[2025.10.29-08.44.26:519][129]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2025.10.29-08.44.26:519][129]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2025.10.29-08.44.26:519][129]LogAudio: Display: Audio Device unregistered from world 'Level_Factory'.
+[2025.10.29-08.44.26:519][129]LogAudio: Display: Shutting down audio device while 1 references to it are still alive. For more information, compile with INSTRUMENT_AUDIODEVICE_HANDLES.
+[2025.10.29-08.44.26:519][129]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1, StreamState=4
+[2025.10.29-08.44.26:521][129]LogAudioMixer: Display: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1, StreamState=2
+[2025.10.29-08.44.26:521][129]LogAudioMixer: Display: StopRunningNullDevice() called, InstanceID=1
+[2025.10.29-08.44.26:529][129]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID -1
+[2025.10.29-08.44.26:529][129]LogAudio: Display: Audio Device Manager Shutdown
+[2025.10.29-08.44.26:531][129]LogWindowsTextInputMethodSystem: Activated input method: 한국어(대한민국) - Microsoft 입력기 (TSF IME).
+[2025.10.29-08.44.26:533][129]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2025.10.29-08.44.26:533][129]LogExit: Preparing to exit.
+[2025.10.29-08.44.26:581][129]LogUObjectHash: Compacting FUObjectHashTables data took   1.29ms
+[2025.10.29-08.44.26:584][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_controls_for_selected_PY.add_controls_for_selected_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:584][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_controls_for_selected_PY.add_controls_for_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_null_above_selected_PY.add_null_above_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_all' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_x' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_y' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_translation_z' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/align_items_PY.align_scale' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.search_replace_name_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.search_replace_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_prefix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_prefix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_suffix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.add_suffix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.do_rename_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/rename_items_PY.do_rename_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:585][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/set_bone_reference_pose_PY.set_bone_reference_pose' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:586][129]LogPython: Display: Object '/ControlRig/Python/ControlRigWorkflows/workflow_fbik_import_ik_rig_PY.import_ik_rig_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.26:586][129]LogPython: Display: Object '/ControlRig/Python/RigHierarchy/add_controls_for_selected_PY.ControlOutputFormat' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2025.10.29-08.44.27:063][129]LogEditorDataStorage: Deinitializing
+[2025.10.29-08.44.27:176][129]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2025.10.29-08.44.27:208][129]LogExit: Editor shut down
+[2025.10.29-08.44.27:221][129]LogExit: Transaction tracking system shut down
+[2025.10.29-08.44.27:471][129]LogExit: Object subsystem successfully closed.
+[2025.10.29-08.44.27:573][129]LogShaderCompilers: Display: Shaders left to compile 0
+[2025.10.29-08.44.27:654][129]LogMemoryProfiler: Shutdown
+[2025.10.29-08.44.27:654][129]LogNetworkingProfiler: Shutdown
+[2025.10.29-08.44.27:654][129]LoadingProfiler: Shutdown
+[2025.10.29-08.44.27:654][129]LogTimingProfiler: Shutdown
+[2025.10.29-08.44.27:655][129]LogChaosVDEditor: [FChaosVDExtensionsManager::UnRegisterExtension] UnRegistering CVD Extension [FChaosVDGenericDebugDrawExtension] ...
+[2025.10.29-08.44.27:655][129]LogChaosVDEditor: [FChaosVDExtensionsManager::UnRegisterExtension] UnRegistering CVD Extension [FChaosVDAccelerationStructuresExtension] ...
