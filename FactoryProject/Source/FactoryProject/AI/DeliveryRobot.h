@@ -146,4 +146,11 @@ public:
 	UFUNCTION()
 	void ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe);
 
+	UFUNCTION()
+	void ArrivedCell();
+
+	UFUNCTION()
+	void ProcessCompletionInRobot();
+
+
 };

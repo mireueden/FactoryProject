@@ -57,9 +57,7 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 		// 최종 위치 고정
 		Robot->SetActorLocation(TargetLocation);
 
-		Robot->CurrentState = ERobotState::Arrived;
-		Robot->SetRobotState();
-
+		Robot->ArrivedCell();
 
 		UE_LOG(LogTemp, Warning, TEXT("Robot %s 정확히 도착 완료"), *Robot->GetName());
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);

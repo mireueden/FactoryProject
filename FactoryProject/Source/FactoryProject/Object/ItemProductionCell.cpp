@@ -82,9 +82,17 @@ void AItemProductionCell::BeginPlay()
 	{
 		InitialLoc = RobotFloorComp->GetRelativeLocation();
 		InitialRot = RobotFloorComp->GetRelativeRotation();
+
+
+		if (ProductProcessData->ItemMeshes.Num() == 1 || 
+			ProductProcessData->ItemMeshes.Num() == 0) // wheel or Paint
+		{
+			FloorLocateValue = InitialLoc + FVector(0.f, 0.f, 20.f);
+			FloorRotateValue = InitialRot + FRotator(0.f, 0.f, 0.f);
+		}
+
 	}
 }
-
 
 void AItemProductionCell::SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, const FRotator& RotOffset)
 {
@@ -124,11 +132,8 @@ void AItemProductionCell::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("Tick"));
 	if (!bIsMoving || !RobotFloorComp) return;
 
-
-	UE_LOG(LogTemp, Warning, TEXT("FloorMove Tick"));
 	FVector CurrentLoc = RobotFloorComp->GetRelativeLocation();
 	FRotator CurrentRot = RobotFloorComp->GetRelativeRotation();
 
@@ -149,43 +154,18 @@ void AItemProductionCell::Tick(float DeltaTime)
 	FVector NewLoc = FMath::VInterpTo(CurrentLoc, TargetLoc, DeltaTime, MoveSpeed);
 	FRotator NewRot = FMath::RInterpTo(CurrentRot, TargetRot, DeltaTime, RotateSpeed);
 
-	if (!IsValid(RobotFloorComp))
-	{
-		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp INVALID"));
-		bIsMoving = false;
-		return;
-	}
-
-	if (!IsValid(RobotFloorComp->GetAttachParent()))
-	{
-		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp has no valid parent"));
-		bIsMoving = false;
-		return;
-	}
-
-	if (RobotFloorComp->GetAttachParent() == nullptr)
-	{
-		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp->AttachParent == nullptr"));
-		bIsMoving = false;
-		return;
-	}
-
-	if (RobotFloorComp->GetOwner() == nullptr)
-	{
-		UE_LOG(LogTemp, Error, TEXT("❌ RobotFloorComp->GetOwner() == nullptr"));
-		bIsMoving = false;
-		return;
-	}
 
 	RobotFloorComp->SetRelativeLocation(NewLoc);
-	RobotFloorComp->SetRelativeRotation(NewRot); // 153
+	RobotFloorComp->SetRelativeRotation(NewRot); 
 
 	// 종료 조건
-	if (NewLoc.Equals(TargetLoc, 0.1f) && NewRot.Equals(TargetRot, 0.1f))
+	if (NewLoc.Equals(TargetLoc, 0.2f) && NewRot.Equals(TargetRot, 0.2f))
 	{
 		RobotFloorComp->SetRelativeLocation(TargetLoc);
 		RobotFloorComp->SetRelativeRotation(TargetRot);
 		bIsMoving = false;
+
+		OnFloorMoveFinished.Broadcast();
 	}
 }
 
@@ -320,25 +300,16 @@ void AItemProductionCell::CraftingProduct()
 	if (!ProcessRobot) return;
 
 	CellStateChanged(ECellProgressState::InProgress);
- 
 
 	if (CurrentState != ECellProgressState::InProgress || ProcessRobot->CurrentState != ERobotState::Working)
 		return;
 
-
 	// 제작 공정 
 	ProductionProcess();
+}
 
-
-	//ProductProcessData->ItemMeshes[0]->AttachToComponent(
-	//	ProcessRobot->GetMesh(),
-	//	FAttachmentTransformRules::SnapToTargetIncludingScale,
-	//	TEXT("SocketName")
-	//);
-
-
-	// 이관할 기능 
-	// =====
+void AItemProductionCell::ProcessCompletionInCell()
+{
 	CurrentState = ECellProgressState::Completed;
 	ProcessRobot->CurrentState = ERobotState::Waiting; // 다시 대기 상태로 전환
 
@@ -361,8 +332,6 @@ void AItemProductionCell::CraftingProduct()
 	BeforeProcessRobot = ProcessRobot;
 	ProcessRobot = nullptr; // Cell에서 로봇 해제
 
-	// ====
-
 }
 
 void AItemProductionCell::ReadyToCraftingProduct()
@@ -383,49 +352,76 @@ void AItemProductionCell::ReadyToCraftingProduct()
 		ACellRobotArm* Arm = RobotArms[i];
 		if (!Arm) continue;
 
-		int32 MeshIndex = 0;  // 기본 0번
-		if (ProductProcessData->ItemMeshes.Num() > 1 && i < ProductProcessData->ItemMeshes.Num())
-			MeshIndex = i;
 
-		const FItemMeshAttachData& MeshData = ProductProcessData->ItemMeshes[MeshIndex];
-		if (!MeshData.ItemMeshes) continue;
+		// Not Paint
+		if (ProductProcessData->ItemMeshes.Num() != 0)
+		{
 
+			int32 MeshIndex = 0;  // 기본 0번
+			if (ProductProcessData->ItemMeshes.Num() > 1 && i < ProductProcessData->ItemMeshes.Num())
+				MeshIndex = i;
 
-		UStaticMeshComponent* NewMeshComp = Cast<UStaticMeshComponent>(AddComponentByClass(UStaticMeshComponent::StaticClass(), true, FTransform::Identity, true));
-		NewMeshComp->SetStaticMesh(MeshData.ItemMeshes);
-
-
-		NewMeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		FinishAddComponent(NewMeshComp, true, FTransform::Identity);
+			const FItemMeshAttachData& MeshData = ProductProcessData->ItemMeshes[MeshIndex];
+			if (!MeshData.ItemMeshes) continue;
 
 
-		NewMeshComp->AttachToComponent(
-			Arm->RobotArmComp,  
-			FAttachmentTransformRules::SnapToTargetNotIncludingScale,
-			FName(TEXT("Brush_endSocket"))
-		);
-
-		Arm->RobotArmRotateValue = 90.0f;
+			UStaticMeshComponent* NewMeshComp = Cast<UStaticMeshComponent>(AddComponentByClass(UStaticMeshComponent::StaticClass(), true, FTransform::Identity, true));
+			NewMeshComp->SetStaticMesh(MeshData.ItemMeshes);
 
 
+			NewMeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			FinishAddComponent(NewMeshComp, true, FTransform::Identity);
+
+
+			NewMeshComp->AttachToComponent(
+				Arm->RobotArmComp,
+				FAttachmentTransformRules::SnapToTargetNotIncludingScale,
+				FName(TEXT("Brush_endSocket"))
+			);
+			AttachedProductMeshes.Add(NewMeshComp);
+		}
+
+		// 배열 기준 중앙에 위치한 애들이 +90
+		// 배열 기준 바깥에 위치한 애들이 -90
+		// 배열 길이가 2일떈 -90
+
+		if (RobotArms.Num() == 2)
+		{
+			Arm->RobotArmRotateValue = -90.0f;
+		}
+		else if (RobotArms.Num() >= 4)
+		{
+			if(i == 0 || i == 3)
+				Arm->RobotArmRotateValue = -90.0f;
+			if(i == 1 || i == 2)
+				Arm->RobotArmRotateValue = 90.0f;
+		}
 
 		Arm->bIsGrabedMesh = true;
 		Arm->bIsProcess = true;
 	}
-
-
-
-
-
-
-
-
-
-	// 애니메이션의 재생이 완료시 호출되거나 실행 되어야 하는 기능
-	// Robot Floor Comp의 회전 및 Z축 위치상승 원위치.
-	// Robot Floor Comp에서 Robot Detach 
-
-
-	// 위의 행동 종료 후 [이관할 기능] 실행하기.
 }
 
+void AItemProductionCell::ClearAttachedMeshes()
+{
+	// Product에 생성 및 Attach
+	CraftingProduct();
+
+	// Robot에 Detach 및 제거
+	for (UStaticMeshComponent* MeshComp : AttachedProductMeshes)
+	{
+		if (!MeshComp) continue;
+		MeshComp->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		MeshComp->DestroyComponent(); 
+	}
+	
+	AttachedProductMeshes.Empty();
+
+	// RobotArm Process 종료
+	for (int i = 0; i < CellRobotArmList.Num(); i++)
+	{
+		CellRobotArmList[i]->bIsProcess = false;
+
+	}
+
+}

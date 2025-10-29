@@ -121,3 +121,42 @@ void ADeliveryRobot::ProductRecipeSetting(UProductRecipeDataAsset* ProductRecipe
         ProgressOfProductRecipe.RecipeData.Add(NewItem);
     }
 }
+
+void ADeliveryRobot::ArrivedCell()
+{
+    if (TargetCell)
+    {
+        AttachToComponent(
+            TargetCell->RobotFloorComp,
+            FAttachmentTransformRules::SnapToTargetNotIncludingScale
+        );
+        //TargetItem->SetActorRelativeLocation(FVector(0, 0, 150));
+        
+        SetActorRelativeRotation(FRotator::ZeroRotator);
+        FVector Loc = FVector::ZeroVector;
+        Loc.Z += 20.0f;
+        SetActorRelativeLocation(Loc);
+        TargetCell->OnFloorMoveFinished.AddDynamic(this, &ADeliveryRobot::ProcessCompletionInRobot);
+
+        TargetCell->FloorMove();
+    }
+
+    CurrentState = ERobotState::Arrived;
+    SetRobotState();
+}
+
+void ADeliveryRobot::ProcessCompletionInRobot()
+{
+    // 호출되는 타이밍이 늦어서 readyToWork가 실행이 되고 나서 호출됨 -> 그래서 공정 진행 안하고 곧바로 종료함.
+    if (CurrentState != ERobotState::Working) // 이게 의미없는 느낌-> 그럼 처음부분에서는 어떻게 수정하지?
+        return;
+
+    DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+
+    if (TargetCell)
+    {
+        TargetCell->OnFloorMoveFinished.RemoveDynamic(this, &ADeliveryRobot::ProcessCompletionInRobot);
+    }
+
+    TargetCell->ProcessCompletionInCell();
+}

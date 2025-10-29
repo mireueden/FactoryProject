@@ -24,7 +24,10 @@ EBTNodeResult::Type UBTT_AssemblyProcess::ExecuteTask(UBehaviorTreeComponent& Ow
 
 	AItemProductionCell* ProductCell = Robot->TargetCell;
 	ProductCell->ReadyToCraftingProduct();
-	ProductCell->FloorMove();
+	
+	// 추후 Anim 진행 상황에 맞춰서 실행하게 위치 바꿔야함
+	//ProductCell->CraftingProduct();
+
 
 	return EBTNodeResult::InProgress;
 }
@@ -62,31 +65,31 @@ void UBTT_AssemblyProcess::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* No
 		return;
 	}
 
-	bool bAllProcessing = true;
-	bool bAllFinished = true;
+	int32 FinishedCount = 0;
+
 
 	for (const ACellRobotArm* Arm : ArmList)
 	{
 		if (!IsValid(Arm)) continue;
 
-		if (Arm->bIsProcess)
-			bAllFinished = false; // 진행중인 RobotArm잇음
-		else
-			bAllProcessing = false; // 진행중이 아닌 RobotArm 있음
+		if (!Arm->bIsProcess) // 처리 끝난 Arm
+		{
+			FinishedCount++;
+		}
 	}
 
-	if (bAllProcessing)	// RobotArm 모두 Animation 진행 중
-	{
-		//UE_LOG(LogTemp, Warning, TEXT("[AssemblyProcess] All Arms are processing"));
-	}
-	else if (bAllFinished) // RobotArm 모두 Animation 완료
+
+	if (FinishedCount == ArmList.Num()) // RobotArm 모두 Animation 완료
 	{
 		UE_LOG(LogTemp, Warning, TEXT("[AssemblyProcess] All Arms finished process"));
-		ProductCell->FloorMove();
+
+		Robot->TargetCell->FloorMove();
+		// FloorMove가 진행이 완료 된 이후, Delegate를 통해 
+		// Robot이 스스로 Detach & Delagate해제 & 
+		
+
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	}
-	//else // RobotArm 일부 진행 중
-	//	UE_LOG(LogTemp, Warning, TEXT("[AssemblyProcess] other Arm states, waiting..."));
 
 
 }

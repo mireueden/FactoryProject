@@ -26,6 +26,8 @@ enum class ECellProgressState :uint8
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCellStateChanged);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnFloorMoveFinished);
+
 
 class ADeliveryRobot;
 
@@ -80,8 +82,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	ADeliveryRobot* BeforeProcessRobot;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY(BlueprintAssignable, Category = "Event")
 	FOnCellStateChanged OnCellStateChanged;
+
+	UPROPERTY(BlueprintAssignable, Category = "Event")
+	FOnFloorMoveFinished OnFloorMoveFinished;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	ECellProgressState CurrentState = ECellProgressState::None;
@@ -91,6 +96,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Robot Arm")
 	TArray<ACellRobotArm*> CellRobotArmList;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	TArray<UStaticMeshComponent*> AttachedProductMeshes;
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
 	FRotator FloorRotateValue;
@@ -149,8 +158,14 @@ public:
 	
 	UFUNCTION(CallInEditor, Category = "Production")
 	void CraftingProduct();
+	
+	UFUNCTION(CallInEditor, Category = "Production")
+	void ProcessCompletionInCell();
 
 	UFUNCTION(Category = "Production")
 	void ReadyToCraftingProduct();
+
+	UFUNCTION(CallInEditor, Category = "test")
+	void ClearAttachedMeshes();
 
 };
