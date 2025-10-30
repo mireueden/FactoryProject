@@ -27,14 +27,13 @@ EBTNodeResult::Type UBTT_ArrivePoint::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	if (!Robot)
 		return EBTNodeResult::Failed;
 
-	// 목표 지점 저장
 	TargetLocation = Robot->TargetPoint;
 	TargetLocation.Z = Robot->GetActorLocation().Z;
 
 	CachedDirection = (TargetLocation - Robot->GetActorLocation()).GetSafeNormal();
 
 
-	return EBTNodeResult::InProgress; // Tick에서 이동 처리
+	return EBTNodeResult::InProgress; 
 }
 
 void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -45,8 +44,7 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 
 	const float Distance = FVector::Dist(Robot->GetActorLocation(), TargetLocation);
 
-	// 목표 지점으로 부드럽게 보정 이동 
-	if (Distance > 2.0f) // 2cm 이상 떨어져 있으면 보정
+	if (Distance > 2.0f) 
 	{
 		FVector NewLocation = Robot->GetActorLocation() + CachedDirection * 100.f * DeltaSeconds; // 100cm/s 속도
 
@@ -54,7 +52,6 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 	}
 	else
 	{
-		// 최종 위치 고정
 		Robot->SetActorLocation(TargetLocation);
 
 		Robot->ArrivedCell();

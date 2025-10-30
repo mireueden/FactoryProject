@@ -136,9 +136,10 @@ void ADeliveryRobot::ArrivedCell()
         FVector Loc = FVector::ZeroVector;
         Loc.Z += 20.0f;
         SetActorRelativeLocation(Loc);
-        TargetCell->OnFloorMoveFinished.AddDynamic(this, &ADeliveryRobot::ProcessCompletionInRobot);
 
+        TargetCell->OnFloorMoveFinished.AddDynamic(this, &ADeliveryRobot::ProcessCompletionInRobot);
         TargetCell->FloorMove();
+
     }
 
     CurrentState = ERobotState::Arrived;

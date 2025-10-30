@@ -9,6 +9,10 @@
 
 #include "CellRobotArm.generated.h"
 
+
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRequestProductProcess, ACellRobotArm*, Arm);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnRequestProductProcessDone);
+
 UCLASS()
 class FACTORYPROJECT_API ACellRobotArm : public AActor
 {
@@ -44,6 +48,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = "RobotArm")
+	AItemProductionCell* GetOwnerCell();
+
+	UPROPERTY(BlueprintAssignable)
+	FOnRequestProductProcessDone OnRequestProductProcessDone;
+
+	UFUNCTION(BlueprintCallable, Category = "RobotArm")
+	void ProductRequest();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RobotArm")
 	bool bIsGrabedMesh = false;

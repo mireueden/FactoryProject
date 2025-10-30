@@ -115,6 +115,9 @@ void AItemProductionCell::SpawnAndAttachArm(UStaticMeshComponent* ParentComp, co
 		NewArm->AttachToComponent(ParentComp, FAttachmentTransformRules::KeepRelativeTransform);
 		NewArm->SetActorRelativeLocation(Offset);
 		NewArm->SetOwner(this);
+
+		NewArm->OnRequestProductProcessDone.AddDynamic(this, &AItemProductionCell::ClearAttachedMeshes);
+
 		CellRobotArmList.Add(NewArm);
 	}
 
@@ -165,7 +168,10 @@ void AItemProductionCell::Tick(float DeltaTime)
 		RobotFloorComp->SetRelativeRotation(TargetRot);
 		bIsMoving = false;
 
-		OnFloorMoveFinished.Broadcast();
+		FloorMoveCount++;
+
+		if(FloorMoveCount % 2 == 0)
+			OnFloorMoveFinished.Broadcast();
 	}
 }
 

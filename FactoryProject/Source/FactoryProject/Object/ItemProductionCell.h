@@ -104,6 +104,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
 	FRotator FloorRotateValue;
 
+	int32 FloorMoveCount = 0;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
 	FVector FloorLocateValue;
 

@@ -52,7 +52,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Product")
 	TSubclassOf<class UProductRequiredItemSlot> ProductRequiredItemSlotWidgetClass;
 
-	// GameMode에서 위젯 생성과 함께 델리게이트 바인딩까지 진행
 	UPROPERTY(BlueprintAssignable, Category = "Order")
 	FOnProductOrderRequested OnProductOrderRequested;
 

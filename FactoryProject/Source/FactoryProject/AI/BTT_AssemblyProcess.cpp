@@ -21,14 +21,6 @@ EBTNodeResult::Type UBTT_AssemblyProcess::ExecuteTask(UBehaviorTreeComponent& Ow
 	if (!Robot || !Robot->TargetCell)
 		return EBTNodeResult::Failed;
 
-
-	AItemProductionCell* ProductCell = Robot->TargetCell;
-	ProductCell->ReadyToCraftingProduct();
-	
-	// 추후 Anim 진행 상황에 맞춰서 실행하게 위치 바꿔야함
-	//ProductCell->CraftingProduct();
-
-
 	return EBTNodeResult::InProgress;
 }
 
@@ -43,53 +35,33 @@ void UBTT_AssemblyProcess::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* No
 
 	ADeliveryRobotController* AIController = Cast<ADeliveryRobotController>(OwnerComp.GetAIOwner());
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(AIController->GetCharacter());
-	if (!Robot->TargetCell)
-	{
-		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
-		return;
-	}
-
 	AItemProductionCell* ProductCell = Robot->TargetCell;
-	if (!IsValid(ProductCell))
-	{
-		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
-		return;
-	}
-
-
 	TArray<ACellRobotArm*>& ArmList = ProductCell->CellRobotArmList;
-	if (ArmList.Num() == 0)
+
+	if (!Robot->TargetCell || !IsValid(ProductCell) || ArmList.Num() == 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("[AssemblyProcess] No Robot Arms in Cell!"));
 		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
 		return;
 	}
 
 	int32 FinishedCount = 0;
 
-
 	for (const ACellRobotArm* Arm : ArmList)
 	{
 		if (!IsValid(Arm)) continue;
 
-		if (!Arm->bIsProcess) // 처리 끝난 Arm
+		if (!Arm->bIsProcess)
 		{
 			FinishedCount++;
 		}
 	}
 
-
-	if (FinishedCount == ArmList.Num()) // RobotArm 모두 Animation 완료
+	if (FinishedCount == ArmList.Num())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("[AssemblyProcess] All Arms finished process"));
 
 		Robot->TargetCell->FloorMove();
-		// FloorMove가 진행이 완료 된 이후, Delegate를 통해 
-		// Robot이 스스로 Detach & Delagate해제 & 
-		
 
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	}
-
-
 }

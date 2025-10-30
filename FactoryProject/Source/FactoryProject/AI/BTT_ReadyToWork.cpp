@@ -30,9 +30,10 @@ EBTNodeResult::Type UBTT_ReadyToWork::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	Robot->CurrentState = ERobotState::Working;
 	Robot->SetRobotState();
 
-	//Robot->TargetCell->CraftingProduct();
 
 	UE_LOG(LogTemp, Warning, TEXT("Robot %s 도착 → State: Arrived"), *Robot->GetName());
+
+	Robot->TargetCell->ReadyToCraftingProduct();
 
 	return EBTNodeResult::Succeeded;
 }

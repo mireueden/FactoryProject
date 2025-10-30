@@ -6,10 +6,8 @@
 #include "Animation/RobotArmAnimInstance.h"
 
 
-// Sets default values
 ACellRobotArm::ACellRobotArm()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	RootScene = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
@@ -28,11 +26,9 @@ ACellRobotArm::ACellRobotArm()
 	RobotArmComp->SetAnimInstanceClass(ArmAnimClass);
 }
 
-// Called when the game starts or when spawned
 void ACellRobotArm::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 void ACellRobotArm::PostInitializeComponents()
@@ -41,14 +37,25 @@ void ACellRobotArm::PostInitializeComponents()
 
 	if (URobotArmAnimInstance* Anim = Cast<URobotArmAnimInstance>(RobotArmComp->GetAnimInstance()))
 	{
-		// AnimInstance 내부에서 필요한 포인터나 상태 전달
 		Anim->CellRobotArm = this;
 	}
 }
-// Called every frame
+
 void ACellRobotArm::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
+AItemProductionCell* ACellRobotArm::GetOwnerCell()
+{
+	return Cast<AItemProductionCell>(GetOwner());
+}
+
+void ACellRobotArm::ProductRequest()
+{
+	OnRequestProductProcessDone.Broadcast();
+
+	bIsGrabedMesh = false;
+	bIsProcess = false;
+}
