@@ -28,7 +28,7 @@ EBTNodeResult::Type UBTT_ArrivePoint::ExecuteTask(UBehaviorTreeComponent& OwnerC
 		return EBTNodeResult::Failed;
 
 	TargetLocation = Robot->TargetPoint;
-	TargetLocation.Z = Robot->GetActorLocation().Z;
+	//TargetLocation.Z = Robot->GetActorLocation().Z;
 
 	CachedDirection = (TargetLocation - Robot->GetActorLocation()).GetSafeNormal();
 
@@ -44,7 +44,7 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 
 	const float Distance = FVector::Dist(Robot->GetActorLocation(), TargetLocation);
 
-	if (Distance > 2.0f) 
+	if (Distance > 20.0f) 
 	{
 		FVector NewLocation = Robot->GetActorLocation() + CachedDirection * 100.f * DeltaSeconds; // 100cm/s 속도
 

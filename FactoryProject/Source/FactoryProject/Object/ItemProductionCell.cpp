@@ -65,17 +65,17 @@ void AItemProductionCell::BeginPlay()
 		FVector Offset2(-95.f, 0.f, 0.f);
 
 		// Left 2개
-		SpawnAndAttachArm(LeftStandMatComp, Offset2, FRotator(0, 180.f, 0));
-		SpawnAndAttachArm(LeftStandMatComp, Offset1, FRotator::ZeroRotator);
+		SpawnAndAttachArm(LeftStandMatComp, WheelRobotArmOffset0, FRotator(0, 180.f, 0));
+		SpawnAndAttachArm(LeftStandMatComp, WheelRobotArmOffset1, FRotator::ZeroRotator);
 
 		// Right 2개
-		SpawnAndAttachArm(RightStandMatComp, Offset2, FRotator(0, 180.f, 0));
-		SpawnAndAttachArm(RightStandMatComp, Offset1, FRotator::ZeroRotator);
+		SpawnAndAttachArm(RightStandMatComp, WheelRobotArmOffset2, FRotator(0, 180.f, 0));
+		SpawnAndAttachArm(RightStandMatComp, WheelRobotArmOffset3, FRotator::ZeroRotator);
 	}
 	else
 	{
-		SpawnAndAttachArm(LeftStandMatComp, FVector::ZeroVector, FRotator(0, 180.f, 0));
-		SpawnAndAttachArm(RightStandMatComp, FVector::ZeroVector, FRotator::ZeroRotator);
+		SpawnAndAttachArm(LeftStandMatComp, WheelRobotArmOffset0, FRotator(0, 180.f, 0), ItemRotationOffset0);
+		SpawnAndAttachArm(RightStandMatComp, WheelRobotArmOffset1, FRotator::ZeroRotator, ItemRotationOffset1);
 	}
 
 	if (RobotFloorComp)
@@ -87,14 +87,14 @@ void AItemProductionCell::BeginPlay()
 		if (ProductProcessData->ItemMeshes.Num() == 1 || 
 			ProductProcessData->ItemMeshes.Num() == 0) // wheel or Paint
 		{
-			FloorLocateValue = InitialLoc + FVector(0.f, 0.f, 20.f);
+			//FloorLocateValue = InitialLoc + FVector(0.f, 0.f, 20.f);
 			FloorRotateValue = InitialRot + FRotator(0.f, 0.f, 0.f);
 		}
 
 	}
 }
-
-void AItemProductionCell::SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, const FRotator& RotOffset)
+void AItemProductionCell::SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, 
+	const FRotator& RotOffset, const FRotator& ItemRotationOffset)
 {
 	if (!ArmActorClass || !ParentComp) return;
 
@@ -115,6 +115,8 @@ void AItemProductionCell::SpawnAndAttachArm(UStaticMeshComponent* ParentComp, co
 		NewArm->AttachToComponent(ParentComp, FAttachmentTransformRules::KeepRelativeTransform);
 		NewArm->SetActorRelativeLocation(Offset);
 		NewArm->SetOwner(this);
+
+		NewArm->ItemRotation = ItemRotationOffset;
 
 		NewArm->OnRequestProductProcessDone.AddDynamic(this, &AItemProductionCell::ClearAttachedMeshes);
 
@@ -289,6 +291,7 @@ void AItemProductionCell::ProductionProcess()
 				FAttachmentTransformRules::SnapToTargetIncludingScale,
 				TargetSocket
 			);
+			
 
 			FAttachedPartInfo Info;
 			Info.PartComponent = PartComp;
@@ -384,6 +387,18 @@ void AItemProductionCell::ReadyToCraftingProduct()
 				FAttachmentTransformRules::SnapToTargetNotIncludingScale,
 				FName(TEXT("Brush_endSocket"))
 			);
+
+			NewMeshComp->SetRelativeRotation(Arm->ItemRotation);
+
+			NewMeshComp->AttachToComponent(
+				Arm->RobotArmComp,
+				FAttachmentTransformRules::KeepRelativeTransform,
+				FName(TEXT("Brush_endSocket"))
+			);
+
+
+
+
 			AttachedProductMeshes.Add(NewMeshComp);
 		}
 

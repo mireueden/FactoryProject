@@ -107,7 +107,7 @@ public:
 	int32 FloorMoveCount = 0;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Func")
-	FVector FloorLocateValue;
+	FVector FloorLocateValue = FVector(0.f, 0.f, -450.f);
 
 	FRotator InitialRot;
 	FVector InitialLoc;
@@ -127,12 +127,40 @@ public:
 	UFUNCTION(CallInEditor, Category = "Floor Func")
 	void FloorMove();
 	
+public:
 
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FRotator ItemRotationOffset0 = FRotator(0.f, 0.f, 0.f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FRotator ItemRotationOffset1 = FRotator(0.f, 0.f, 0.f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FVector WheelRobotArmOffset0 = FVector(95.f, 0.f, 0.f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FVector WheelRobotArmOffset1 = FVector(-95.f, 0.f, 0.f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FVector WheelRobotArmOffset2 = FVector(95.f, 0.f, 0.f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FVector WheelRobotArmOffset3 = FVector(-95.f, 0.f, 0.f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FVector RobotArmOffset1 = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robot Arm")
+	FVector RobotArmOffset2 = FVector::ZeroVector;
+
+
+public:
 
 	
 	UFUNCTION(CallInEditor, Category = "Robot Arm")
-	void SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, const FRotator& RotOffset);
+	void SpawnAndAttachArm(UStaticMeshComponent* ParentComp, const FVector& Offset, 
+		const FRotator& RotOffset, const FRotator& ItemRotationOffset = FRotator::ZeroRotator);
 
 	
 	UFUNCTION()

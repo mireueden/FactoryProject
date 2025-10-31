@@ -234,7 +234,9 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
             {
                 // 목적지 지정 및 상태 변경
                 NewRobot->TargetCell = TargetCell;
+
                 NewRobot->TargetPoint = TargetCell->GetActorLocation();
+                NewRobot->TargetPoint.Z = NewRobot->GetActorLocation().Z;
                 //NewRobot->TargetPoint = RobotReturnPoint->GetComponentLocation();
 
 

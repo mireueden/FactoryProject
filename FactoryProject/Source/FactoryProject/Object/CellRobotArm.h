@@ -65,4 +65,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RobotArm")
 	float RobotArmRotateValue = 0;	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RobotArm")
+	FRotator ItemRotation = FRotator(0.f, 0.f, 0.f);
 };
