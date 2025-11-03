@@ -34,6 +34,9 @@ public:
 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsItemRobotArm = true;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsGrabItemCheck = false;
 
 };

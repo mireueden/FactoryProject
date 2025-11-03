@@ -28,7 +28,13 @@ ADeliveryRobotManager::ADeliveryRobotManager()
         DeliveryRobotControllerClass = DeliveryRobotControllerClassFinder.Class;
 
     RobotSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotSpawnPoint"));
-    RootComponent = RobotSpawnPoint;
+    RobotSpawnPoint->SetupAttachment(RootComponent);
+
+    ProductStoragePoint = CreateDefaultSubobject<USceneComponent>(TEXT("ProductStoragePoint"));
+    ProductStoragePoint->SetupAttachment(RootComponent);
+
+    ItemStoragePoint = CreateDefaultSubobject<USceneComponent>(TEXT("ItemStoragePoint"));
+    ItemStoragePoint->SetupAttachment(RootComponent);
 
     RobotReturnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotReturnPoint"));
     RobotReturnPoint->SetupAttachment(RootComponent);
@@ -103,7 +109,7 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
     RobotReturnPoint->GetComponentLocation();
     RobotSpawnRotate = GetActorRotation();
 
-     const FVector SpawnLocation = GetActorLocation();
+     const FVector SpawnLocation = RobotSpawnPoint->GetComponentLocation();
      const FRotator SpawnRotation = GetActorRotation();
 
      FActorSpawnParameters SpawnParams;
@@ -140,6 +146,7 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
              NewRobot->CurrentState = ERobotState::Moving;
              NewRobot->TargetPoint = TargetItem->ConveyorBelt->RobotArrivePoint->GetComponentLocation();
+             NewRobot->StoragePoint = ItemStoragePoint->GetComponentLocation();
              NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();;
              NewRobot->SetTargetItem(TargetItem);
              
@@ -156,7 +163,11 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
 void ADeliveryRobotManager::DestoryDeliveryRobot(ADeliveryRobot* DestoryRobot)
 {
-    DeliveryRobots.Remove(DestoryRobot);
+//    DeliveryRobots.Remove(DestoryRobot);
+
+    DestoryRobot->GetMesh()->SetVisibility(false);
+    DestoryRobot->GetMesh()->SetHiddenInGame(true);
+    DestoryRobot->GetMesh()->SetComponentTickEnabled(false);
 
     OnDeliveryRobotUpdate.Broadcast();
 }
@@ -171,7 +182,7 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
         return;
     }
 
-    FVector SpawnLocation = GetActorLocation();
+    FVector SpawnLocation = RobotSpawnPoint->GetComponentLocation();
     const FRotator SpawnRotation = GetActorRotation();
 
     FActorSpawnParameters SpawnParams;
@@ -193,8 +204,6 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
         RecipeItem.ProgressValue = 0;
 
     UItemBasicDataAsset* FirstItem = NewRobot->ProgressOfProductRecipe.RecipeData[0].ItemData;
-
-
 
     //ItemManager->StorageList[0].ItemData;
 
@@ -237,14 +246,19 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
 
                 NewRobot->TargetPoint = TargetCell->GetActorLocation();
                 NewRobot->TargetPoint.Z = NewRobot->GetActorLocation().Z;
-                //NewRobot->TargetPoint = RobotReturnPoint->GetComponentLocation();
 
+                NewRobot->GetMesh()->SetVisibility(false);
+                NewRobot->GetMesh()->SetHiddenInGame(true);
+                NewRobot->GetMesh()->SetComponentTickEnabled(false);
 
-                //NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
-                NewRobot->ReturnPoint = ProductReturnPoint->GetActorLocation();
-                NewRobot->CurrentState = ERobotState::Moving;
-                TargetCell->CurrentState = ECellProgressState::Reserved;
-                NewRobot->SetTargetCell();
+                NewRobot->StoragePoint = ProductStoragePoint->GetComponentLocation();
+                NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+
+                NewRobot->CurrentState = ERobotState::Storage;
+                //NewRobot->CurrentState = ERobotState::Moving;
+                //TargetCell->CurrentState = ECellProgressState::Reserved;
+                //NewRobot->SetTargetCell();
+                NewRobot->SetRobotState();
 
                 UE_LOG(LogTemp, Warning, TEXT("Robot %s assigned to Cell %s"),
                     *NewRobot->GetName(),
@@ -252,12 +266,12 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
             }
             else     // 만약 모든 Cell의 State가 Emtmy가 아닌 경우, AI 생성만 하고 대기 상태 전환.
             {
-                // 이동 가능한 Cell이 없으면 대기 상태 유지
-                NewRobot->CurrentState = ERobotState::Waiting;
-                NewRobot->ReturnPoint = ProductReturnPoint->GetActorLocation();
-                NewRobot->SetRobotState();
+                //// 이동 가능한 Cell이 없으면 대기 상태 유지
+                //NewRobot->CurrentState = ERobotState::Waiting;
+                //NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+                //NewRobot->SetRobotState();
 
-                UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
+                //UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
             }
             DeliveryRobots.Add(NewRobot);
 

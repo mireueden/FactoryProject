@@ -13,7 +13,7 @@ UBTT_DeliveryItem::UBTT_DeliveryItem()
 
 EBTNodeResult::Type UBTT_DeliveryItem::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Call UBTT_ArrivePoint"));
+	UE_LOG(LogTemp, Warning, TEXT("Call UBTT_DeliveryItemPoint"));
 	UBlackboardComponent* BBComp = OwnerComp.GetBlackboardComponent();
 	if (!BBComp)
 	{
@@ -23,9 +23,9 @@ EBTNodeResult::Type UBTT_DeliveryItem::ExecuteTask(UBehaviorTreeComponent& Owner
 	ADeliveryRobotController* AIController = Cast<ADeliveryRobotController>(OwnerComp.GetAIOwner());
 	ADeliveryRobot* Robot = Cast<ADeliveryRobot>(AIController->GetCharacter());
 
-	Robot->CurrentState = ERobotState::Returning;
+	Robot->CurrentState = ERobotState::Storage;
 	Robot->SetRobotState();
-	BBComp->SetValueAsVector(TEXT("ReturnPoint"), Robot->ReturnPoint);
+	//BBComp->SetValueAsVector(TEXT("ReturnPoint"), Robot->ReturnPoint);
 
 	return EBTNodeResult::Succeeded;
 }

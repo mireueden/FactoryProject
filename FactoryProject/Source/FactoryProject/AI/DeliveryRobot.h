@@ -20,6 +20,7 @@ enum class ERobotState : uint8
 	Arrived,
 	Working,
 	Delivery,
+	Storage,
 	Returning,
 	Error,
 };
@@ -112,6 +113,9 @@ public:
 	FVector TargetPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FVector StoragePoint;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	FVector ReturnPoint;
 
 	UFUNCTION()
@@ -125,6 +129,9 @@ public:
 
 	UFUNCTION()
 	void SetRobotState();
+
+	UFUNCTION()
+	void SetTargetPoint();
 
 	UFUNCTION()
 	void AttachItem();

@@ -20,6 +20,8 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
 {
     Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
+    ADeliveryRobotManager* Manager = Cast<ADeliveryRobotManager>(UGameplayStatics::GetActorOfClass(GetWorld(), ADeliveryRobotManager::StaticClass()));
+
     AAIController* AICon = OwnerComp.GetAIOwner();
     if (!AICon) return;
 
@@ -40,7 +42,7 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
         {
             bFoundNextItem = true;
 
-            if (ADeliveryRobotManager* Manager = Cast<ADeliveryRobotManager>(UGameplayStatics::GetActorOfClass(GetWorld(), ADeliveryRobotManager::StaticClass())))
+            if (Manager)
             {
                 for (AItemProductionCell* Cell : Manager->ProductionCellList)
                 {
@@ -78,6 +80,19 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
                 return;
             }
         }
+    }
+
+
+    if (Manager && Manager->ProductWarehousePoint)
+    {
+        Robot->TargetPoint = Manager->ProductWarehousePoint->GetActorLocation();
+        Robot->TargetPoint.Z = FVector::ZeroVector.Z;
+        Robot->SetTargetPoint();
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("ProductWarehousePoint is nullptr in %s"), *Manager->GetName());
+        return;
     }
 
     Robot->CurrentState = ERobotState::Returning;

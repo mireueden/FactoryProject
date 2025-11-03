@@ -65,7 +65,7 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* AddOrderNumText;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UButton* OrderButton;
 
 	UPROPERTY(meta = (BindWidget))

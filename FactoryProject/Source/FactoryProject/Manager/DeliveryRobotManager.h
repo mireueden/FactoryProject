@@ -57,10 +57,16 @@ public:
 	USceneComponent* RobotSpawnPoint;
 
 	UPROPERTY(VisibleAnywhere)
+	USceneComponent* ProductStoragePoint;
+
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* ItemStoragePoint;
+
+	UPROPERTY(VisibleAnywhere)
 	USceneComponent* RobotReturnPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
-	AActor* ProductReturnPoint;
+	AActor* ProductWarehousePoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
 	FRotator RobotSpawnRotate;

@@ -44,19 +44,32 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 
 	const float Distance = FVector::Dist(Robot->GetActorLocation(), TargetLocation);
 
-	if (Distance > 20.0f) 
+	if (Robot->TargetCell)
 	{
-		FVector NewLocation = Robot->GetActorLocation() + CachedDirection * 100.f * DeltaSeconds; // 100cm/s 속도
+		if (Distance > 20.0f)
+		{
+			FVector NewLocation = Robot->GetActorLocation() + CachedDirection * 100.f * DeltaSeconds; // 100cm/s 속도
 
-		Robot->SetActorLocation(NewLocation);
+			Robot->SetActorLocation(NewLocation);
+		}
+		else
+		{
+			Robot->SetActorLocation(TargetLocation);
+
+			Robot->ArrivedCell();
+
+			UE_LOG(LogTemp, Warning, TEXT("Robot %s 정확히 도착 완료"), *Robot->GetName());
+			FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+		}
 	}
 	else
 	{
-		Robot->SetActorLocation(TargetLocation);
+		Robot->CurrentState = ERobotState::Arrived;
+		Robot->SetRobotState();
 
-		Robot->ArrivedCell();
-
-		UE_LOG(LogTemp, Warning, TEXT("Robot %s 정확히 도착 완료"), *Robot->GetName());
-		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+			UE_LOG(LogTemp, Warning, TEXT("Delivery Robot 도착 완료"));
+			FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	}
+
+
 }

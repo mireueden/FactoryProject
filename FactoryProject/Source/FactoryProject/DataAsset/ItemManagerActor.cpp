@@ -50,13 +50,13 @@ void AItemManagerActor::OrderSpawn(int32 SelectedDataIndex, int32 OrderCount)
 		return;
 	
 
-	//SpawnItem();
+	SpawnItem();
 
 	GetWorld()->GetTimerManager().SetTimer(
 		SpawnTimerHandle,
 		this,
 		&AItemManagerActor::SpawnItem,
-		8.0f,   // 체크 간격
+		13.0f,   // 체크 간격
 		true    // 반복
 	);
 }

@@ -87,7 +87,19 @@ void ADeliveryRobot::SetRobotState()
     if (AICon && AICon->GetBlackboardComponent())
     {
         AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("StoragePoint"), StoragePoint);
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
+    }
+}
+
+
+
+void ADeliveryRobot::SetTargetPoint()
+{
+    AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
+    if (AICon && AICon->GetBlackboardComponent())
+    {
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetPoint"), TargetPoint);
     }
 }
 
