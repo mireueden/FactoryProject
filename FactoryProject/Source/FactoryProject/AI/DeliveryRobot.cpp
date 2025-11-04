@@ -61,7 +61,6 @@ void ADeliveryRobot::SetTargetCell()
     AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
     if (AICon && AICon->GetBlackboardComponent())
     {
-        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint); 
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
         AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetPoint"), TargetPoint);
         AICon->GetBlackboardComponent()->SetValueAsObject(TEXT("TargetCell"), TargetCell);
@@ -76,7 +75,6 @@ void ADeliveryRobot::SetTargetItem(AItem* Item)
     if (AICon && AICon->GetBlackboardComponent())
     {
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
-        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
         AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetPoint"), TargetPoint);
     }
 }
@@ -86,13 +84,9 @@ void ADeliveryRobot::SetRobotState()
     AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
     if (AICon && AICon->GetBlackboardComponent())
     {
-        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
-        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("StoragePoint"), StoragePoint);
         AICon->GetBlackboardComponent()->SetValueAsEnum(TEXT("RobotState"), static_cast<uint8>(CurrentState));
     }
 }
-
-
 
 void ADeliveryRobot::SetTargetPoint()
 {
@@ -100,6 +94,17 @@ void ADeliveryRobot::SetTargetPoint()
     if (AICon && AICon->GetBlackboardComponent())
     {
         AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetPoint"), TargetPoint);
+    }
+}
+
+void ADeliveryRobot::SetStopoverPoint()
+{
+    AAIController* AICon = Cast<ADeliveryRobotController>(GetController());
+    if (AICon && AICon->GetBlackboardComponent())
+    {
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnPoint"), ReturnPoint);
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("StoragePoint"), StoragePoint);
+        AICon->GetBlackboardComponent()->SetValueAsVector(TEXT("ReturnRoutePoint"), ReturnRoutePoint);
     }
 }
 

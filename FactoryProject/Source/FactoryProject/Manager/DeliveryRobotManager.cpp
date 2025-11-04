@@ -36,6 +36,9 @@ ADeliveryRobotManager::ADeliveryRobotManager()
     ItemStoragePoint = CreateDefaultSubobject<USceneComponent>(TEXT("ItemStoragePoint"));
     ItemStoragePoint->SetupAttachment(RootComponent);
 
+    RobotReturnRoutePoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotReturnRoutePoint"));
+    RobotReturnRoutePoint->SetupAttachment(RootComponent);
+
     RobotReturnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RobotReturnPoint"));
     RobotReturnPoint->SetupAttachment(RootComponent);
 }
@@ -146,9 +149,11 @@ void ADeliveryRobotManager::SetDeliveryRobot(AItem* TargetItem)
 
              NewRobot->CurrentState = ERobotState::Moving;
              NewRobot->TargetPoint = TargetItem->ConveyorBelt->RobotArrivePoint->GetComponentLocation();
+             NewRobot->SetTargetItem(TargetItem);
+
              NewRobot->StoragePoint = ItemStoragePoint->GetComponentLocation();
              NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();;
-             NewRobot->SetTargetItem(TargetItem);
+             NewRobot->SetStopoverPoint();
              
              UE_LOG(LogTemp, Warning, TEXT("TargetLoc: %s"), *NewRobot->ReturnPoint.ToString());
 
@@ -165,8 +170,12 @@ void ADeliveryRobotManager::DestoryDeliveryRobot(ADeliveryRobot* DestoryRobot)
 {
 //    DeliveryRobots.Remove(DestoryRobot);
 
-    DestoryRobot->GetMesh()->SetVisibility(false);
-    DestoryRobot->GetMesh()->SetHiddenInGame(true);
+    //DestoryRobot->GetMesh()->SetVisibility(false);
+    //DestoryRobot->GetMesh()->SetHiddenInGame(true);
+    //DestoryRobot->GetMesh()->SetComponentTickEnabled(false);
+
+    DestoryRobot->GetMesh()->SetVisibility(false, true);
+    DestoryRobot->GetMesh()->SetHiddenInGame(true, true);
     DestoryRobot->GetMesh()->SetComponentTickEnabled(false);
 
     OnDeliveryRobotUpdate.Broadcast();
@@ -236,7 +245,7 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
         {
             AICon->Possess(NewRobot);
 
-            NewRobot->CurrentProcess = ERobotProcess::ProductProcess;
+            NewRobot->CurrentProcess = ERobotProcess::Production;
             NewRobot->SetProcessState();
 
             if (TargetCell)
@@ -245,7 +254,8 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
                 NewRobot->TargetCell = TargetCell;
 
                 NewRobot->TargetPoint = TargetCell->GetActorLocation();
-                NewRobot->TargetPoint.Z = NewRobot->GetActorLocation().Z;
+                NewRobot->TargetPoint.Z = 0.f;
+                //NewRobot->TargetPoint.Z = NewRobot->GetActorLocation().Z;
 
                 NewRobot->GetMesh()->SetVisibility(false);
                 NewRobot->GetMesh()->SetHiddenInGame(true);
@@ -253,26 +263,17 @@ void ADeliveryRobotManager::SetProductRobot(UProductRecipeDataAsset* ProductReci
 
                 NewRobot->StoragePoint = ProductStoragePoint->GetComponentLocation();
                 NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
+                NewRobot->ReturnRoutePoint = RobotReturnRoutePoint->GetComponentLocation();
+                NewRobot->SetStopoverPoint();
 
                 NewRobot->CurrentState = ERobotState::Storage;
-                //NewRobot->CurrentState = ERobotState::Moving;
-                //TargetCell->CurrentState = ECellProgressState::Reserved;
-                //NewRobot->SetTargetCell();
                 NewRobot->SetRobotState();
 
                 UE_LOG(LogTemp, Warning, TEXT("Robot %s assigned to Cell %s"),
                     *NewRobot->GetName(),
                     *TargetCell->GetName());
             }
-            else     // 만약 모든 Cell의 State가 Emtmy가 아닌 경우, AI 생성만 하고 대기 상태 전환.
-            {
-                //// 이동 가능한 Cell이 없으면 대기 상태 유지
-                //NewRobot->CurrentState = ERobotState::Waiting;
-                //NewRobot->ReturnPoint = RobotReturnPoint->GetComponentLocation();
-                //NewRobot->SetRobotState();
 
-                //UE_LOG(LogTemp, Warning, TEXT("No available Cell. Robot %s waiting."), *NewRobot->GetName());
-            }
             DeliveryRobots.Add(NewRobot);
 
             OnDeliveryRobotUpdate.Broadcast();

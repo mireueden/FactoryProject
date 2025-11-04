@@ -28,7 +28,7 @@ EBTNodeResult::Type UBTT_ArrivePoint::ExecuteTask(UBehaviorTreeComponent& OwnerC
 		return EBTNodeResult::Failed;
 
 	TargetLocation = Robot->TargetPoint;
-	//TargetLocation.Z = Robot->GetActorLocation().Z;
+	TargetLocation.Z = Robot->GetActorLocation().Z;
 
 	CachedDirection = (TargetLocation - Robot->GetActorLocation()).GetSafeNormal();
 
@@ -54,6 +54,7 @@ void UBTT_ArrivePoint::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 		}
 		else
 		{
+
 			Robot->SetActorLocation(TargetLocation);
 
 			Robot->ArrivedCell();

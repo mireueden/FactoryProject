@@ -27,28 +27,30 @@ EBTNodeResult::Type UBTT_Storage::ExecuteTask(UBehaviorTreeComponent& OwnerComp,
         UGameplayStatics::GetActorOfClass(Robot->GetWorld(), ADeliveryRobotManager::StaticClass())
     );
 
-    TargetCell = nullptr;
-    FirstItem = Robot->ProgressOfProductRecipe.RecipeData[0].ItemData;
 
-
-    for (AItemProductionCell* Cell : RobotManager->ProductionCellList)
-    {
-        if (!Cell) continue;
-
-        if (Cell->ProductProcessData == FirstItem)
-        {
-            if (Cell->CurrentState == ECellProgressState::Empty)
-            {
-                TargetCell = Cell;
-                break;
-            }
-        }
-    }
 
     if (Robot->CurrentState == ERobotState::Storage && 
-        Robot->CurrentProcess == ERobotProcess::ProductProcess &&
+        Robot->CurrentProcess == ERobotProcess::Production &&
         Robot ->TargetCell)
     {
+        TargetCell = nullptr;
+        FirstItem = Robot->ProgressOfProductRecipe.RecipeData[0].ItemData;
+
+
+        for (AItemProductionCell* Cell : RobotManager->ProductionCellList)
+        {
+            if (!Cell) continue;
+
+            if (Cell->ProductProcessData == FirstItem)
+            {
+                if (Cell->CurrentState == ECellProgressState::Empty)
+                {
+                    TargetCell = Cell;
+                    break;
+                }
+            }
+        }
+
         Robot->TargetCell = TargetCell;
         TargetCell->CurrentState = ECellProgressState::Reserved;
 
@@ -69,7 +71,6 @@ EBTNodeResult::Type UBTT_Storage::ExecuteTask(UBehaviorTreeComponent& OwnerComp,
         Robot->SetRobotState();
 
         FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
-
         return EBTNodeResult::Succeeded;
     }
 

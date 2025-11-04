@@ -30,7 +30,7 @@ enum class ERobotProcess : uint8
 {
 	None,
 	Delivery,
-	ProductProcess,
+	Production,
 };
 
 
@@ -116,6 +116,9 @@ public:
 	FVector StoragePoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+	FVector ReturnRoutePoint;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	FVector ReturnPoint;
 
 	UFUNCTION()
@@ -132,6 +135,9 @@ public:
 
 	UFUNCTION()
 	void SetTargetPoint();
+
+	UFUNCTION()
+	void SetStopoverPoint();
 
 	UFUNCTION()
 	void AttachItem();

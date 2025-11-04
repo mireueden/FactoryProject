@@ -57,7 +57,10 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
                         // Robot에 TargetCell 세팅
                         Robot->TargetCell = Cell;
                         Robot->TargetPoint = Cell->GetActorLocation();
-   
+                        Robot->TargetPoint.Z = 0.f;
+                        //Robot->TargetPoint.Z = Robot->GetActorLocation().Z;
+
+
                         Robot->CurrentState = ERobotState::Moving;
                         Robot->SetTargetCell();
                         
@@ -86,7 +89,16 @@ void UBTService_CheckSituation::TickNode(UBehaviorTreeComponent& OwnerComp, uint
     if (Manager && Manager->ProductWarehousePoint)
     {
         Robot->TargetPoint = Manager->ProductWarehousePoint->GetActorLocation();
-        Robot->TargetPoint.Z = FVector::ZeroVector.Z;
+        Robot->TargetPoint.Z = 0.f;
+        //Robot->TargetPoint.Z = Robot->GetActorLocation().Z;
+
+        //FVector TargetLocation = Manager->ProductWarehousePoint->GetActorLocation();
+        //TargetLocation.Z = 0.f;
+        //Robot->TargetPoint = TargetLocation;
+
+        UE_LOG(LogTemp, Warning, TEXT("TargetPoint After Clamp: %s"), *Robot->TargetPoint.ToString());
+
+        
         Robot->SetTargetPoint();
     }
     else

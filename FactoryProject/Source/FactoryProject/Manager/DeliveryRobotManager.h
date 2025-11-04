@@ -63,6 +63,9 @@ public:
 	USceneComponent* ItemStoragePoint;
 
 	UPROPERTY(VisibleAnywhere)
+	USceneComponent* RobotReturnRoutePoint;
+
+	UPROPERTY(VisibleAnywhere)
 	USceneComponent* RobotReturnPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Robots")
