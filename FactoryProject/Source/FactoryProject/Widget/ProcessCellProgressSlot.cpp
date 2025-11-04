@@ -25,6 +25,14 @@ void UProcessCellProgressSlot::UpdateSlot(AItemProductionCell* Cell)
 	{
 		FText ProcessText = EnumPtr->GetDisplayNameTextByValue(static_cast<int64>(Cell->CurrentState));
 		CurrentState->SetText(ProcessText);
+
+		if (Cell->CurrentState == ECellProgressState::Reserved)
+			CellName->SetColorAndOpacity(FSlateColor(FLinearColor::Yellow));
+		else if (Cell->CurrentState == ECellProgressState::InProgress || Cell->CurrentState == ECellProgressState::Completed)
+			CellName->SetColorAndOpacity(FSlateColor(FLinearColor::Green));
+		else if (Cell->CurrentState == ECellProgressState::Empty || Cell->CurrentState == ECellProgressState::None)
+			CellName->SetColorAndOpacity(FSlateColor(FLinearColor::White));
+
 	}
 
 	if (!Cell->ProcessRobot)

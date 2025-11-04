@@ -22,8 +22,6 @@ void UProcessRobotProgressSlot::UpdateSlot(ADeliveryRobot* Robot)
 		ProgressRecipe->SetText(
 			FText::FromString(Robot->ProductRecipeData->ProductName));
 
-
-
 		int32 TotalCount = Robot->ProgressOfProductRecipe.RecipeData.Num();
 		int32 CompletedCount = 0;
 
@@ -52,10 +50,6 @@ void UProcessRobotProgressSlot::UpdateSlot(ADeliveryRobot* Robot)
 		CurrentProgress->SetText(FText::FromString(TEXT("None")));
 	}
 
-
-
-
-
 	if (CurrentTargetCell)
 	{
 		if (IsValid(Robot->TargetCell))
@@ -76,8 +70,7 @@ void UProcessRobotProgressSlot::UpdateSlot(ADeliveryRobot* Robot)
 	}
 	else
 	{
-		CurrentTargetCell->SetText(
-			FText::FromString(TEXT("None")));
+		CurrentTargetCell->SetText(FText::FromString(TEXT("None")));
 	}
 
 
@@ -92,10 +85,14 @@ void UProcessRobotProgressSlot::UpdateSlot(ADeliveryRobot* Robot)
 	{
 		FText ProcessText = EnumPtr->GetDisplayNameTextByValue(static_cast<int64>(Robot->CurrentProcess));
 		CurrentProcess->SetText(ProcessText);
+
+		if(Robot->CurrentProcess == ERobotProcess::Production)
+			RobotName->SetColorAndOpacity(FSlateColor(FLinearColor::Green));
+		else if(Robot->CurrentProcess == ERobotProcess::Delivery)
+			RobotName->SetColorAndOpacity(FSlateColor(FLinearColor::Blue));
+		else
+			RobotName->SetColorAndOpacity(FSlateColor(FLinearColor::White));
+
 	}
 
-	//CurrentState->SetText(
-	//	FText::FromString(FString::FromEnum(Robot->CurrentState)));
-	//CurrentProcess->SetText(
-	//	FText::FromString(FString::FromEnum(Robot->CurrentProcess)));
 }
