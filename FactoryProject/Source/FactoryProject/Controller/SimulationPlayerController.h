@@ -31,6 +31,9 @@ public:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
+	void CameraSetting();
+
+	UFUNCTION(BlueprintCallable)
 	void SwitchToCamera(int32 Index);
 
 	UFUNCTION(BlueprintCallable)

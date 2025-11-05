@@ -14,6 +14,11 @@ void ASimulationPlayerController::BeginPlay()
     Super::BeginPlay();
 
 
+
+}
+
+void ASimulationPlayerController::CameraSetting()
+{
     TArray<AActor*> FoundActors;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACameraActor::StaticClass(), FoundActors);
 
